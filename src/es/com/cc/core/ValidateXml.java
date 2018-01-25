@@ -1,6 +1,10 @@
 package es.com.cc.core;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -45,12 +49,17 @@ public class ValidateXml {
             factory.setNamespaceAware(true);
 
             SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
+            
+            ClassLoader classLoader = getClass().getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream("DRAFT15auth.016.001.01_ESMAUG_Reporting_1.0.3.xsd");
+            String data = readFromInputStream(inputStream);
+            
             factory.setSchema(schemaFactory.newSchema(new Source[] {new StreamSource("DRAFT15auth.016.001.01_ESMAUG_Reporting_1.0.3.xsd")}));
-
+            
             SAXParser parser = factory.newSAXParser();
-
             XMLReader reader = parser.getXMLReader();
             reader.setErrorHandler(new SimpleErrorHandler());
+            
             reader.parse(new InputSource(ruta));
             
         } catch (ParserConfigurationException e) {
@@ -61,4 +70,15 @@ public class ValidateXml {
             e.printStackTrace();
         }
     }
+	
+	private String readFromInputStream(InputStream inputStream) throws IOException {
+	    StringBuilder resultStringBuilder = new StringBuilder();
+	    try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+	        String line;
+	        while ((line = br.readLine()) != null) {
+	            resultStringBuilder.append(line).append("\n");
+	        }
+	    }
+	  return resultStringBuilder.toString();
+	}
 }

@@ -2,9 +2,12 @@ package es.com.cc.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -15,6 +18,7 @@ public class ValidadorPanel extends JPanel {
 
 	private static final long serialVersionUID = 8436552952350523727L;
 	private JTextField textField;
+	String path = "";
 
 	/**
 	 * Create the panel.
@@ -31,6 +35,21 @@ public class ValidadorPanel extends JPanel {
 		JButton btnCargarFicheroXml = new JButton("Cargar");
 		btnCargarFicheroXml.setBounds(504, 127, 86, 23);
 		add(btnCargarFicheroXml);
+		btnCargarFicheroXml.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				final JFileChooser jfc = new JFileChooser();
+				int returnValue = jfc.showOpenDialog(null);
+				
+				if (returnValue == JFileChooser.APPROVE_OPTION) {
+					File selectedFile = jfc.getSelectedFile();
+					path = selectedFile.getAbsolutePath();
+					textField.setText(selectedFile.getAbsolutePath());
+				}
+			}
+		});
 		
 		JLabel lblRutaFichero = new JLabel("Introduzca la ruta del fichero XML que desea validar:");
 		lblRutaFichero.setBounds(20, 103, 253, 14);
@@ -43,13 +62,15 @@ public class ValidadorPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// obtener la ruta del fichero
-				String rutaFichero = lblRutaFichero.getText();
-				
-				// llamar al metodo de validacion
-				ValidateXml valida = new ValidateXml();
-				valida.validateXmlFromXsd_method_2(rutaFichero);
-				
+				if (path != null && !path.isEmpty()) {
+					// llamar al metodo de validacion
+					ValidateXml valida = new ValidateXml();
+					valida.validateXmlFromXsd_method_2(path);
+					
+				} else {
+					// mensaje de error
+					JOptionPane.showMessageDialog(null, "Debe seleccionar un fichero");
+				}
 			}
 		});
 		

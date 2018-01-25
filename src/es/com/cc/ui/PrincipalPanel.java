@@ -26,6 +26,7 @@ public class PrincipalPanel extends JFrame {
 				try {
 					frame = new PrincipalPanel();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
