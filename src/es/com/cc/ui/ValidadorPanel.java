@@ -1,10 +1,15 @@
 package es.com.cc.ui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import es.com.cc.core.ValidateXml;
 
 public class ValidadorPanel extends JPanel {
 
@@ -23,21 +28,34 @@ public class ValidadorPanel extends JPanel {
 		add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.setBounds(504, 127, 86, 23);
-		add(btnNewButton);
+		JButton btnCargarFicheroXml = new JButton("Cargar");
+		btnCargarFicheroXml.setBounds(504, 127, 86, 23);
+		add(btnCargarFicheroXml);
 		
-		JLabel lblNewLabel = new JLabel("Introduzca la ruta del fichero XML que desea validar:");
-		lblNewLabel.setBounds(20, 103, 253, 14);
-		add(lblNewLabel);
+		JLabel lblRutaFichero = new JLabel("Introduzca la ruta del fichero XML que desea validar:");
+		lblRutaFichero.setBounds(20, 103, 253, 14);
+		add(lblRutaFichero);
 		
-		JButton btnNewButton_1 = new JButton("Validar fichero XML");
-		btnNewButton_1.setBounds(235, 192, 123, 23);
-		add(btnNewButton_1);
+		JButton btnValidateFile = new JButton("Validar fichero XML");
+		btnValidateFile.setBounds(235, 192, 123, 23);
+		add(btnValidateFile);
+		btnValidateFile.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// obtener la ruta del fichero
+				String rutaFichero = lblRutaFichero.getText();
+				
+				// llamar al metodo de validacion
+				ValidateXml valida = new ValidateXml();
+				valida.validateXmlFromXsd_method_2(rutaFichero);
+				
+			}
+		});
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 272, 580, 117);
-		add(textArea);
+		JTextArea texstAreaResults = new JTextArea();
+		texstAreaResults.setBounds(10, 272, 580, 117);
+		add(texstAreaResults);
 		
 		JLabel lblNewLabel_1 = new JLabel("Resultado de la validaci\u00F3n:");
 		lblNewLabel_1.setBounds(20, 247, 128, 14);
