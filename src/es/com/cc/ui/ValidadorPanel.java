@@ -24,16 +24,16 @@ public class ValidadorPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public ValidadorPanel() {
-		setBounds(100, 100, 600, 400);
+		setBounds(0, 0, 580, 370);
 		setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(10, 128, 484, 20);
+		textField.setBounds(10, 128, 462, 20);
 		add(textField);
 		textField.setColumns(10);
 		
 		JButton btnCargarFicheroXml = new JButton("Cargar");
-		btnCargarFicheroXml.setBounds(504, 127, 86, 23);
+		btnCargarFicheroXml.setBounds(482, 127, 86, 23);
 		add(btnCargarFicheroXml);
 		btnCargarFicheroXml.addActionListener(new ActionListener() {
 			
@@ -52,7 +52,7 @@ public class ValidadorPanel extends JPanel {
 		});
 		
 		JLabel lblRutaFichero = new JLabel("Introduzca la ruta del fichero XML que desea validar:");
-		lblRutaFichero.setBounds(20, 103, 253, 14);
+		lblRutaFichero.setBounds(20, 103, 452, 14);
 		add(lblRutaFichero);
 		
 		JButton btnValidateFile = new JButton("Validar fichero XML");
@@ -75,11 +75,11 @@ public class ValidadorPanel extends JPanel {
 		});
 		
 		JTextArea texstAreaResults = new JTextArea();
-		texstAreaResults.setBounds(10, 272, 580, 117);
+		texstAreaResults.setBounds(10, 272, 558, 76);
 		add(texstAreaResults);
 		
 		JLabel lblNewLabel_1 = new JLabel("Resultado de la validaci\u00F3n:");
-		lblNewLabel_1.setBounds(20, 247, 128, 14);
+		lblNewLabel_1.setBounds(20, 247, 452, 14);
 		add(lblNewLabel_1);
 	}
 }

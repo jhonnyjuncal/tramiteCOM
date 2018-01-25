@@ -49,12 +49,10 @@ public class ValidateXml {
             factory.setNamespaceAware(true);
 
             SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-            
-            ClassLoader classLoader = getClass().getClassLoader();
-            InputStream inputStream = classLoader.getResourceAsStream("DRAFT15auth.016.001.01_ESMAUG_Reporting_1.0.3.xsd");
+            InputStream inputStream = getClass().getResourceAsStream("/es/com/cc/xsd/DRAFT15auth.016.001.01_ESMAUG_Reporting_1.0.3.xsd");
             String data = readFromInputStream(inputStream);
             
-            factory.setSchema(schemaFactory.newSchema(new Source[] {new StreamSource("DRAFT15auth.016.001.01_ESMAUG_Reporting_1.0.3.xsd")}));
+            factory.setSchema(schemaFactory.newSchema(new Source[] {new StreamSource(data)}));
             
             SAXParser parser = factory.newSAXParser();
             XMLReader reader = parser.getXMLReader();
@@ -64,8 +62,10 @@ public class ValidateXml {
             
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
+            
         } catch (SAXException e) {
             e.printStackTrace();
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
