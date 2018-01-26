@@ -18,7 +18,8 @@ public class ValidadorPanel extends JPanel {
 
 	private static final long serialVersionUID = 8436552952350523727L;
 	private JTextField textField;
-	String path = "";
+	private String path = "";
+	private JTextArea texstAreaResults;
 
 	/**
 	 * Create the panel.
@@ -55,17 +56,27 @@ public class ValidadorPanel extends JPanel {
 		lblRutaFichero.setBounds(20, 103, 452, 14);
 		add(lblRutaFichero);
 		
-		JButton btnValidateFile = new JButton("Validar fichero XML");
-		btnValidateFile.setBounds(235, 192, 123, 23);
-		add(btnValidateFile);
-		btnValidateFile.addActionListener(new ActionListener() {
+		texstAreaResults = new JTextArea();
+		texstAreaResults.setLineWrap(true);
+		texstAreaResults.setBounds(10, 272, 558, 76);
+		add(texstAreaResults);
+		
+		JLabel lblNewLabel_1 = new JLabel("Resultado de la validaci\u00F3n:");
+		lblNewLabel_1.setBounds(20, 247, 452, 14);
+		add(lblNewLabel_1);
+		
+		JButton btnValidarContenidoXml = new JButton("Validar XML");
+		btnValidarContenidoXml.setBounds(181, 182, 165, 23);
+		add(btnValidarContenidoXml);
+		btnValidarContenidoXml.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (path != null && !path.isEmpty()) {
 					// llamar al metodo de validacion
 					ValidateXml valida = new ValidateXml();
-					valida.validateXmlFromXsd_method_1(path);
+					String result = valida.validateAllSchemas(path);
+					texstAreaResults.setText(result);
 					
 				} else {
 					// mensaje de error
@@ -73,13 +84,5 @@ public class ValidadorPanel extends JPanel {
 				}
 			}
 		});
-		
-		JTextArea texstAreaResults = new JTextArea();
-		texstAreaResults.setBounds(10, 272, 558, 76);
-		add(texstAreaResults);
-		
-		JLabel lblNewLabel_1 = new JLabel("Resultado de la validaci\u00F3n:");
-		lblNewLabel_1.setBounds(20, 247, 452, 14);
-		add(lblNewLabel_1);
 	}
 }
