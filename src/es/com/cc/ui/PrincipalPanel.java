@@ -38,6 +38,7 @@ public class PrincipalPanel extends JFrame {
 	 * Create the frame.
 	 */
 	public PrincipalPanel() {
+		setTitle("Utilidad para el tramite COM");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 600, 400);
 		contentPane = new JPanel();
@@ -46,6 +47,7 @@ public class PrincipalPanel extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnCrearXml = new JButton("Crear XML");
+		btnCrearXml.setEnabled(false);
 		btnCrearXml.setBounds(54, 253, 130, 23);
 		contentPane.add(btnCrearXml);
 		btnCrearXml.addActionListener(new ActionListener() {
@@ -68,6 +70,7 @@ public class PrincipalPanel extends JFrame {
 		});
 		
 		JButton btnLeerRespuestaXml = new JButton("Leer respuesta XML");
+		btnLeerRespuestaXml.setEnabled(false);
 		btnLeerRespuestaXml.setBounds(385, 253, 130, 23);
 		contentPane.add(btnLeerRespuestaXml);
 		btnLeerRespuestaXml.addActionListener(new ActionListener() {

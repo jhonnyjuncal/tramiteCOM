@@ -65,7 +65,7 @@ public class ValidadorPanel extends JPanel {
 				if (path != null && !path.isEmpty()) {
 					// llamar al metodo de validacion
 					ValidateXml valida = new ValidateXml();
-					valida.validateXmlFromXsd_method_2(path);
+					valida.validateXmlFromXsd_method_1(path);
 					
 				} else {
 					// mensaje de error
