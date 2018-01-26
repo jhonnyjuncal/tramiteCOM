@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import javax.swing.ImageIcon;
+import javax.swing.UIManager;
 
 public class PrincipalPanel extends JFrame {
 
@@ -38,7 +40,7 @@ public class PrincipalPanel extends JFrame {
 	 * Create the frame.
 	 */
 	public PrincipalPanel() {
-		setTitle("Utilidad para el tramite COM");
+		setTitle("Validador de XML del tramite COM");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 600, 400);
 		contentPane = new JPanel();
