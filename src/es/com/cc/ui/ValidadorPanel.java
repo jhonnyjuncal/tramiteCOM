@@ -17,14 +17,19 @@ import es.com.cc.core.ValidateXml;
 public class ValidadorPanel extends JPanel {
 
 	private static final long serialVersionUID = 8436552952350523727L;
+	
 	private JTextField textField;
 	private String path = "";
 	private JTextArea texstAreaResults;
+	
+	private static PrincipalPanel frame;
 
 	/**
 	 * Create the panel.
 	 */
-	public ValidadorPanel() {
+	public ValidadorPanel(PrincipalPanel frame) {
+		ValidadorPanel.frame = frame;
+		
 		setBounds(0, 0, 580, 370);
 		setLayout(null);
 		
