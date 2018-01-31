@@ -1,23 +1,15 @@
 package es.com.cc.ui;
 
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.border.BevelBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
-import javax.swing.border.LineBorder;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
+import javax.swing.JTable;
 import javax.swing.JTextField;
-import java.awt.BorderLayout;
+import javax.swing.border.LineBorder;
 
 public class EdicionXmlPanel extends JPanel {
 
@@ -48,11 +40,16 @@ public class EdicionXmlPanel extends JPanel {
 	public EdicionXmlPanel(PrincipalPanel frame) {
 		EdicionXmlPanel.frame = frame;
 		
-		setBounds(0, 0, 729, 831);
+		setBounds(0, 0, 730, 830);
 		setLayout(new BorderLayout(0, 0));
 		
+		/**
+		 * ****************************************************************************************************
+		 * panel1
+		 */
 		JPanel panel1 = new JPanel();
-		panel1.setPreferredSize(new Dimension(580, 200));
+		panel1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel1.setPreferredSize(new Dimension(730, 200));
 		panel1.setLayout(null);
 		add(panel1, BorderLayout.NORTH);
 		
@@ -127,18 +124,27 @@ public class EdicionXmlPanel extends JPanel {
 		panel1.add(textField_6);
 		textField_6.setColumns(10);
 		
+		/**
+		 * ****************************************************************************************************
+		 * panel2
+		 */
 		JPanel panel2 = new JPanel();
-		panel2.setPreferredSize(new Dimension(580, 400));
+		panel2.setPreferredSize(new Dimension(730, 400));
 		add(panel2, BorderLayout.CENTER);
 		
-		
 		table = new JTable(valores, columnas);
-		table.setPreferredSize(new Dimension(580, 400));
+		table.setPreferredSize(new Dimension(730, 400));
 		table.getTableHeader().setVisible(true);
+		
+		JButton btnNewButton = new JButton("Nueva Transaccion");
+		panel2.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Cancelar Transaccion");
+		panel2.add(btnNewButton_1);
 		panel2.add(table);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setPreferredSize(new Dimension(580, 400));
+		scrollPane.setPreferredSize(new Dimension(730, 400));
 		panel2.add(scrollPane);
 		
 		
