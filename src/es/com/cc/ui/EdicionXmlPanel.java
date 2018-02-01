@@ -10,6 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class EdicionXmlPanel extends JPanel {
 
@@ -31,6 +33,7 @@ public class EdicionXmlPanel extends JPanel {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTable table;
+	private NuevaTransaccionPanel nuevaTransaccionPanel;
 	
 	
 
@@ -42,6 +45,7 @@ public class EdicionXmlPanel extends JPanel {
 		
 		setBounds(0, 0, 730, 830);
 		setLayout(new BorderLayout(0, 0));
+		
 		
 		/**
 		 * ****************************************************************************************************
@@ -124,6 +128,7 @@ public class EdicionXmlPanel extends JPanel {
 		panel1.add(textField_6);
 		textField_6.setColumns(10);
 		
+		
 		/**
 		 * ****************************************************************************************************
 		 * panel2
@@ -137,6 +142,11 @@ public class EdicionXmlPanel extends JPanel {
 		table.getTableHeader().setVisible(true);
 		
 		JButton btnNewButton = new JButton("Nueva Transaccion");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				muestraVentanaNuevaOperacion();
+			}
+		});
 		panel2.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar Transaccion");
@@ -146,10 +156,16 @@ public class EdicionXmlPanel extends JPanel {
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setPreferredSize(new Dimension(730, 400));
 		panel2.add(scrollPane);
-		
-		
-		
-		
-		
+	}
+	
+	private void muestraVentanaNuevaOperacion() {
+		nuevaTransaccionPanel = new NuevaTransaccionPanel();
+		muestraPanel(nuevaTransaccionPanel);
+	}
+	
+	private void muestraPanel(JPanel panel) {
+		frame.getContentPane().removeAll();
+		frame.setContentPane(panel);
+		frame.revalidate();
 	}
 }
