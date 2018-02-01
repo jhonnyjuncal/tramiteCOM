@@ -73,6 +73,7 @@ public class ValidadorPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (path != null && !path.isEmpty()) {
+					texstAreaResults.setText("Validando XML...");
 					// llamar al metodo de validacion
 					ValidateXml valida = new ValidateXml();
 					String result = valida.validateAllSchemas(path);

@@ -81,9 +81,7 @@ Note: The decimal separator is a dot.</xs:documentation>
             <xs:element maxOccurs="1" minOccurs="0" name="Sgn" type="PlusOrMinusIndicator">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">Sign</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Indicates that the amount value is positive or negative.&#13;
-&#13;
-Usage: When absent, the amount is positive.</xs:documentation>
+                    <xs:documentation source="Definition" xml:lang="EN">Indicates that the amount value is positive or negative. Usage: When absent, the amount is positive.</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
@@ -182,7 +180,6 @@ Usage: When absent, the amount is positive.</xs:documentation>
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">SWAP</xs:documentation>
                     <xs:documentation source="Definition" xml:lang="EN">In curve construction, Swap is the long portion of the curve constituting about 3 years to 30 years term.
-
 The exchange of one security, currency or interest rate for another to change the maturity (bonds), or quality of issues (stocks or bonds), or because investment objectives have changed.</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
@@ -231,8 +228,7 @@ The exchange of one security, currency or interest rate for another to change th
             <xs:enumeration value="LIBI">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">LIBID</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Rate at which major international banks are willing to take deposits from one another, is normally 1/8 percent below LIBOR.&#13;
-&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Rate at which major international banks are willing to take deposits from one another, is normally 1/8 percent below LIBOR.
 London InterBank Bid Rate, the rate bid by banks on Eurocurrency deposits; the international rate that banks lend to other banks.</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
@@ -363,9 +359,8 @@ London InterBank Bid Rate, the rate bid by banks on Eurocurrency deposits; the i
             <xs:element name="MtrtyDt" type="ISODate">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">MaturityDate</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Maturity date/time at which an interest bearing financial instrument becomes due, that is original date of expiry of the reported financial instrument.&#13;
-&#13;
-Usage: &#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Maturity date/time at which an interest bearing financial instrument becomes due, that is original date of expiry of the reported financial instrument.
+Usage: 
 Within MiFIR, only applies to debt instruments with defined maturity.</xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -390,7 +385,7 @@ Within MiFIR, only applies to debt instruments with defined maturity.</xs:docume
             <xs:element name="OthrNtnlCcy" type="ActiveOrHistoricCurrencyCode">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">OtherNotionalCurrency</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Underlying currency 2 of the currency pair (the currency 1 will be populated in the notional currency).&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Underlying currency 2 of the currency pair (the currency 1 will be populated in the notional currency).
 </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -405,26 +400,23 @@ Within MiFIR, only applies to debt instruments with defined maturity.</xs:docume
             <xs:element maxOccurs="1" minOccurs="0" name="XpryDt" type="ISODate">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">ExpiryDate</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Original expiry date of the reported financial instrument. &#13;
-&#13;
-Usage:&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Original expiry date of the reported financial instrument. 
+Usage:
 Field applies to derivatives with defined expiry date.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="PricMltplr" type="ESMA_NonNegativeExcludingZeroMax18">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">PriceMultiplier</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Number of units of the underlying instrument represented by a single derivative contract.&#13;
-&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Number of units of the underlying instrument represented by a single derivative contract.
 For a future or option on an index, the amount per index point.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="UndrlygInstrm" type="UnderlyingIdentification2Choice__1">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">UnderlyingInstrument</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Choice to specify the type(s) of underlying instrument(s) that make up the financial instrument.&#13;
-&#13;
-Usage:&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Choice to specify the type(s) of underlying instrument(s) that make up the financial instrument.
+Usage:
 Within MiFIR, for ADRs, GDRs and similar instruments, the ISIN code of the instrument on which the instruments is based. For Convertible bonds, the ISIN code of the instrument in which the bond can be converted. For derivatives or other instruments which have an underlying, the direct underlying instrument ISIN code, when the direct underlying is admitted to trading, or traded on a trading venue. When the underlying is a stock dividend, then the instrument code of the related share entitling the underlying dividends. For Credit Default Swaps derivatives, the ISIN of the reference obligation should be provided. In case the underlying or the direct underlying is an Index and has an ISIN, the ISIN code for that index. In case the instrument is referring to an issuer, rather than to one single instrument, the LEI code of the Issuer. In case the underlying is an Index, the name of the index. When the direct underlying is a basket, include all the identifying codes for each constituent of the basket that is admitted to trading or is traded on a trading venue.</xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -469,10 +461,10 @@ Within MiFIR, for ADRs, GDRs and similar instruments, the ISIN code of the instr
             <xs:element name="OthrNtnlCcy" type="ActiveOrHistoricCurrencyCode">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">OtherNotionalCurrency</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Currency in which leg 2 of the contract is denominated, in case of multi-currency or cross-currency swaps.&#13;
-&#13;
-Currency in which leg 2 of the swap is denominated, in case of swaptions where the underlying swap is multi-currency.&#13;
-&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Currency in which leg 2 of the contract is denominated, in case of multi-currency or cross-currency swaps.
+
+Currency in which leg 2 of the swap is denominated, in case of swaptions where the underlying swap is multi-currency.
+
 </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -606,9 +598,8 @@ Currency in which leg 2 of the swap is denominated, in case of swaptions where t
             <xs:element maxOccurs="1" minOccurs="0" name="ISIN" type="ISINOct2015Identifier">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">ISIN</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Identification of the index on which the financial instrument is based.&#13;
-&#13;
-Usage:&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Identification of the index on which the financial instrument is based.
+Usage:
 Within the scope of MiFIR RTS 23, this is the specific ISIN code associated with the index, where it exists. This field represents field 26 where the underlying will be an index.</xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -669,18 +660,17 @@ Within the scope of MiFIR RTS 23, this is the specific ISIN code associated with
             <xs:element name="Sngl" type="FinancialInstrumentIdentification6Choice">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">Single</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Instrument consists of single instrument.&#13;
-&#13;
-Usage:&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Instrument consists of single instrument.
+
+Usage:
 Within MiFIR, this is populated where the underlying is at most one instrument.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="Bskt" type="BasketDescription3">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">Basket</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Instrument consists of multiple instruments.&#13;
-&#13;
-Usage:&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Instrument consists of multiple instruments.
+Usage:
 Within MiFIR, this is populated where the underlying consists of multiple instruments even if they are not all to be reported.</xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -735,9 +725,8 @@ Within MiFIR, this is populated where the underlying consists of multiple instru
             <xs:element name="RefRate" type="BenchmarkCurveName5Choice">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">ReferenceRate</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Identifies the reference index for the instrument. &#13;
-&#13;
-Usage:&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Identifies the reference index for the instrument. 
+Usage:
 Index or name if the reference rate is not included in the index list.</xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -1063,10 +1052,8 @@ Note: a zero amount is considered a positive amount.</xs:documentation>
             <xs:element name="Othr" type="GenericPersonIdentification1__1">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">Other</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Unique identification of a person, as assigned by an institution, using an identification scheme.&#13;
-&#13;
-Usage: &#13;
-In the scope of MIFIR, the scheme name is restricted to a passport number (use of code CCPT), any other national identifier (use of code NIDN) or CONCAT (use of proprietary with value CONCAT).&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Unique identification of a person, as assigned by an institution, using an identification scheme. Usage: 
+In the scope of MIFIR, the scheme name is restricted to a passport number (use of code CCPT), any other national identifier (use of code NIDN) or CONCAT (use of proprietary with value CONCAT).
 Issuer field will be ignored and should not be populated by reporting parties.</xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -1087,10 +1074,10 @@ Issuer field will be ignored and should not be populated by reporting parties.</
             <xs:element name="Othr" type="GenericPersonIdentification1__1">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">Other</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Unique identification of a person, as assigned by an institution, using an identification scheme.&#13;
-&#13;
-Usage: &#13;
-In the scope of MIFIR, the scheme name is restricted to a passport number (use of code CCPT), any other national identifier (use of code NIDN) or CONCAT (use of proprietary with value CONCAT).&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Unique identification of a person, as assigned by an institution, using an identification scheme.
+
+Usage: 
+In the scope of MIFIR, the scheme name is restricted to a passport number (use of code CCPT), any other national identifier (use of code NIDN) or CONCAT (use of proprietary with value CONCAT).
 Issuer field will be ignored and should not be populated by reporting parties.</xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -1390,8 +1377,7 @@ Issuer field will be ignored and should not be populated by reporting parties.</
             <xs:enumeration value="CANC">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">Cancellations</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Cancellations.&#13;
-</xs:documentation>
+                    <xs:documentation source="Definition" xml:lang="EN">Cancellations.</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
             <xs:enumeration value="AMND">
@@ -1403,8 +1389,7 @@ Issuer field will be ignored and should not be populated by reporting parties.</
             <xs:enumeration value="SDIV">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">SpecialDividendTransaction</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Special dividend transactions.&#13;
-</xs:documentation>
+                    <xs:documentation source="Definition" xml:lang="EN">Special dividend transactions.</xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
             <xs:enumeration value="RPRI">
@@ -1478,13 +1463,13 @@ Issuer field will be ignored and should not be populated by reporting parties.</
             <xs:element name="Pric" type="SecuritiesTransactionPrice4Choice">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">Price</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Traded price of the transaction excluding, where applicable, commission and accrued interest.&#13;
-In the case of option contracts, it is the premium of the derivative contract per underlying security or index point.&#13;
-In the case of spread bets it should be the reference price of the direct underlying instrument.&#13;
-Where price is currently not available but pending, the value should be ’PNDG’.&#13;
-For CDS it should be the coupon in basis points. &#13;
-Where price reported in monetary terms, it shall be provided in the major currency unit.&#13;
-Where price is not applicable the field should be left blank.&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Traded price of the transaction excluding, where applicable, commission and accrued interest.
+In the case of option contracts, it is the premium of the derivative contract per underlying security or index point.
+In the case of spread bets it should be the reference price of the direct underlying instrument.
+Where price is currently not available but pending, the value should be ’PNDG’.
+For CDS it should be the coupon in basis points. 
+Where price reported in monetary terms, it shall be provided in the major currency unit.
+Where price is not applicable the field should be left blank.
 </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -1497,49 +1482,41 @@ Where price is not applicable the field should be left blank.&#13;
             <xs:element name="TradVn" type="MICIdentifier">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">TradeVenue</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Identification of the venue where the transaction was executed.&#13;
-&#13;
-Usage: &#13;
-Use the ISO 10383 segment MIC (4 characters) for financial instruments executed on a MiFID trading venue, System Internaliser (SI) or non-EU organised trading platform. Where the segment MIC does not exist, use the operating MIC. &#13;
-&#13;
-Use MIC code ‘XOFF’ for financial instruments admitted to trading or traded on a trading venue, where the transaction on that financial instrument is not executed on a MiFID trading venue, SI or non-EU organised trading platform, or where an investment firm does not know it is trading with another investment firm acting as an SI.&#13;
-&#13;
-Use MIC code ‘XXXX’ for financial instruments that are not admitted to trading or traded on a trading venue or for which no request for admission has been made and that are not traded on an non-EU organised trading platform but where the underlying is admitted to trading or traded on a trading venue.&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Identification of the venue where the transaction was executed.
+Usage: 
+Use the ISO 10383 segment MIC (4 characters) for financial instruments executed on a MiFID trading venue, System Internaliser (SI) or non-EU organised trading platform. Where the segment MIC does not exist, use the operating MIC. 
+Use MIC code ‘XOFF’ for financial instruments admitted to trading or traded on a trading venue, where the transaction on that financial instrument is not executed on a MiFID trading venue, SI or non-EU organised trading platform, or where an investment firm does not know it is trading with another investment firm acting as an SI.
+Use MIC code ‘XXXX’ for financial instruments that are not admitted to trading or traded on a trading venue or for which no request for admission has been made and that are not traded on an non-EU organised trading platform but where the underlying is admitted to trading or traded on a trading venue.
 </xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element maxOccurs="1" minOccurs="0" name="CtryOfBrnch" type="CountryCode">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">CountryOfBranch</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Country of the branch of the investment firm whose market membership was used to execute the transaction.&#13;
-&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Country of the branch of the investment firm whose market membership was used to execute the transaction.
+
 TBC with item 46.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element maxOccurs="1" minOccurs="0" name="UpFrntPmt" type="AmountAndDirection53">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">UpFrontPayment</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Monetary value of any up-front payment in basis points of notional received or paid by the seller.&#13;
-Where the seller receives the up-front payment, the value populated is positive. Where the seller pays the up-front payment, the value populated is negative.&#13;
-For increase or decrease in notional derivative contracts, the number shall reflect the absolute value of the change and shall be expressed as a positive number.&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Monetary value of any up-front payment in basis points of notional received or paid by the seller.
+Where the seller receives the up-front payment, the value populated is positive. Where the seller pays the up-front payment, the value populated is negative.
+For increase or decrease in notional derivative contracts, the number shall reflect the absolute value of the change and shall be expressed as a positive number.
 </xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element maxOccurs="1" minOccurs="0" name="TradPlcMtchgId" type="ESMA_AlphaNumericMax52_Pattern">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">TradePlaceMatchingIdentification</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Common matching identification when executed on a trade place.&#13;
-&#13;
-Usage: Must be present when a trade venue has been provided.</xs:documentation>
+                    <xs:documentation source="Definition" xml:lang="EN">Common matching identification when executed on a trade place. Usage: Must be present when a trade venue has been provided.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element maxOccurs="1" minOccurs="0" name="CmplxTradCmpntId" type="ESMA_AlphaNumericCapitalLettersMax35_Pattern">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">ComplexTradeComponentIdentification</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Identification, internal to the reporting party to identify all the reports related to the same execution of a combination of financial instruments. The code must be unique for the reporting party for the group of reports for the execution.&#13;
-&#13;
-Usage:&#13;
-Field only applies when the instrument is complex.&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Identification, internal to the reporting party to identify all the reports related to the same execution of a combination of financial instruments. The code must be unique for the reporting party for the group of reports for the execution. Usage: Field only applies when the instrument is complex.
 </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -1632,9 +1609,7 @@ Field only applies when the instrument is complex.&#13;
             <xs:element name="MntryVal" type="AmountAndDirection61">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">MonetaryValue</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Price expressed as a monetary value.&#13;
-&#13;
-Usage:&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Price expressed as a monetary value. Usage:
 Within the scope of MiFIR, this element captures fields 31 and 32.</xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -1713,16 +1688,16 @@ Within the scope of MiFIR, this element captures fields 31 and 32.</xs:documenta
             <xs:element name="ExctgPty" type="LEIIdentifier">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">ExecutingParty</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Identification of the entity executing the transaction. &#13;
-&#13;
-Usage:&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Identification of the entity executing the transaction. 
+
+Usage:
 For legal entities, use the legal entity identifier. For non-legal entities, this field shall be populated with an identifier as specified in Article 7 of this Regulation.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="SubmitgPty" type="LEIIdentifier">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">SubmittingParty</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Entity submitting the transaction report to the competent authority.&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Entity submitting the transaction report to the competent authority.
 </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -1773,8 +1748,8 @@ For legal entities, use the legal entity identifier. For non-legal entities, thi
             <xs:element name="OrdrTrnsmssn" type="SecuritiesTransactionTransmission2">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">OrderTransmission</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Indication as to whether the transaction results from an order  transmitted by the reporting of a client to a third party.&#13;
-&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Indication as to whether the transaction results from an order  transmitted by the reporting of a client to a third party.
+
 Usage: Only applicable when the conditions for transmission are not satisfied.</xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -1813,31 +1788,28 @@ Usage: Only applicable when the conditions for transmission are not satisfied.</
     <xs:complexType name="SecuritiesTransactionTransmission2">
         <xs:annotation>
             <xs:documentation source="Name" xml:lang="EN">SecuritiesTransactionTransmission2</xs:documentation>
-            <xs:documentation source="Definition" xml:lang="EN">Specifies the securities order transmission attributes.&#13;
+            <xs:documentation source="Definition" xml:lang="EN">Specifies the securities order transmission attributes.
 </xs:documentation>
         </xs:annotation>
         <xs:sequence>
             <xs:element name="TrnsmssnInd" type="TrueFalseIndicator">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">TransmissionIndicator</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Indication as to whether the transaction results from an order  transmitted by the reporting of a client to a third party.&#13;
-&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Indication as to whether the transaction results from an order  transmitted by the reporting of a client to a third party.
 Usage: Only applicable when the conditions for transmission are not satisfied.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element maxOccurs="1" minOccurs="0" name="TrnsmttgBuyr" type="LEIIdentifier">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">TransmittingBuyer</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Identifies the buyer transmitting the order to the reporting firm. &#13;
-&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Identifies the buyer transmitting the order to the reporting firm. 
 Usage: Only required for reporting firms reporting transactions on behalf of order transmitting firm. </xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element maxOccurs="1" minOccurs="0" name="TrnsmttgSellr" type="LEIIdentifier">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">TransmittingSeller</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Identifies the seller transmitting the order to the reporting firm. &#13;
-&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Identifies the seller transmitting the order to the reporting firm. 
 Usage: Only required for reporting firms reporting transactions on behalf of order transmitting firm. </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -1870,11 +1842,11 @@ Usage: Only required for reporting firms reporting transactions on behalf of ord
             <xs:element maxOccurs="1" minOccurs="0" name="NtnlCcy" type="ActiveOrHistoricCurrencyCode">
                 <xs:annotation>
                     <xs:documentation source="Name" xml:lang="EN">NotionalCurrency</xs:documentation>
-                    <xs:documentation source="Definition" xml:lang="EN">Currency in which the notional is denominated. &#13;
-&#13;
-Usage:&#13;
-Within MiFIR, in the case of an interest rate or currency derivative contract, this will be the notional currency of leg 1 or the currency 1 of the pair.&#13;
-&#13;
+                    <xs:documentation source="Definition" xml:lang="EN">Currency in which the notional is denominated. 
+
+Usage:
+Within MiFIR, in the case of an interest rate or currency derivative contract, this will be the notional currency of leg 1 or the currency 1 of the pair.
+
 Within MiFIR, in the case of swaptions where the underlying swap is single-currency, this will be the notional currency of the underlying swap. For swaptions where the underlying is multi-currency, this will be the notional currency of leg 1 of the swap.</xs:documentation>
                 </xs:annotation>
             </xs:element>
