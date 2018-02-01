@@ -15,6 +15,7 @@ public class PrincipalPanel extends JFrame {
 	
 	private JPanel contentPane;
 	private ValidadorPanel validadorPanel; 
+	private CreacionPanel creacionPanel;
 
 	/**
 	 * Launch the application.
@@ -46,7 +47,6 @@ public class PrincipalPanel extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnCrearXml = new JButton("Crear XML");
-		btnCrearXml.setEnabled(false);
 		btnCrearXml.setBounds(54, 253, 130, 23);
 		contentPane.add(btnCrearXml);
 		btnCrearXml.addActionListener(new ActionListener() {
@@ -82,18 +82,22 @@ public class PrincipalPanel extends JFrame {
 	}
 	
 	private void muestraVentanaCrearXml() {
-		
+		creacionPanel = new CreacionPanel(frame);
+		muestraPanel(creacionPanel);
 	}
 	
 	private void muestraVentanaValidarXml() {
-		validadorPanel = new ValidadorPanel();
-		
-		frame.getContentPane().removeAll();
-		frame.setContentPane(validadorPanel);
-		frame.revalidate();
+		validadorPanel = new ValidadorPanel(frame);
+		muestraPanel(validadorPanel);
 	}
 	
 	private void muestraVentanaLeerRespuestaXml() {
 		
+	}
+	
+	private void muestraPanel(JPanel panel) {
+		frame.getContentPane().removeAll();
+		frame.setContentPane(panel);
+		frame.revalidate();
 	}
 }
