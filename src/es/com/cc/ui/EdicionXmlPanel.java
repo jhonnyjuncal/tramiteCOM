@@ -134,7 +134,7 @@ public class EdicionXmlPanel extends JPanel {
 		 * panel2
 		 */
 		JPanel panel2 = new JPanel();
-		panel2.setPreferredSize(new Dimension(730, 400));
+		panel2.setPreferredSize(new Dimension(630, 400));
 		add(panel2, BorderLayout.CENTER);
 		
 		table = new JTable(valores, columnas);
@@ -156,6 +156,27 @@ public class EdicionXmlPanel extends JPanel {
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setPreferredSize(new Dimension(730, 400));
 		panel2.add(scrollPane);
+		
+		JPanel panel = new JPanel();
+		add(panel, BorderLayout.SOUTH);
+		
+		JButton btnGenerarXml = new JButton("Generar XML");
+		panel.add(btnGenerarXml);
+		btnGenerarXml.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				generaXml();
+			}
+		});
+		
+		
+		JButton btnNewButton_3 = new JButton("Borrar Datos");
+		panel.add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("Salir");
+		panel.add(btnNewButton_4);
 	}
 	
 	private void muestraVentanaNuevaOperacion() {
@@ -167,5 +188,9 @@ public class EdicionXmlPanel extends JPanel {
 		frame.getContentPane().removeAll();
 		frame.setContentPane(panel);
 		frame.revalidate();
+	}
+	
+	private void generaXml() {
+		
 	}
 }
