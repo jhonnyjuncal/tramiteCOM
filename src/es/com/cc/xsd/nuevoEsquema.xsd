@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+	<xs:element name="TramiteCNMV">
+		<xs:annotation>
+			<xs:documentation>Descripcion documento CNMV</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DocumentoCNMV" type="TipoDocumentoCNMV"/>
+				<xs:element name="DatosIdentificativos">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="EntidadComercializadora" type="TipoDatosIdentificativos"/>
+							<xs:element name="EntidadDelegada" type="TipoDatosIdentificativos"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="EstadoA1" type="TipoEstadoA1"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="TipoDocumentoCNMV">
+		<xs:sequence>
+			<xs:annotation>
+				<xs:documentation>Informacion referida al tipo de documento al que se refiere el xml 
+				Codigo de tramite: Codigo asignado al documento (obligatorio), coincide con el tipo de documento de CIFRADOC
+				</xs:documentation>
+			</xs:annotation>
+			<xs:element name="CodigoTramite" type="TipoTramiteCNMV"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TipoEstadoA1">
+		<xs:sequence>
+			<xs:element name="Periodo" type="TipoPeriodo"/>
+			<xs:element name="DatosEstadoA1" type="TipoDatosEstadoA1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TipoDatosEstadoA1">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="RegistroDatos" type="TipoRegistroDatos"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TipoDatosIdentificativos">
+		<xs:sequence>
+			<xs:element name="NIF" type="TipoNif"/>
+			<xs:element name="LEI" type="TipoLEI"/>
+			<xs:element name="Denominacion" type="TipoDenominacion"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TipoRegistroDatos">
+		<xs:sequence>
+			<xs:element name="DatosIIC" type="TipoDatosIIC"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TipoDatosIIC">
+		<xs:sequence>
+			<xs:element name="TipoIIC" type="TipoTipoIIC"/>
+			<xs:element name="NumeroRegistro" type="TipoNumeroRegistro"/>
+			<xs:element name="DatosIIC" type="TipoDatosEntidad"/>
+			<xs:element name="DatosCompartimentoIIC" type="TipoDatosCompartimentoIIC" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TipoDatosCompartimentoIIC">
+		<xs:sequence>
+			<xs:element name="Denominacion" type="TipoDenominacion"/>
+			<xs:element name="LEI" type="TipoLEI"/>
+			<xs:element name="Vocacion" type="TipoVocacion"/>
+			<xs:element name="DatosGestora" type="TipoDatosEntidad"/>
+			<xs:element name="DatosDepositario" type="TipoDatosEntidad" minOccurs="0"/>
+			<xs:element name="DatosValor" type="TipoDatosValor" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TipoDatosValor">
+		<xs:sequence>
+			<xs:element name="ISIN" type="TipoISIN"/>
+			<xs:element name="ValorLiquidativor" type="TipoValorLiquidativo"/>
+			<xs:element name="Comisiones" type="TipoComisiones"/>
+			<xs:element name="NumeroParticipes_Accionistas" type="TipoNumeroPA"/>
+			<xs:element name="ImporteComercializado" type="TipoImporteComercializado"/>
+			<xs:element name="VolumenInversion" type="TipoVolumenInversion"/>
+			<xs:element name="OtrosDatosCualitativos">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="TipoOtrosDatosCualitativos"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TipoValorLiquidativo">
+		<xs:sequence>
+			<xs:element name="FinTrimestreAnterior" type="TipoImporte"/>
+			<xs:element name="FinTrimestreActual" type="TipoImporte"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TipoComisiones">
+		<xs:sequence>
+			<xs:element name="GestionPatrimonio" type="TipoPorcentaje"/>
+			<xs:element name="GestionResultados" type="TipoPorcentaje"/>
+			<xs:element name="GestionMixta" type="TipoPorcentaje"/>
+			<xs:element name="Depositario" type="TipoPorcentaje"/>
+			<xs:element name="Suscripcion" type="TipoPorcentaje"/>
+			<xs:element name="Reembolso" type="TipoPorcentaje"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TipoNumeroPA">
+		<xs:sequence>
+			<xs:element name="FinTrimestreAnterior" type="xs:integer"/>
+			<xs:element name="Entradas" type="xs:integer"/>
+			<xs:element name="Salidas" type="xs:integer"/>
+			<xs:element name="FinTrimestreActualTotal" type="xs:integer"/>
+			<xs:element name="FinTrimestreActualPF" type="xs:integer"/>
+			<xs:element name="FinTrimestreActualPJTotal" type="xs:integer"/>
+			<xs:element name="FinTrimestreActualPJOtrosComer" type="xs:integer"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TipoImporteComercializado">
+		<xs:sequence>
+			<xs:element name="EntradasTotal" type="TipoImporte"/>
+			<xs:element name="EntradasOtros" type="TipoImporte"/>
+			<xs:element name="SalidasTotal" type="TipoImporte"/>
+			<xs:element name="SalidasOtros" type="TipoImporte"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TipoVolumenInversion">
+		<xs:sequence>
+			<xs:element name="FinTrimestreAnterior" type="TipoImporte"/>
+			<xs:element name="FinTrimestreActualTotal" type="TipoImporte"/>
+			<xs:element name="FinTrimestreActualPF" type="TipoImporte"/>
+			<xs:element name="FinTrimestreActualPJTotal" type="TipoImporte"/>
+			<xs:element name="FinTrimestreActualPJOtrosComer" type="TipoImporte"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TipoOtrosDatosCualitativos">
+		<xs:sequence>
+			<xs:element name="ETF" type="TipoSN"/>
+			<xs:element name="Autogestionada" type="TipoSN"/>
+			<xs:element name="FondodeFondos" type="TipoSN"/>
+			<xs:choice>
+				<xs:element name="SubordinadaSI" type="TipoSubordinadaIICPrincial"/>
+				<xs:element name="SubordinadaNO" type="TipoN"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TipoSubordinadaIICPrincial">
+		<xs:sequence>
+			<xs:element name="TipoIIC" type="TipoTipoIIC"/>
+			<xs:element name="Numero" type="TipoNumeroRegistro"/>
+			<xs:element name="LEI" type="TipoLEI"/>
+			<xs:element name="Pais" type="TipoPais"/>
+			<xs:element name="Vocacion" type="TipoVocacion"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TipoDatosEntidad">
+		<xs:sequence>
+			<xs:element name="Denominacion" type="TipoDenominacion"/>
+			<xs:element name="LEI" type="TipoLEI"/>
+			<xs:element name="Pais" type="TipoPais"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TipoPeriodo">
+		<xs:sequence>
+			<xs:element name="Mes" type="TipoMes"/>
+			<xs:element name="Ejercicio" type="TipoEjercicio"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="TipoTipoIIC">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="SICAV|FONDO|FIA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoNumeroRegistro">
+		<xs:restriction base="xs:short">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoDenominacion">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="150"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoNif">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="9"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoMes">
+		<xs:restriction base="xs:string">
+			<xs:length value="2"/>
+			<xs:pattern value="03|06|09|12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoEjercicio">
+		<xs:restriction base="xs:short">
+			<xs:minInclusive value="2018"/>
+			<xs:maxInclusive value="2100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoImporte">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoPorcentaje">
+		<xs:annotation>
+			<xs:documentation>Formato %: Max 6(d) y max of 2 cifras decimales.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="6"/>
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoTramiteCNMV">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="EEI"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoLEI">
+		<xs:annotation>
+			<xs:documentation>Codigo LEI: 20(x)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="[A-Z|0-9]{20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoISIN">
+		<xs:annotation>
+			<xs:documentation> ISO 6166 ISIN.  Formato:  2(a)9(x)1(n) </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="[A-Z]{2}([A-Z]|[0-9]){9}[0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoPais">
+		<xs:annotation>
+			<xs:documentation>ISO 3166</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoVocacion">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoSN">
+		<xs:annotation>
+			<xs:documentation>Valor S o N</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:pattern value="S|N"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoN">
+		<xs:annotation>
+			<xs:documentation>Valor N</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:pattern value="N"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
