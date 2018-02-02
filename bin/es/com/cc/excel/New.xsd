@@ -1,0 +1,64 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:element name="FinInstrmRptgTxRpt" type="FinancialInstrumentReportingTransactionReportV01"/>
+	<xs:complexType name="FinancialInstrumentReportingTransactionReportV01">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="Tx" type="ReportingTransactionType1Choice__1">
+                <xs:annotation>
+                    <xs:documentation source="Name" xml:lang="EN">Transaction</xs:documentation>
+                    <xs:documentation source="Definition" xml:lang="EN">Provides the details of the reported securities transactions.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+	<xs:complexType name="ReportingTransactionType1Choice__1">
+		<xs:sequence>
+		    <xs:element name="New" type="SecuritiesTransactionReport4__1">
+		        <xs:annotation>
+		            <xs:documentation source="Name" xml:lang="EN">New</xs:documentation>
+		            <xs:documentation source="Definition" xml:lang="EN">Transaction is a newly reported transaction.</xs:documentation>
+		        </xs:annotation>
+		    </xs:element>
+	    </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SecuritiesTransactionReport4__1">
+        <xs:sequence>
+           <xs:element name="TxId" type="ESMA_AlphaNumericMax52_Pattern">
+                <xs:annotation>
+                    <xs:documentation source="Name" xml:lang="EN">TransactionIdentification</xs:documentation>
+                    <xs:documentation source="Definition" xml:lang="EN">Unique and unambiguous identification of the transaction.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ExctgPty" type="LEIIdentifier">
+                <xs:annotation>
+                    <xs:documentation source="Name" xml:lang="EN">ExecutingParty</xs:documentation>
+                    <xs:documentation source="Definition" xml:lang="EN">Identification of the entity executing the transaction. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="InvstmtPtyInd" type="TrueFalseIndicator">
+                <xs:annotation>
+                    <xs:documentation source="Name" xml:lang="EN">InvestmentPartyIndicator</xs:documentation>
+                    <xs:documentation source="Definition" xml:lang="EN">Indicates whether the reporting party is defined as an investment firm under the local regulation or not.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SubmitgPty" type="LEIIdentifier">
+                <xs:annotation>
+                    <xs:documentation source="Name" xml:lang="EN">SubmittingParty</xs:documentation>
+                    <xs:documentation source="Definition" xml:lang="EN">Entity submitting the transaction report to the competent authority.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="ESMA_AlphaNumericMax52_Pattern">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([A-Z]|[0-9]){1,52}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LEIIdentifier">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z0-9]{18,18}[0-9]{2,2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TrueFalseIndicator">
+        <xs:restriction base="xs:boolean"/>
+    </xs:simpleType>
+</xs:schema>
