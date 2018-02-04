@@ -49,7 +49,7 @@ public class NuevaTransaccionPanel extends JPanel {
 		 * ****************************************************************************************************
 		 * panel OrdenTransmision
 		 */
-		OrdenTransmision panelOrdenesTransmision = new OrdenTransmision();
+		OrdenTransmisionPanel panelOrdenesTransmision = new OrdenTransmisionPanel();
 		panelOrdenesTransmision.setPreferredSize(new Dimension(730, 100));
 		add(panelOrdenesTransmision);
 		
@@ -58,7 +58,7 @@ public class NuevaTransaccionPanel extends JPanel {
 		 * ****************************************************************************************************
 		 * panel Transaccion
 		 */
-		Transaccion panelTransacciones = new Transaccion();
+		TransaccionPanel panelTransacciones = new TransaccionPanel();
 		panelTransacciones.setPreferredSize(new Dimension(730, 200));
 		add(panelTransacciones);
 		

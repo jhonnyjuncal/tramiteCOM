@@ -69,9 +69,9 @@ public class ValidateXml {
 		XsdErrorHandler errorHandler = null;
 		
 		try {
-			InputStream xsd1 = getClass().getResourceAsStream("/es/com/cc/xsd/head.003.001.01.xsd");
-			InputStream xsd2 = getClass().getResourceAsStream("/es/com/cc/xsd/DRAFT15auth.016.001.01_ESMAUG_Reporting_1.0.3.xsd");
-			InputStream xsd3 = getClass().getResourceAsStream("/es/com/cc/xsd/head.001.001.01_ESMAUG_1.0.0.xsd");
+			InputStream xsd1 = getClass().getResourceAsStream("/es/com/cc/xsd/envio/head.003.001.01.xsd");
+			InputStream xsd2 = getClass().getResourceAsStream("/es/com/cc/xsd/envio/DRAFT15auth.016.001.01_ESMAUG_Reporting_1.0.3.xsd");
+			InputStream xsd3 = getClass().getResourceAsStream("/es/com/cc/xsd/envio/head.001.001.01_ESMAUG_1.0.0.xsd");
 			
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 			Schema schema = schemaFactory.newSchema(new Source[] {

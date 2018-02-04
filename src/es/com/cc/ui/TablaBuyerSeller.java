@@ -20,7 +20,7 @@ public class TablaBuyerSeller extends JPanel {
 	private JTable table;
 	private Vector<String> columnas = new Vector<String>(3);
 	private Vector<String> valores = new Vector<String>();
-	private BuyerSeller panelBuyer = null;
+	private BuyerSellerPanel panelBuyer = null;
 	
 
 	/**
@@ -40,7 +40,7 @@ public class TablaBuyerSeller extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				panelBuyer = new BuyerSeller();
+				panelBuyer = new BuyerSellerPanel();
 				panelBuyer.getBotonAceptar().addActionListener(new ActionListener() {
 					
 					@Override

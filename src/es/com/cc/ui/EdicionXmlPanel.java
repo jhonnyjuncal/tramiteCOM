@@ -1,23 +1,67 @@
 package es.com.cc.ui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.InputStream;
+import java.io.StringWriter;
+
 import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.xml.XMLConstants;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import org.xml.sax.SAXException;
+
+import es.com.cc.core.schema.all.BusinessApplicationHeaderEnvelope;
+import es.com.cc.core.schema.all.BusinessApplicationHeaderV01;
+import es.com.cc.core.schema.all.BusinessDataHeaderV01;
+import es.com.cc.core.schema.all.Document;
+import es.com.cc.core.schema.all.GenericOrganisationIdentification11;
+import es.com.cc.core.schema.all.ObjectFactory;
+import es.com.cc.core.schema.all.OrganisationIdentification71;
+import es.com.cc.core.schema.all.OrganisationIdentificationSchemeName1Choice;
+import es.com.cc.core.schema.all.Party10Choice1;
+import es.com.cc.core.schema.all.Party9Choice1;
+import es.com.cc.core.schema.all.PartyIdentification421;
+import es.com.cc.core.schema.all.StrictPayload;
+//import es.com.cc.core.schema.envio.BusinessApplicationHeader11;
+//import es.com.cc.core.schema.envio.BusinessApplicationHeaderEnvelope;
+//import es.com.cc.core.schema.envio.BusinessApplicationHeaderV01;
+//import es.com.cc.core.schema.envio.BusinessDataHeaderV01;
+//import es.com.cc.core.schema.envio.Document;
+//import es.com.cc.core.schema.envio.FinancialInstrumentReportingTransactionReportV01;
+//import es.com.cc.core.schema.envio.GenericOrganisationIdentification11;
+//import es.com.cc.core.schema.envio.ObjectFactory;
+//import es.com.cc.core.schema.envio.OrganisationIdentification71;
+//import es.com.cc.core.schema.envio.OrganisationIdentificationSchemeName1Choice;
+//import es.com.cc.core.schema.envio.Party10Choice1;
+//import es.com.cc.core.schema.envio.Party9Choice1;
+//import es.com.cc.core.schema.envio.PartyIdentification421;
+//import es.com.cc.core.schema.envio.ReportingTransactionType1Choice1;
+//import es.com.cc.core.schema.envio.SecuritiesTransactionReport41;
+//import es.com.cc.core.schema.envio.StrictPayload;
+import jdk.nashorn.internal.runtime.regexp.JoniRegExp.Factory;
 
 public class EdicionXmlPanel extends JPanel {
 
 	private static final long serialVersionUID = 8153525306985416127L;
 	
 	private static PrincipalPanel frame;
+	private JTable table;
+	private NuevaTransaccionPanel nuevaTransaccionPanel;
+	private HeaderPanel headerPanel;
 	
 	private static String[] columnas = new String[] {
 			"Tipo", "Valor1", "Valor2", "Valor3" };
@@ -25,16 +69,6 @@ public class EdicionXmlPanel extends JPanel {
 			{"Cancelacion", "valor1", "valor2", "valor3"},
 			{"Nueva",       "valor1", "valor2", "valor3"}
 	};
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTable table;
-	private NuevaTransaccionPanel nuevaTransaccionPanel;
-	
 	
 
 	/**
@@ -51,82 +85,10 @@ public class EdicionXmlPanel extends JPanel {
 		 * ****************************************************************************************************
 		 * panel1
 		 */
-		JPanel panel1 = new JPanel();
-		panel1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel1.setPreferredSize(new Dimension(730, 200));
-		panel1.setLayout(null);
-		add(panel1, BorderLayout.NORTH);
+		headerPanel = new HeaderPanel();
+		add(headerPanel, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel = new JLabel("Id");
-		lblNewLabel.setBounds(54, 36, 46, 14);
-		panel1.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(110, 33, 200, 20);
-		panel1.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblNewLabel_1 = new JLabel("Prtry");
-		lblNewLabel_1.setBounds(54, 61, 46, 14);
-		panel1.add(lblNewLabel_1);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(110, 58, 200, 20);
-		panel1.add(textField_1);
-		textField_1.setColumns(10);
-		
-		JLabel lblNewLabel_2 = new JLabel("FROM");
-		lblNewLabel_2.setBounds(10, 11, 46, 14);
-		panel1.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("TO");
-		lblNewLabel_3.setBounds(356, 11, 46, 14);
-		panel1.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("Id");
-		lblNewLabel_4.setBounds(384, 36, 46, 14);
-		panel1.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("Prtry");
-		lblNewLabel_5.setBounds(384, 61, 46, 14);
-		panel1.add(lblNewLabel_5);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(440, 33, 200, 20);
-		panel1.add(textField_2);
-		textField_2.setColumns(10);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(440, 58, 200, 20);
-		panel1.add(textField_3);
-		textField_3.setColumns(10);
-		
-		JLabel lblNewLabel_6 = new JLabel("BizMsgIdr");
-		lblNewLabel_6.setBounds(10, 108, 69, 14);
-		panel1.add(lblNewLabel_6);
-		
-		JLabel lblNewLabel_7 = new JLabel("MsgDefIdr");
-		lblNewLabel_7.setBounds(10, 133, 69, 14);
-		panel1.add(lblNewLabel_7);
-		
-		JLabel lblNewLabel_8 = new JLabel("CreDt");
-		lblNewLabel_8.setBounds(10, 158, 69, 14);
-		panel1.add(lblNewLabel_8);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(89, 105, 200, 20);
-		panel1.add(textField_4);
-		textField_4.setColumns(10);
-		
-		textField_5 = new JTextField();
-		textField_5.setBounds(89, 130, 200, 20);
-		panel1.add(textField_5);
-		textField_5.setColumns(10);
-		
-		textField_6 = new JTextField();
-		textField_6.setBounds(89, 155, 200, 20);
-		panel1.add(textField_6);
-		textField_6.setColumns(10);
 		
 		
 		/**
@@ -167,7 +129,20 @@ public class EdicionXmlPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				generaXml();
+//				final JFileChooser jfc = new JFileChooser();
+//				String path = null;
+//				int returnValue = jfc.showOpenDialog(null);
+//				
+//				if (returnValue == JFileChooser.APPROVE_OPTION) {
+//					File selectedFile = jfc.getSelectedFile();
+//					path = selectedFile.getAbsolutePath();
+//				}
+//				
+//				if (path != null) {
+//					generaXml(path);
+//				}
+				
+				generaXml("");
 			}
 		});
 		
@@ -190,7 +165,347 @@ public class EdicionXmlPanel extends JPanel {
 		frame.revalidate();
 	}
 	
-	private void generaXml() {
+	private void generaXml(String path) {
+//		ObjectFactory objFac = new ObjectFactory();
+//		
+//		/**
+//		 * FROM
+//		 */
+//		OrganisationIdentificationSchemeName1Choice fromOrgIdChoice = objFac.createOrganisationIdentificationSchemeName1Choice();
+//		fromOrgIdChoice.setCd("NDID");
+//		
+//		GenericOrganisationIdentification11 fromOrgId11 = objFac.createGenericOrganisationIdentification11();
+//		fromOrgId11.setId("jhonny1");
+//		fromOrgId11.setSchmeNm(fromOrgIdChoice);
+//		
+//		OrganisationIdentification71 fromOI = objFac.createOrganisationIdentification71();
+//		fromOI.setOthr(fromOrgId11);
+//		
+//		Party10Choice1 fromPartyId = objFac.createParty10Choice1();
+//		fromPartyId.setOrgId(fromOI);
+//		
+//		PartyIdentification421 fromOrgId = objFac.createPartyIdentification421();
+//		fromOrgId.setId(fromPartyId);
+//		
+//		Party9Choice1 fromValue = objFac.createParty9Choice1();
+//		fromValue.setOrgId(fromOrgId);
+//		
+//		
+//		/**
+//		 * TO
+//		 */
+//		OrganisationIdentificationSchemeName1Choice toOrgIdChoice = objFac.createOrganisationIdentificationSchemeName1Choice();
+//		toOrgIdChoice.setCd("LEI");
+//		
+//		GenericOrganisationIdentification11 toOrgId11 = objFac.createGenericOrganisationIdentification11();
+//		toOrgId11.setId("jhonny2");
+//		toOrgId11.setSchmeNm(toOrgIdChoice);
+//		
+//		OrganisationIdentification71 toOI = objFac.createOrganisationIdentification71();
+//		toOI.setOthr(toOrgId11);
+//		
+//		Party10Choice1 toPartyId = objFac.createParty10Choice1();
+//		toPartyId.setOrgId(toOI);
+//		
+//		PartyIdentification421 toOrgId = objFac.createPartyIdentification421();
+//		toOrgId.setId(toPartyId);
+//		
+//		Party9Choice1 toValue = objFac.createParty9Choice1();
+//		toValue.setOrgId(toOrgId);
+//		
+//		
+//		
+//		
+//		BusinessApplicationHeaderV01 header = objFac.createBusinessApplicationHeaderV01();
+//		header.setFr(fromValue);
+//		header.setTo(toValue);
+//		header.setBizMsgIdr(header.getBizMsgIdr());
+//		header.setMsgDefIdr(header.getMsgDefIdr());
+//		header.setCreDt(header.getCreDt());
+//		JAXBElement<BusinessApplicationHeaderV01> appHdrNode = objFac.createAppHdr(header);
+//		
+//		SecuritiesTransactionReport41 txNew = objFac.createSecuritiesTransactionReport41();
+//		txNew.setTxId("txtxtx01");
+//		txNew.setExctgPty("excgexcg01");
+//		txNew.setInvstmtPtyInd(true);
+//		txNew.setSubmitgPty("0101010101");
+////		txNew.setBuyr();
+////		txNew.setSellr();
+////		txNew.setOrdrTrnsmssn();
+////		txNew.setTx();
+////		txNew.setFinInstrm();
+////		txNew.setExctgPrsn();
+////		txNew.setAddtlAttrbts();
+//		
+//		
+//		ReportingTransactionType1Choice1 nuevaOperacion = objFac.createReportingTransactionType1Choice1();
+//		nuevaOperacion.setNew(txNew);
+//		
+//		FinancialInstrumentReportingTransactionReportV01 finIns = objFac.createFinancialInstrumentReportingTransactionReportV01();
+//		finIns.getTx().add(nuevaOperacion);
+//		
+//		
+//		Document documentValue = objFac.createDocument();
+//		documentValue.setFinInstrmRptgTxRpt(finIns);
+//		
+//		StrictPayload pyldValue = objFac.createStrictPayload();
+//		pyldValue.setAny(documentValue);
+//		
+//		BusinessApplicationHeaderEnvelope hdrValue = objFac.createBusinessApplicationHeaderEnvelope();
+//		hdrValue.setAny(appHdrNode);
+//		
+//		
+//		BusinessDataHeaderV01 bizDataValue = objFac.createBusinessDataHeaderV01();
+//		bizDataValue.setHdr(hdrValue);
+//		bizDataValue.setPyld(pyldValue);
+//		
+//		
+//		JAXBElement<BusinessDataHeaderV01> bizDataNode = objFac.createBizData(bizDataValue);
+//		JAXBElement<Document> documentNode = objFac.createDocument(documentValue);
 		
+		
+		
+		
+		ObjectFactory fac = new ObjectFactory();
+		
+		/**
+		 * Cabecera
+		 */
+		OrganisationIdentificationSchemeName1Choice fromSchema = fac.createOrganisationIdentificationSchemeName1Choice();
+		if (headerPanel.getFromSchema() == 0) {
+			fromSchema.setCd(headerPanel.getFromPytryTextField());
+			
+		} else {
+			fromSchema.setPrtry(headerPanel.getToPytryTextField());
+		}
+		
+		GenericOrganisationIdentification11 fromGenericOrg = fac.createGenericOrganisationIdentification11();
+		fromGenericOrg.setId(headerPanel.getFromIdTextField());
+		fromGenericOrg.setSchmeNm(fromSchema);
+		
+		OrganisationIdentification71 fromOrgaId = fac.createOrganisationIdentification71();
+		fromOrgaId.setOthr(fromGenericOrg);
+		
+		Party10Choice1 fromChoice = fac.createParty10Choice1();
+		fromChoice.setOrgId(fromOrgaId);
+		
+		PartyIdentification421 fromOrgId = fac.createPartyIdentification421();
+		fromOrgId.setId(fromChoice);
+		
+		Party9Choice1 from = fac.createParty9Choice1();
+		from.setOrgId(fromOrgId);
+		
+		
+		
+		GenericOrganisationIdentification11 toGenericOrg = fac.createGenericOrganisationIdentification11();
+		toGenericOrg.setId();
+		toGenericOrg.setSchmeNm();
+		
+		OrganisationIdentification71 toOrgaId = fac.createOrganisationIdentification71();
+		toOrgaId.setOthr(toGenericOrg);
+		
+		Party10Choice1 toChoice = fac.createParty10Choice1();
+		toChoice.setOrgId(toOrgaId);
+		
+		PartyIdentification421 toOrgId = fac.createPartyIdentification421();
+		toOrgId.setId(toChoice);
+		
+		Party9Choice1 to = fac.createParty9Choice1();
+		to.setOrgId(toOrgId);
+		
+		
+		BusinessApplicationHeaderV01 header = fac.createBusinessApplicationHeaderV01();
+		header.setFr(from);
+		header.setTo(to);
+		header.setBizMsgIdr("000000001");
+		header.setMsgDefIdr("000000002");
+//		header.setCreDt();
+		
+		JAXBElement<BusinessApplicationHeaderV01> appHdr = fac.createAppHdr(header);
+		
+		BusinessApplicationHeaderEnvelope p1 = fac.createBusinessApplicationHeaderEnvelope();
+		p1.setAny(appHdr);
+		
+		
+		
+		
+		/**
+		 * Contenido
+		 */
+		Document doc = fac.createDocument();
+		
+		JAXBElement<Document> documentRoot = fac.createDocument(doc);
+		
+		StrictPayload p2 = fac.createStrictPayload();
+		p2.setAny(documentRoot);
+		
+		
+		
+		
+		
+		/**
+		 * Union de la cabecera y el contenido
+		 */
+		BusinessDataHeaderV01 dataHeader = fac.createBusinessDataHeaderV01();
+		dataHeader.setHdr(p1);
+		dataHeader.setPyld(p2);
+		
+		JAXBElement<BusinessDataHeaderV01> element = fac.createBizData(dataHeader);
+		
+		
+		
+		
+		try {
+			JAXBContext jc = JAXBContext.newInstance("es.com.cc.core.schema.all");
+			Marshaller marshaller = jc.createMarshaller();
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			
+			path = "C:\\Users\\JHONNY\\Desktop\\prueba_xml_tramite_COM.xml";
+	        marshaller.marshal(element, new File(path));
+	        
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/**
+		 * part 1
+		 */
+//		es.com.cc.core.schema.part1.ObjectFactory factory1 = new es.com.cc.core.schema.part1.ObjectFactory();
+//		
+//		es.com.cc.core.schema.part1.Document document = factory1.createDocument();
+//		
+//		JAXBElement<es.com.cc.core.schema.part1.Document> rootDocument = factory1.createDocument(document);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/**
+		 * uso el paquete "part2"
+		 */
+//		es.com.cc.core.schema.part2.ObjectFactory factory2 = new es.com.cc.core.schema.part2.ObjectFactory();
+//		
+//		es.com.cc.core.schema.part2.BusinessApplicationHeaderV01 p2AppHdr = factory2.createBusinessApplicationHeaderV01();
+//		
+//		p2AppHdr.setFr(factory2.createParty9Choice1());
+//		p2AppHdr.setTo(factory2.createParty9Choice1());
+//		p2AppHdr.setBizMsgIdr("111111");
+//		p2AppHdr.setMsgDefIdr("33333333333");
+//		
+//		
+//		JAXBElement<es.com.cc.core.schema.part2.BusinessApplicationHeaderV01> headerValue = factory2.createAppHdr(p2AppHdr);
+		
+		
+		
+		
+		
+		
+		
+		/**
+		 * part3
+		 */
+		
+		
+		
+//		try {
+//			path = "C:\\Users\\JHONNY\\Desktop\\prueba_xml_tramite_COM.xml";
+//			JAXBContext jc = JAXBContext.newInstance("es.com.cc.core.schema.part2");
+//			Marshaller marshaller = jc.createMarshaller();
+//			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//			
+//	        marshaller.marshal(rootElement, new File(path));
+//			
+//		} catch (JAXBException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
+		
+		
+//		StringWriter p1 = convertElementPackage1(rootDocument);
+//		StringWriter p2 = convertElementPackage2(headerValue);
+//		convertElementPackage3(p1, p2);
+	}
+	
+	
+	
+	
+	
+	private StringWriter convertElementPackage1(JAXBElement<es.com.cc.core.schema.part1.Document> element) {
+	    try {
+			JAXBContext jc = JAXBContext.newInstance("es.com.cc.core.schema.part1");
+			Marshaller marshaller = jc.createMarshaller();
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			
+			StringWriter str = new StringWriter();
+	        marshaller.marshal(element, System.out);
+	        
+	        return str;
+	        
+	    } catch(JAXBException e) {
+	    	e.printStackTrace();
+	    }
+	    return null;
+	}
+	
+	private StringWriter convertElementPackage2(JAXBElement<es.com.cc.core.schema.part2.BusinessApplicationHeaderV01> element) {
+	    try {
+			JAXBContext jc = JAXBContext.newInstance("es.com.cc.core.schema.part2");
+			Marshaller marshaller = jc.createMarshaller();
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			
+			StringWriter str = new StringWriter();
+	        marshaller.marshal(element, System.out);
+	        
+	        return str;
+	        
+	    } catch(JAXBException e) {
+	    	e.printStackTrace();
+	    }
+	    return null;
+	}
+	
+	private void convertElementPackage3(StringWriter p1, StringWriter p2) {
+	    try {
+	    	es.com.cc.core.schema.part3.ObjectFactory factory3 = new es.com.cc.core.schema.part3.ObjectFactory();
+			
+			es.com.cc.core.schema.part3.BusinessApplicationHeaderEnvelope p3HdrValue = factory3.createBusinessApplicationHeaderEnvelope();
+			p3HdrValue.setAny(p1);
+			
+			es.com.cc.core.schema.part3.StrictPayload p3Strict = factory3.createStrictPayload();
+			p3Strict.setAny(p2);
+			
+			es.com.cc.core.schema.part3.BusinessDataHeaderV01 p3BizDataValue = factory3.createBusinessDataHeaderV01();
+			p3BizDataValue.setHdr(p3HdrValue);
+			p3BizDataValue.setPyld(p3Strict);
+			
+			JAXBElement<es.com.cc.core.schema.part3.BusinessDataHeaderV01> rootElement = factory3.createBizData(p3BizDataValue);
+	    	
+	    	
+			JAXBContext jc = JAXBContext.newInstance("es.com.cc.core.schema.part3");
+			Marshaller marshaller = jc.createMarshaller();
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			
+			String path = "C:\\Users\\JHONNY\\Desktop\\prueba_xml_tramite_COM.xml";
+	        marshaller.marshal(rootElement, System.out);
+	        
+	    } catch(JAXBException e) {
+	    	e.printStackTrace();
+	    }
 	}
 }
