@@ -2,6 +2,7 @@ package es.com.cc.ui;
 
 import javax.swing.JPanel;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -31,6 +32,7 @@ public class CreacionPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				CreacionPanel.frame.setBounds(200, 200, 730, 830);
 				edicionPanel = new EdicionXmlPanel(CreacionPanel.frame);
 				muestraPanel(edicionPanel);
 			}

@@ -19,8 +19,10 @@ public class HeaderPanel extends JPanel {
 	private JTextField bizMsgIdrTextField;
 	private JTextField msgDefIdrTextField;
 	private JTextField creDtTextField;
-	private JComboBox fromSchema;
-	private JComboBox toSchema
+	private JComboBox<String> fromSchema;
+	private JComboBox<String> toSchema;
+	
+	private static final String[] COMBO_VALUES = {"Cd", "Prtry"};
 
 	/**
 	 * Create the panel.
@@ -109,11 +111,11 @@ public class HeaderPanel extends JPanel {
 		lblNewLabel_10.setBounds(384, 61, 46, 14);
 		add(lblNewLabel_10);
 		
-		fromSchema = new JComboBox();
+		fromSchema = new JComboBox<String>(COMBO_VALUES);
 		fromSchema.setBounds(110, 58, 200, 20);
 		add(fromSchema);
 		
-		toSchema = new JComboBox();
+		toSchema = new JComboBox<String>(COMBO_VALUES);
 		toSchema.setBounds(440, 58, 200, 20);
 		add(toSchema);
 	}
@@ -134,7 +136,15 @@ public class HeaderPanel extends JPanel {
 		return fromIdTextField.getText();
 	}
 	
-	public String getFromPytryTextField() {
+	public String getToIdTextField() {
+		return toIdTextField.getText();
+	}
+	
+	public String getFromPytryCdTextField() {
+		return fromPytryTextField.getText();
+	}
+	
+	public String getToPytryCdTextField() {
 		return fromPytryTextField.getText();
 	}
 	
