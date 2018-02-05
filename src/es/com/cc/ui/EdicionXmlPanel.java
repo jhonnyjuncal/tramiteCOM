@@ -8,6 +8,8 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Vector;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -55,6 +57,8 @@ import es.com.cc.core.schema.all.SecurityInstrumentDescription11;
 import es.com.cc.core.schema.all.SecurityInstrumentDescription131;
 import es.com.cc.core.schema.all.Side5Code;
 import es.com.cc.core.schema.all.StrictPayload;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class EdicionXmlPanel extends JPanel {
 
@@ -65,13 +69,16 @@ public class EdicionXmlPanel extends JPanel {
 	private NuevaTransaccionPanel nuevaTransaccionPanel;
 	private HeaderPanel headerPanel;
 	
-	private static String[] columnas = new String[] {
-			"Tipo", "Valor1", "Valor2", "Valor3" };
-	private static Object[][] valores = new Object[][] {
-			{"Cancelacion", "valor1", "valor2", "valor3"},
-			{"Nueva",       "valor1", "valor2", "valor3"}
-	};
+	private static Vector<String> columnas = new Vector<String>(4);
+	private static Vector<String> valores = null;
 	
+	static {
+		columnas.add("Tipo");
+		columnas.add("Valor1");
+		columnas.add("Valor2");
+		columnas.add("Valor3");
+		columnas.add("Valor4");
+	}
 
 	/**
 	 * Create the panel.
@@ -98,11 +105,12 @@ public class EdicionXmlPanel extends JPanel {
 		 * panel2
 		 */
 		JPanel panel2 = new JPanel();
+		panel2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel2.setPreferredSize(new Dimension(725, 400));
 		add(panel2, BorderLayout.CENTER);
 		
 		table = new JTable(valores, columnas);
-		table.setPreferredSize(new Dimension(715, 270));
+		table.setPreferredSize(new Dimension(700, 297));
 		table.getTableHeader().setVisible(true);
 		
 		JButton btnNewButton = new JButton("Nueva Transaccion");
@@ -115,10 +123,10 @@ public class EdicionXmlPanel extends JPanel {
 		
 		JButton btnNewButton_1 = new JButton("Cancelar Transaccion");
 		panel2.add(btnNewButton_1);
-		panel2.add(table);
+		
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setPreferredSize(new Dimension(720, 300));
+		scrollPane.setPreferredSize(new Dimension(700, 300));
 		panel2.add(scrollPane);
 		
 		JPanel panel = new JPanel();
@@ -158,6 +166,14 @@ public class EdicionXmlPanel extends JPanel {
 	
 	private void muestraVentanaNuevaOperacion() {
 		nuevaTransaccionPanel = new NuevaTransaccionPanel();
+		nuevaTransaccionPanel.getBotonAceptar().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				nuevaTransaccionPanel.getDatosDeOperaciones();
+			}
+		});
 		muestraPanel(nuevaTransaccionPanel);
 	}
 	
@@ -291,6 +307,7 @@ public class EdicionXmlPanel extends JPanel {
 		dcsnMark.setLEI("LEI_DE_LA_EMPRESA");
 		dcsnMark.setPrsn(pi2);
 		
+		// ya lo tengo
 		PartyIdentification791 buyer = fac.createPartyIdentification791();
 		buyer.getAcctOwnr().add(acctOwn);
 		buyer.getDcsnMakr().add(dcsnMark);

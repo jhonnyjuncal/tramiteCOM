@@ -1,17 +1,17 @@
 package es.com.cc.ui;
 
-import javax.swing.JPanel;
-
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 public class NuevaTransaccionPanel extends JPanel {
 
 	private static final long serialVersionUID = -5426067842782204622L;
 	
+	private JButton btnAceptar;
+	private JButton btnCancelar;
 	
 
 	/**
@@ -62,7 +62,28 @@ public class NuevaTransaccionPanel extends JPanel {
 		panelTransacciones.setPreferredSize(new Dimension(730, 200));
 		add(panelTransacciones);
 		
+		JPanel panelBotones = new JPanel();
+		add(panelBotones);
 		
+		btnAceptar = new JButton("Aceptar");
+		panelBotones.add(btnAceptar);
+		
+		btnCancelar = new JButton("Cancelar");
+		panelBotones.add(btnCancelar);
+		
+		
+		
+	}
+	
+	public JButton getBotonAceptar() {
+		return btnAceptar;
+	}
+	
+	public JButton getBotonCancelar() {
+		return btnCancelar;
+	}
+	
+	public void getDatosDeOperaciones() {
 		
 	}
 }

@@ -1,19 +1,15 @@
 package es.com.cc.ui;
 
-import javax.swing.JPanel;
-
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 public class CreacionPanel extends JPanel {
 
 	private static final long serialVersionUID = -4094814046038700337L;
 	
 	private static PrincipalPanel frame;
-	
 	private EdicionXmlPanel edicionPanel;
 
 	/**

@@ -1,11 +1,27 @@
 package es.com.cc.ui;
 
 import java.awt.Font;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+import es.com.cc.core.schema.all.GenericPersonIdentification11;
+import es.com.cc.core.schema.all.ObjectFactory;
+import es.com.cc.core.schema.all.PartyIdentification761;
+import es.com.cc.core.schema.all.PartyIdentification791;
+import es.com.cc.core.schema.all.PersonIdentification101;
+import es.com.cc.core.schema.all.PersonIdentificationSchemeName1Choice1;
+import es.com.cc.core.schema.all.PersonOrOrganisation1Choice1;
+import es.com.cc.core.schema.all.PersonOrOrganisation2Choice1;
+
 import javax.swing.JButton;
 
 public class BuyerSellerPanel extends JPanel {
@@ -29,7 +45,7 @@ public class BuyerSellerPanel extends JPanel {
 		lblTipoBuyer.setBounds(10, 11, 110, 14);
 		add(lblTipoBuyer);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setBounds(130, 8, 205, 20);
 		add(comboBox);
 		
@@ -100,4 +116,54 @@ public class BuyerSellerPanel extends JPanel {
 	public JButton getBotonCancelar() {
 		return this.btnCancelar;
 	}
+	
+	public PartyIdentification791 getDatosIntroducidos() {
+		ObjectFactory factory = new ObjectFactory();
+		
+		PersonOrOrganisation1Choice1 pChoice1 = factory.createPersonOrOrganisation1Choice1();
+		pChoice1.setLEI("LEI_DE_LA_EMPRESA");
+		
+		PartyIdentification761 acctOwn = factory.createPartyIdentification761();
+		acctOwn.setId(pChoice1);
+		acctOwn.setCtryOfBrnch("ES");
+		
+		GregorianCalendar calendar2 = new GregorianCalendar();
+		calendar2.setTime(new Date());
+		XMLGregorianCalendar xmlCalendar2 = null;
+		
+		try {
+			xmlCalendar2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar2);
+			
+		} catch (DatatypeConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		PersonIdentificationSchemeName1Choice1 prsnIdChoice = factory.createPersonIdentificationSchemeName1Choice1();
+		prsnIdChoice.setCd("LEI");
+		
+		GenericPersonIdentification11 genericPersn = factory.createGenericPersonIdentification11();
+		genericPersn.setId("IDENTIFICADOR");
+		genericPersn.setSchmeNm(prsnIdChoice);
+		
+		PersonIdentification101 pi2 = factory.createPersonIdentification101();
+		pi2.setNm("NOMBRE");
+		pi2.setFrstNm("APELLIDO");
+		pi2.setBirthDt(xmlCalendar2);
+		pi2.setOthr(genericPersn);
+		
+		PersonOrOrganisation2Choice1 dcsnMark = factory.createPersonOrOrganisation2Choice1();
+		dcsnMark.setLEI("LEI_DE_LA_EMPRESA");
+		dcsnMark.setPrsn(pi2);
+		
+		PartyIdentification791 buyerSeller = factory.createPartyIdentification791();
+		buyerSeller.getAcctOwnr().add(acctOwn);
+		buyerSeller.getDcsnMakr().add(dcsnMark);
+		
+		return buyerSeller;
+	}
+	
+	
+	
+	
 }
