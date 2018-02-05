@@ -28,8 +28,8 @@ public class BuyerSellerPanel extends JPanel {
 
 	private static final long serialVersionUID = -9187935108462518636L;
 	
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField acctOwnrId;
+	private JTextField ctryOfBrnch;
 	private JButton btnAceptar;
 	private JButton btnCancelar;
 	
@@ -53,7 +53,7 @@ public class BuyerSellerPanel extends JPanel {
 		 * primer panel
 		 */
 		JPanel datosPanel = new JPanel();
-		datosPanel.setBounds(10, 39, 692, 222);
+		datosPanel.setBounds(10, 39, 692, 430);
 		add(datosPanel);
 		datosPanel.setLayout(null);
 		
@@ -64,7 +64,7 @@ public class BuyerSellerPanel extends JPanel {
 		
 		JLabel lblDcsnmakr = new JLabel("DcsnMakr");
 		lblDcsnmakr.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDcsnmakr.setBounds(10, 64, 85, 14);
+		lblDcsnmakr.setBounds(10, 220, 85, 14);
 		datosPanel.add(lblDcsnmakr);
 		
 		JLabel lblId = new JLabel("Id");
@@ -75,31 +75,39 @@ public class BuyerSellerPanel extends JPanel {
 		lblNewLabel.setBounds(384, 36, 75, 14);
 		datosPanel.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(91, 33, 200, 20);
-		datosPanel.add(textField);
-		textField.setColumns(10);
+		acctOwnrId = new JTextField();
+		acctOwnrId.setBounds(91, 33, 200, 20);
+		datosPanel.add(acctOwnrId);
+		acctOwnrId.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(469, 33, 200, 20);
-		datosPanel.add(textField_1);
-		textField_1.setColumns(10);
+		ctryOfBrnch = new JTextField();
+		ctryOfBrnch.setBounds(469, 33, 200, 20);
+		datosPanel.add(ctryOfBrnch);
+		ctryOfBrnch.setColumns(10);
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("LEI");
-		rdbtnNewRadioButton.setBounds(125, 85, 109, 23);
+		rdbtnNewRadioButton.setBounds(103, 71, 109, 23);
 		datosPanel.add(rdbtnNewRadioButton);
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Prsn");
-		rdbtnNewRadioButton_1.setBounds(326, 85, 109, 23);
+		rdbtnNewRadioButton_1.setBounds(325, 71, 109, 23);
 		datosPanel.add(rdbtnNewRadioButton_1);
 		
 		PersonaPanel panelPersona = new PersonaPanel();
-		panelPersona.setBounds(10, 111, 672, 100);
+		panelPersona.setBounds(10, 305, 672, 100);
 		datosPanel.add(panelPersona);
 		panelPersona.setLayout(null);
 		
+		JRadioButton rdbtnMic = new JRadioButton("MIC");
+		rdbtnMic.setBounds(214, 71, 109, 23);
+		datosPanel.add(rdbtnMic);
+		
+		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Intl");
+		rdbtnNewRadioButton_2.setBounds(436, 71, 109, 23);
+		datosPanel.add(rdbtnNewRadioButton_2);
+		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 272, 692, 38);
+		panel.setBounds(10, 491, 692, 38);
 		add(panel);
 		
 		btnAceptar = new JButton("Aceptar");
@@ -121,7 +129,7 @@ public class BuyerSellerPanel extends JPanel {
 		ObjectFactory factory = new ObjectFactory();
 		
 		PersonOrOrganisation1Choice1 pChoice1 = factory.createPersonOrOrganisation1Choice1();
-		pChoice1.setLEI("LEI_DE_LA_EMPRESA");
+		pChoice1.setLEI(acctOwnrId.getText());
 		
 		PartyIdentification761 acctOwn = factory.createPartyIdentification761();
 		acctOwn.setId(pChoice1);
@@ -162,8 +170,4 @@ public class BuyerSellerPanel extends JPanel {
 		
 		return buyerSeller;
 	}
-	
-	
-	
-	
 }

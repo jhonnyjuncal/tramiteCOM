@@ -111,11 +111,15 @@ public class HeaderPanel extends JPanel {
 		lblNewLabel_10.setBounds(384, 61, 46, 14);
 		add(lblNewLabel_10);
 		
-		fromSchema = new JComboBox<String>(COMBO_VALUES);
+		fromSchema = new JComboBox<String>();
+		fromSchema.addItem(COMBO_VALUES[0]);
+		fromSchema.addItem(COMBO_VALUES[1]);
 		fromSchema.setBounds(110, 58, 200, 20);
 		add(fromSchema);
 		
-		toSchema = new JComboBox<String>(COMBO_VALUES);
+		toSchema = new JComboBox<String>();
+		toSchema.addItem(COMBO_VALUES[0]);
+		toSchema.addItem(COMBO_VALUES[1]);
 		toSchema.setBounds(440, 58, 200, 20);
 		add(toSchema);
 	}

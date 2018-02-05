@@ -60,7 +60,7 @@ public class PersonaPanel extends JPanel {
 		add(textField_3);
 		textField_3.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setBounds(409, 33, 200, 20);
 		add(comboBox);
 		
