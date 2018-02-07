@@ -1,10 +1,10 @@
 package es.com.cc.ui;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
-
 import es.com.cc.core.schema.all.GenericPersonIdentification11;
 import es.com.cc.core.schema.all.ObjectFactory;
 import es.com.cc.core.schema.all.PartyIdentification761;
@@ -21,7 +20,7 @@ import es.com.cc.core.schema.all.PersonIdentification101;
 import es.com.cc.core.schema.all.PersonIdentificationSchemeName1Choice1;
 import es.com.cc.core.schema.all.PersonOrOrganisation1Choice1;
 import es.com.cc.core.schema.all.PersonOrOrganisation2Choice1;
-
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 
 public class BuyerSellerPanel extends JPanel {
@@ -33,6 +32,10 @@ public class BuyerSellerPanel extends JPanel {
 	private JButton btnAceptar;
 	private JButton btnCancelar;
 	
+	private LEIPanel panelLEI;
+	private MICPanel panelMIC;
+	private PersonaPanel panelPersona;
+	private IntlPanel panelIntl;
 
 	/**
 	 * Create the panel.
@@ -40,20 +43,11 @@ public class BuyerSellerPanel extends JPanel {
 	public BuyerSellerPanel() {
 		setLayout(null);
 		
-		JLabel lblTipoBuyer = new JLabel();
-		lblTipoBuyer.setText("Tipo");
-		lblTipoBuyer.setBounds(10, 11, 110, 14);
-		add(lblTipoBuyer);
-		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setBounds(130, 8, 205, 20);
-		add(comboBox);
-		
 		/**
 		 * primer panel
 		 */
 		JPanel datosPanel = new JPanel();
-		datosPanel.setBounds(10, 39, 692, 430);
+		datosPanel.setBounds(0, 0, 711, 430);
 		add(datosPanel);
 		datosPanel.setLayout(null);
 		
@@ -85,26 +79,85 @@ public class BuyerSellerPanel extends JPanel {
 		datosPanel.add(ctryOfBrnch);
 		ctryOfBrnch.setColumns(10);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("LEI");
-		rdbtnNewRadioButton.setBounds(103, 71, 109, 23);
-		datosPanel.add(rdbtnNewRadioButton);
+		JRadioButton radioLEI = new JRadioButton("LEI");
+		radioLEI.setBounds(103, 71, 109, 23);
+		datosPanel.add(radioLEI);
+		radioLEI.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				muestraPanelId(0);
+			}
+		});
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Prsn");
-		rdbtnNewRadioButton_1.setBounds(325, 71, 109, 23);
-		datosPanel.add(rdbtnNewRadioButton_1);
+		JRadioButton radioMIC = new JRadioButton("MIC");
+		radioMIC.setBounds(214, 71, 109, 23);
+		datosPanel.add(radioMIC);
+		radioMIC.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				muestraPanelId(1);
+			}
+		});
 		
-		PersonaPanel panelPersona = new PersonaPanel();
-		panelPersona.setBounds(10, 305, 672, 100);
+		JRadioButton radioPrsn = new JRadioButton("Prsn");
+		radioPrsn.setBounds(325, 71, 109, 23);
+		datosPanel.add(radioPrsn);
+		radioPrsn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				muestraPanelId(2);
+			}
+		});
+		
+		
+		JRadioButton radioIntl = new JRadioButton("Intl");
+		radioIntl.setBounds(436, 71, 109, 23);
+		datosPanel.add(radioIntl);
+		radioIntl.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				muestraPanelId(3);
+			}
+		});
+		
+		//Group the radio buttons.
+	    ButtonGroup group = new ButtonGroup();
+	    group.add(radioLEI);
+	    group.add(radioPrsn);
+	    group.add(radioMIC);
+	    group.add(radioIntl);
+	    
+		panelLEI = new LEIPanel();
+		panelLEI.setBounds(10, 101, 691, 100);
+		datosPanel.add(panelLEI);
+		panelLEI.setLayout(null);
+		panelLEI.setVisible(false);
+		
+		panelMIC = new MICPanel();
+		panelMIC.setBounds(10, 101, 691, 100);
+		datosPanel.add(panelMIC);
+		panelMIC.setLayout(null);
+		panelMIC.setVisible(false);
+		
+		panelPersona = new PersonaPanel();
+		panelPersona.setBounds(10, 101, 691, 100);
 		datosPanel.add(panelPersona);
 		panelPersona.setLayout(null);
+		panelPersona.setVisible(false);
 		
-		JRadioButton rdbtnMic = new JRadioButton("MIC");
-		rdbtnMic.setBounds(214, 71, 109, 23);
-		datosPanel.add(rdbtnMic);
-		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Intl");
-		rdbtnNewRadioButton_2.setBounds(436, 71, 109, 23);
-		datosPanel.add(rdbtnNewRadioButton_2);
+		panelIntl = new IntlPanel();
+		panelIntl.setBounds(10, 101, 691, 100);
+		datosPanel.add(panelIntl);
+		panelIntl.setLayout(null);
+		panelIntl.setVisible(false);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 491, 692, 38);
@@ -115,6 +168,10 @@ public class BuyerSellerPanel extends JPanel {
 		
 		btnCancelar = new JButton("Cancelar");
 		panel.add(btnCancelar);
+		
+		// valores por defecto
+		radioLEI.setSelected(true);
+		
 	}
 	
 	public JButton getBotonAceptar() {
@@ -169,5 +226,34 @@ public class BuyerSellerPanel extends JPanel {
 		buyerSeller.getDcsnMakr().add(dcsnMark);
 		
 		return buyerSeller;
+	}
+	
+	private void muestraPanelId(int opcion) {
+		switch(opcion) {
+			case 0:
+				panelLEI.setVisible(true);
+				panelMIC.setVisible(false);
+				panelPersona.setVisible(false);
+				panelIntl.setVisible(false);
+				break;
+			case 1:
+				panelLEI.setVisible(false);
+				panelMIC.setVisible(true);
+				panelPersona.setVisible(false);
+				panelIntl.setVisible(false);
+				break;
+			case 2:
+				panelLEI.setVisible(false);
+				panelMIC.setVisible(false);
+				panelPersona.setVisible(true);
+				panelIntl.setVisible(false);
+				break;
+			case 3:
+				panelLEI.setVisible(false);
+				panelMIC.setVisible(false);
+				panelPersona.setVisible(false);
+				panelIntl.setVisible(true);
+				break;
+		}
 	}
 }

@@ -3,22 +3,25 @@ package es.com.cc.ui;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import java.awt.Dimension;
+
 import javax.swing.JComboBox;
 
 public class PersonaPanel extends JPanel {
 
 	private static final long serialVersionUID = -5585239586552794691L;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField txtFrstnmfield;
+	private JTextField txtNmfield;
+	private JTextField txtBirthdtfield;
+	private JTextField idField;
 
 	/**
 	 * Create the panel.
 	 */
 	public PersonaPanel() {
 		setLayout(null);
+		setPreferredSize(new Dimension(691, 100));
 		
 		JLabel lblNewLabel = new JLabel("FrstNm");
 		lblNewLabel.setBounds(10, 11, 46, 14);
@@ -40,38 +43,32 @@ public class PersonaPanel extends JPanel {
 		lblSchmenm.setBounds(353, 36, 46, 14);
 		add(lblSchmenm);
 		
-		textField = new JTextField();
-		textField.setBounds(66, 8, 200, 20);
-		add(textField);
-		textField.setColumns(10);
+		txtFrstnmfield = new JTextField();
+		txtFrstnmfield.setText("frstNmField");
+		txtFrstnmfield.setBounds(66, 8, 200, 20);
+		add(txtFrstnmfield);
+		txtFrstnmfield.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(409, 8, 200, 20);
-		add(textField_1);
-		textField_1.setColumns(10);
+		txtNmfield = new JTextField();
+		txtNmfield.setText("nmField");
+		txtNmfield.setBounds(409, 8, 200, 20);
+		add(txtNmfield);
+		txtNmfield.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(66, 33, 200, 20);
-		add(textField_2);
-		textField_2.setColumns(10);
+		txtBirthdtfield = new JTextField();
+		txtBirthdtfield.setText("birthDtField");
+		txtBirthdtfield.setBounds(66, 33, 200, 20);
+		add(txtBirthdtfield);
+		txtBirthdtfield.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(66, 58, 200, 20);
-		add(textField_3);
-		textField_3.setColumns(10);
+		idField = new JTextField();
+		idField.setBounds(66, 58, 200, 20);
+		add(idField);
+		idField.setColumns(10);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setBounds(409, 33, 200, 20);
-		add(comboBox);
-		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(353, 61, 46, 14);
-		add(lblNewLabel_2);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(409, 58, 200, 20);
-		add(textField_4);
-		textField_4.setColumns(10);
+		JComboBox<String> schmeNmCombo = new JComboBox<String>();
+		schmeNmCombo.setBounds(409, 33, 200, 20);
+		add(schmeNmCombo);
 		
 	}
 }
