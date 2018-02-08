@@ -1,12 +1,18 @@
 package es.com.cc.ui;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
 import java.awt.Dimension;
 
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+import es.com.cc.core.schema.all.GenericPersonIdentification11;
+import es.com.cc.core.schema.all.ObjectFactory;
+import es.com.cc.core.schema.all.PersonIdentification101;
+import es.com.cc.core.schema.all.PersonIdentificationSchemeName1Choice1;
+import es.com.cc.core.util.DateUtil;
 
 public class PersonaPanel extends JPanel {
 
@@ -15,6 +21,8 @@ public class PersonaPanel extends JPanel {
 	private JTextField txtNmfield;
 	private JTextField txtBirthdtfield;
 	private JTextField idField;
+	private JTextField cdOrPrtryField;
+	private JComboBox<String> schmeNmCombo;
 
 	/**
 	 * Create the panel.
@@ -44,19 +52,16 @@ public class PersonaPanel extends JPanel {
 		add(lblSchmenm);
 		
 		txtFrstnmfield = new JTextField();
-		txtFrstnmfield.setText("frstNmField");
 		txtFrstnmfield.setBounds(66, 8, 200, 20);
 		add(txtFrstnmfield);
 		txtFrstnmfield.setColumns(10);
 		
 		txtNmfield = new JTextField();
-		txtNmfield.setText("nmField");
 		txtNmfield.setBounds(409, 8, 200, 20);
 		add(txtNmfield);
 		txtNmfield.setColumns(10);
 		
 		txtBirthdtfield = new JTextField();
-		txtBirthdtfield.setText("birthDtField");
 		txtBirthdtfield.setBounds(66, 33, 200, 20);
 		add(txtBirthdtfield);
 		txtBirthdtfield.setColumns(10);
@@ -66,9 +71,63 @@ public class PersonaPanel extends JPanel {
 		add(idField);
 		idField.setColumns(10);
 		
-		JComboBox<String> schmeNmCombo = new JComboBox<String>();
+		schmeNmCombo = new JComboBox<String>();
 		schmeNmCombo.setBounds(409, 33, 200, 20);
 		add(schmeNmCombo);
 		
+		cdOrPrtryField = new JTextField();
+		cdOrPrtryField.setBounds(409, 58, 200, 20);
+		add(cdOrPrtryField);
+		cdOrPrtryField.setColumns(10);
+	}
+	
+	public String getNmFieldValue() {
+		return this.txtNmfield.getText();
+	}
+	
+	public String getFrstnmFieldValue() {
+		return this.txtFrstnmfield.getText();
+	}
+	
+	public XMLGregorianCalendar getBirthdtFieldValue() {
+		return DateUtil.convertToXmlGregorianCalendar(this.txtBirthdtfield.getText());
+	}
+	
+	public String getIdFieldValue() {
+		return this.idField.getText();
+	}
+	
+	public String getCdOrPrtryFieldValue() {
+		return this.cdOrPrtryField.getText();
+	}
+	
+	public int getSchmeNmComboSelectedValue() {
+		return this.schmeNmCombo.getSelectedIndex();
+	}
+	
+	public PersonIdentification101 getDatosIntroducidos() {
+		ObjectFactory factory = new ObjectFactory();
+		
+		GenericPersonIdentification11 genericPersn = factory.createGenericPersonIdentification11();
+		genericPersn.setId(getIdFieldValue());
+		
+		// segun seleccion del combo
+		PersonIdentificationSchemeName1Choice1 personIdentificacion = factory.createPersonIdentificationSchemeName1Choice1();
+		if (getSchmeNmComboSelectedValue() == 0) {
+			personIdentificacion.setCd(getCdOrPrtryFieldValue());
+			genericPersn.setSchmeNm(personIdentificacion);
+			
+		} else if (getSchmeNmComboSelectedValue() == 1) {
+			personIdentificacion.setPrtry(getCdOrPrtryFieldValue());
+			genericPersn.setSchmeNm(personIdentificacion);
+		}
+		
+		PersonIdentification101 p101 = factory.createPersonIdentification101();
+		p101.setNm(getNmFieldValue());
+		p101.setFrstNm(getFrstnmFieldValue());
+		p101.setBirthDt(getBirthdtFieldValue());
+		p101.setOthr(genericPersn);
+		
+		return p101;
 	}
 }

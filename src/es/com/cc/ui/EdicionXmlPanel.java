@@ -171,7 +171,7 @@ public class EdicionXmlPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				nuevaTransaccionPanel.getDatosDeOperaciones();
+//				nuevaTransaccionPanel.getDatosDeOperaciones();
 			}
 		});
 		muestraPanel(nuevaTransaccionPanel);

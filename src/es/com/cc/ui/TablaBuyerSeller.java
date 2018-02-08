@@ -39,6 +39,9 @@ public class TablaBuyerSeller extends JPanel {
 		FlowLayout flowLayout = (FlowLayout) getLayout();
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		
+		JFrame frame = new JFrame();
+		
+		
 		cargaTituloDeLaTabla();
 		
 		JButton btnNuevo = new JButton("Nuevo");
@@ -49,6 +52,7 @@ public class TablaBuyerSeller extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				panelBuyer = new BuyerSellerPanel();
+				
 				panelBuyer.getBotonAceptar().addActionListener(new ActionListener() {
 					
 					@Override
@@ -59,6 +63,8 @@ public class TablaBuyerSeller extends JPanel {
 						PartyIdentification791 buyerSeller = panelBuyer.getDatosIntroducidos();
 						listaBuyer.add(buyerSeller);
 						addBuyerSellerToTable(buyerSeller);
+						
+						frame.dispose();
 					}
 				});
 				
@@ -67,14 +73,13 @@ public class TablaBuyerSeller extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
-						
+						frame.dispose();
 					}
 				});
 				
-				JFrame frame = new JFrame();
-				frame.setBounds(300, 300, 710, 350);
-				frame.setVisible(true);
+				frame.setBounds(300, 300, 730, 300);
 				frame.setContentPane(panelBuyer);
+				frame.setVisible(true);
 				frame.revalidate();
 			}
 		});
@@ -83,10 +88,10 @@ public class TablaBuyerSeller extends JPanel {
 		add(btnBorrar);
 		
 		table = new JTable(valores, columnas);
-		table.setPreferredSize(new Dimension(718, 250));
+		table.setPreferredSize(new Dimension(707, 240));
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setPreferredSize(new Dimension(720, 260));
+		scrollPane.setPreferredSize(new Dimension(710, 260));
 		add(scrollPane);
 		
 		table.setFillsViewportHeight(true);

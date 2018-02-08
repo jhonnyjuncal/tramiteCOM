@@ -1,33 +1,28 @@
 package es.com.cc.ui;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
-import es.com.cc.core.schema.all.GenericPersonIdentification11;
+import es.com.cc.core.schema.all.InternalPartyRole1Code;
 import es.com.cc.core.schema.all.ObjectFactory;
 import es.com.cc.core.schema.all.PartyIdentification761;
 import es.com.cc.core.schema.all.PartyIdentification791;
-import es.com.cc.core.schema.all.PersonIdentification101;
-import es.com.cc.core.schema.all.PersonIdentificationSchemeName1Choice1;
 import es.com.cc.core.schema.all.PersonOrOrganisation1Choice1;
 import es.com.cc.core.schema.all.PersonOrOrganisation2Choice1;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 
 public class BuyerSellerPanel extends JPanel {
 
 	private static final long serialVersionUID = -9187935108462518636L;
 	
-	private JTextField acctOwnrId;
+	private JTextField acctOwnrIdField;
 	private JTextField ctryOfBrnch;
 	private JButton btnAceptar;
 	private JButton btnCancelar;
@@ -36,12 +31,21 @@ public class BuyerSellerPanel extends JPanel {
 	private MICPanel panelMIC;
 	private PersonaPanel panelPersona;
 	private IntlPanel panelIntl;
+	
+	private JRadioButton radioLEI;
+	private JRadioButton radioMIC;
+	private JRadioButton radioPrsn;
+	private JRadioButton radioIntl;
+	
+	private DcsnMakrPanel panelDcsnMakr;
+	private JCheckBox chckbxActivarDcsnMakr;
 
 	/**
 	 * Create the panel.
 	 */
 	public BuyerSellerPanel() {
 		setLayout(null);
+		setPreferredSize(new Dimension(710, 500));
 		
 		/**
 		 * primer panel
@@ -69,18 +73,18 @@ public class BuyerSellerPanel extends JPanel {
 		lblNewLabel.setBounds(384, 36, 75, 14);
 		datosPanel.add(lblNewLabel);
 		
-		acctOwnrId = new JTextField();
-		acctOwnrId.setBounds(91, 33, 200, 20);
-		datosPanel.add(acctOwnrId);
-		acctOwnrId.setColumns(10);
+		acctOwnrIdField = new JTextField();
+		acctOwnrIdField.setBounds(91, 33, 200, 20);
+		datosPanel.add(acctOwnrIdField);
+		acctOwnrIdField.setColumns(10);
 		
 		ctryOfBrnch = new JTextField();
 		ctryOfBrnch.setBounds(469, 33, 200, 20);
 		datosPanel.add(ctryOfBrnch);
 		ctryOfBrnch.setColumns(10);
 		
-		JRadioButton radioLEI = new JRadioButton("LEI");
-		radioLEI.setBounds(103, 71, 109, 23);
+		radioLEI = new JRadioButton("LEI");
+		radioLEI.setBounds(133, 71, 109, 23);
 		datosPanel.add(radioLEI);
 		radioLEI.addActionListener(new ActionListener() {
 			
@@ -91,8 +95,8 @@ public class BuyerSellerPanel extends JPanel {
 			}
 		});
 		
-		JRadioButton radioMIC = new JRadioButton("MIC");
-		radioMIC.setBounds(214, 71, 109, 23);
+		radioMIC = new JRadioButton("MIC");
+		radioMIC.setBounds(244, 71, 109, 23);
 		datosPanel.add(radioMIC);
 		radioMIC.addActionListener(new ActionListener() {
 			
@@ -103,8 +107,8 @@ public class BuyerSellerPanel extends JPanel {
 			}
 		});
 		
-		JRadioButton radioPrsn = new JRadioButton("Prsn");
-		radioPrsn.setBounds(325, 71, 109, 23);
+		radioPrsn = new JRadioButton("Prsn");
+		radioPrsn.setBounds(355, 71, 109, 23);
 		datosPanel.add(radioPrsn);
 		radioPrsn.addActionListener(new ActionListener() {
 			
@@ -116,8 +120,8 @@ public class BuyerSellerPanel extends JPanel {
 		});
 		
 		
-		JRadioButton radioIntl = new JRadioButton("Intl");
-		radioIntl.setBounds(436, 71, 109, 23);
+		radioIntl = new JRadioButton("Intl");
+		radioIntl.setBounds(466, 71, 109, 23);
 		datosPanel.add(radioIntl);
 		radioIntl.addActionListener(new ActionListener() {
 			
@@ -159,19 +163,42 @@ public class BuyerSellerPanel extends JPanel {
 		panelIntl.setLayout(null);
 		panelIntl.setVisible(false);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 491, 692, 38);
-		add(panel);
+		JPanel panelBotones = new JPanel();
+		panelBotones.setBounds(10, 457, 692, 38);
+		add(panelBotones);
 		
 		btnAceptar = new JButton("Aceptar");
-		panel.add(btnAceptar);
+		panelBotones.add(btnAceptar);
 		
 		btnCancelar = new JButton("Cancelar");
-		panel.add(btnCancelar);
+		panelBotones.add(btnCancelar);
+		
+		panelDcsnMakr = new DcsnMakrPanel();
+		panelDcsnMakr.setBounds(10, 245, 691, 174);
+		datosPanel.add(panelDcsnMakr);
+		panelDcsnMakr.setPreferredSize(new Dimension(691, 174));
+		panelDcsnMakr.setVisible(false);
+		
+		chckbxActivarDcsnMakr = new JCheckBox("activar");
+		chckbxActivarDcsnMakr.setBounds(101, 216, 97, 23);
+		datosPanel.add(chckbxActivarDcsnMakr);
+		chckbxActivarDcsnMakr.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (chckbxActivarDcsnMakr.isSelected()) {
+					panelDcsnMakr.setVisible(true);
+					
+				} else {
+					panelDcsnMakr.setVisible(false);
+				}
+			}
+		});
+		
 		
 		// valores por defecto
 		radioLEI.setSelected(true);
-		
 	}
 	
 	public JButton getBotonAceptar() {
@@ -184,46 +211,36 @@ public class BuyerSellerPanel extends JPanel {
 	
 	public PartyIdentification791 getDatosIntroducidos() {
 		ObjectFactory factory = new ObjectFactory();
+		PartyIdentification791 buyerSeller = factory.createPartyIdentification791();
 		
+		// acctOwn
+		//*********************************************************************************************************
 		PersonOrOrganisation1Choice1 pChoice1 = factory.createPersonOrOrganisation1Choice1();
-		pChoice1.setLEI(acctOwnrId.getText());
+		
+		if (radioLEI.isSelected()) {
+			pChoice1.setLEI(acctOwnrIdField.getText());
+			
+		} else if (radioMIC.isSelected()) {
+			pChoice1.setMIC(acctOwnrIdField.getText());
+			
+		} else if (radioPrsn.isSelected()) {
+			pChoice1.setPrsn(panelPersona.getDatosIntroducidos());
+			
+		} else if (radioIntl.isSelected()) {
+			pChoice1.setIntl(InternalPartyRole1Code.INTC);
+		}
 		
 		PartyIdentification761 acctOwn = factory.createPartyIdentification761();
 		acctOwn.setId(pChoice1);
-		acctOwn.setCtryOfBrnch("ES");
-		
-		GregorianCalendar calendar2 = new GregorianCalendar();
-		calendar2.setTime(new Date());
-		XMLGregorianCalendar xmlCalendar2 = null;
-		
-		try {
-			xmlCalendar2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar2);
-			
-		} catch (DatatypeConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		PersonIdentificationSchemeName1Choice1 prsnIdChoice = factory.createPersonIdentificationSchemeName1Choice1();
-		prsnIdChoice.setCd("LEI");
-		
-		GenericPersonIdentification11 genericPersn = factory.createGenericPersonIdentification11();
-		genericPersn.setId("IDENTIFICADOR");
-		genericPersn.setSchmeNm(prsnIdChoice);
-		
-		PersonIdentification101 pi2 = factory.createPersonIdentification101();
-		pi2.setNm("NOMBRE");
-		pi2.setFrstNm("APELLIDO");
-		pi2.setBirthDt(xmlCalendar2);
-		pi2.setOthr(genericPersn);
-		
-		PersonOrOrganisation2Choice1 dcsnMark = factory.createPersonOrOrganisation2Choice1();
-		dcsnMark.setLEI("LEI_DE_LA_EMPRESA");
-		dcsnMark.setPrsn(pi2);
-		
-		PartyIdentification791 buyerSeller = factory.createPartyIdentification791();
+		acctOwn.setCtryOfBrnch(ctryOfBrnch.getText());
 		buyerSeller.getAcctOwnr().add(acctOwn);
-		buyerSeller.getDcsnMakr().add(dcsnMark);
+		
+		// dcsnMark
+		//*********************************************************************************************************
+		if (chckbxActivarDcsnMakr.isSelected()) {
+			PersonOrOrganisation2Choice1 dcsnMakr = panelDcsnMakr.getDatosIntroducidos();
+			buyerSeller.getDcsnMakr().add(dcsnMakr);
+		}
 		
 		return buyerSeller;
 	}

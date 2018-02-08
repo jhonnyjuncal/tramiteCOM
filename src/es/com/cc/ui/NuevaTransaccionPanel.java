@@ -32,10 +32,10 @@ public class NuevaTransaccionPanel extends JPanel {
 		
 		/**
 		 * ****************************************************************************************************
-		 * panel JTabbedPane
+		 * panel usuarios y compradores
 		 */
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setPreferredSize(new Dimension(730, 300));
+		tabbedPane.setPreferredSize(new Dimension(725, 250));
 		add(tabbedPane);
 		
 		TablaBuyerSeller tablaBuyer = new TablaBuyerSeller();
@@ -43,7 +43,6 @@ public class NuevaTransaccionPanel extends JPanel {
 		
 		tabbedPane.addTab("Buyer", null, tablaBuyer, null);
 		tabbedPane.addTab("Seller", null, tablaSeller, null);
-		
 		
 		/**
 		 * ****************************************************************************************************
@@ -53,15 +52,42 @@ public class NuevaTransaccionPanel extends JPanel {
 		panelOrdenesTransmision.setPreferredSize(new Dimension(730, 100));
 		add(panelOrdenesTransmision);
 		
-		
 		/**
 		 * ****************************************************************************************************
 		 * panel Transaccion
 		 */
-		TransaccionPanel panelTransacciones = new TransaccionPanel();
-		panelTransacciones.setPreferredSize(new Dimension(730, 200));
-		add(panelTransacciones);
+		TablaTransactionPanel tablaTransaction = new TablaTransactionPanel();
+		tablaTransaction.setPreferredSize(new Dimension(725, 200));
+		add(tablaTransaction);
 		
+		
+		/**
+		 * ****************************************************************************************************
+		 * FinInstrm
+		 */
+		
+		
+		/**
+		 * ****************************************************************************************************
+		 * InvstmtDcsnPrsn
+		 */
+		
+		
+		/**
+		 * ****************************************************************************************************
+		 * ExctgPrsn
+		 */
+		
+		
+		/**
+		 * ****************************************************************************************************
+		 * AddtlAttrbts
+		 */
+		
+		
+		/**
+		 * botonera inferior
+		 */
 		JPanel panelBotones = new JPanel();
 		add(panelBotones);
 		
@@ -81,9 +107,5 @@ public class NuevaTransaccionPanel extends JPanel {
 	
 	public JButton getBotonCancelar() {
 		return btnCancelar;
-	}
-	
-	public void getDatosDeOperaciones() {
-		
 	}
 }
