@@ -5,10 +5,13 @@ import es.com.cc.core.schema.all.ESMAPositiveExcludingZeroMax18;
 import es.com.cc.core.schema.all.FinancialInstrumentQuantity25Choice1;
 import es.com.cc.core.schema.all.ObjectFactory;
 import javax.swing.JRadioButton;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import java.awt.Dimension;
 
 public class QuantityPanel extends JPanel {
 
@@ -20,25 +23,54 @@ public class QuantityPanel extends JPanel {
 	private JRadioButton radioNominal;
 	private JRadioButton radioMonetario;
 	private JTextField valueField;
+	
+	private JPanel panelUnidades;
+	private JPanel panelNominal;
+	private JPanel panelRadios;
 
 	/**
 	 * Create the panel.
 	 */
 	public QuantityPanel() {
 		setLayout(null);
+		setPreferredSize(new Dimension(350, 94));
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 5, 330, 33);
-		add(panel);
+		panelRadios = new JPanel();
+		panelRadios.setBounds(0, 0, 350, 33);
+		add(panelRadios);
 		
 		radioUnit = new JRadioButton("Unit");
-		panel.add(radioUnit);
+		panelRadios.add(radioUnit);
+		radioUnit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				muestraPanelMonetario(0);
+			}
+		});
 		
 		radioNominal = new JRadioButton("NmnlVal");
-		panel.add(radioNominal);
+		panelRadios.add(radioNominal);
+		radioNominal.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				muestraPanelMonetario(1);
+			}
+		});
 		
 		radioMonetario = new JRadioButton("MntryVal");
-		panel.add(radioMonetario);
+		panelRadios.add(radioMonetario);
+		radioMonetario.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				muestraPanelMonetario(2);
+			}
+		});
 		
 		ButtonGroup group = new ButtonGroup();
 	    group.add(radioUnit);
@@ -48,9 +80,10 @@ public class QuantityPanel extends JPanel {
 	    /**
 	     * panel de unidades
 	     */
-		JPanel panelUnidades = new JPanel();
-		panelUnidades.setBounds(10, 38, 330, 127);
+		panelUnidades = new JPanel();
+		panelUnidades.setBounds(0, 32, 350, 61);
 		add(panelUnidades);
+		panelUnidades.setPreferredSize(new Dimension(100, 50));
 		panelUnidades.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Unidades");
@@ -65,8 +98,9 @@ public class QuantityPanel extends JPanel {
 		/**
 		 * panel valor nominal
 		 */
-		JPanel panelNominal = new JPanel();
-		panelNominal.setBounds(10, 38, 330, 55);
+		panelNominal = new JPanel();
+		panelNominal.setBounds(0, 32, 350, 61);
+		panelNominal.setPreferredSize(new Dimension(100, 50));
 		add(panelNominal);
 		panelNominal.setLayout(null);
 		
@@ -111,5 +145,20 @@ public class QuantityPanel extends JPanel {
 		}
 		
 		return fiQty;
+	}
+	
+	private void muestraPanelMonetario(int posicion) {
+		switch (posicion) {
+			case 0:
+				panelUnidades.setVisible(true);
+				panelNominal.setVisible(false);
+				break;
+				
+			case 1:
+			case 2:
+				panelUnidades.setVisible(false);
+				panelNominal.setVisible(true);
+				break;
+		}
 	}
 }

@@ -6,32 +6,41 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import es.com.cc.core.schema.all.ActiveCurrencyAnd13DecimalAmount;
+import es.com.cc.core.schema.all.AmountAndDirection61;
 import es.com.cc.core.schema.all.FinancialInstrumentQuantity25Choice1;
 import es.com.cc.core.schema.all.ObjectFactory;
+import es.com.cc.core.schema.all.PriceStatus1Code;
 import es.com.cc.core.schema.all.RegulatoryTradingCapacity1Code;
 import es.com.cc.core.schema.all.SecuritiesTransaction11;
+import es.com.cc.core.schema.all.SecuritiesTransactionPrice1;
+import es.com.cc.core.schema.all.SecuritiesTransactionPrice2Choice;
+import es.com.cc.core.schema.all.SecuritiesTransactionPrice4Choice;
+import es.com.cc.core.schema.all.VariationType1Code;
 import es.com.cc.core.util.DateUtil;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JTree;
 
 public class TransaccionPanel extends JPanel {
 	
 	private static final long serialVersionUID = -7813145032830198693L;
 	private JTextField tradDtField;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
 	private JTextField netAmtField;
 	private JTextField tradVnField;
-	
 	private JButton btnAceptar;
 	private JButton btnCancelar;
 	private JTextField ctryOfBrnchField;
 	private JTextField textField;
 	private JTextField tradPlcMtchgIdField;
 	private JTextField cmplxTradCmpntIdField;
-	
 	private JComboBox<String> tradgCpctycomboBox;
+	
+	private QuantityPanel qtyPanel;
+	private PrecioPanel panelPrecio;
+	private JComboBox<String> derivNtnlChngComboBox;
 
 	/**
 	 * Create the panel.
@@ -49,7 +58,7 @@ public class TransaccionPanel extends JPanel {
 		add(lblTraddt);
 		
 		JLabel lblTradgcpcty = new JLabel("TradgCpcty");
-		lblTradgcpcty.setBounds(391, 35, 80, 14);
+		lblTradgcpcty.setBounds(380, 35, 90, 14);
 		add(lblTradgcpcty);
 		
 		tradDtField = new JTextField();
@@ -57,35 +66,22 @@ public class TransaccionPanel extends JPanel {
 		add(tradDtField);
 		tradDtField.setColumns(10);
 		
-		JLabel lblQty = new JLabel("Qty");
-		lblQty.setBounds(36, 60, 80, 14);
-		add(lblQty);
+		qtyPanel = new QuantityPanel();
+		qtyPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		qtyPanel.setBounds(0, 57, 350, 94);
+		add(qtyPanel);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(126, 57, 200, 20);
-		add(textField_6);
-		textField_6.setColumns(10);
+		panelPrecio = new PrecioPanel();
+		panelPrecio.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panelPrecio.setBounds(0, 152, 350, 94);
+		add(panelPrecio);
 		
 		JLabel lblDerivntnlchng = new JLabel("DerivNtnlChng");
-		lblDerivntnlchng.setBounds(391, 60, 80, 14);
+		lblDerivntnlchng.setBounds(380, 60, 80, 14);
 		add(lblDerivntnlchng);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(478, 57, 200, 20);
-		add(textField_7);
-		textField_7.setColumns(10);
-		
-		JLabel lblPric = new JLabel("Pric");
-		lblPric.setBounds(36, 85, 80, 14);
-		add(lblPric);
-		
-		textField_8 = new JTextField();
-		textField_8.setBounds(126, 82, 200, 20);
-		add(textField_8);
-		textField_8.setColumns(10);
-		
 		JLabel lblNetamt = new JLabel("NetAmt");
-		lblNetamt.setBounds(391, 85, 80, 14);
+		lblNetamt.setBounds(380, 85, 80, 14);
 		add(lblNetamt);
 		
 		netAmtField = new JTextField();
@@ -94,26 +90,26 @@ public class TransaccionPanel extends JPanel {
 		netAmtField.setColumns(10);
 		
 		JLabel lblNewLabel_7 = new JLabel("TradVn");
-		lblNewLabel_7.setBounds(36, 110, 80, 14);
+		lblNewLabel_7.setBounds(380, 210, 80, 14);
 		add(lblNewLabel_7);
 		
 		tradVnField = new JTextField();
-		tradVnField.setBounds(126, 107, 200, 20);
+		tradVnField.setBounds(478, 207, 200, 20);
 		add(tradVnField);
 		tradVnField.setColumns(10);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 228, 704, 33);
-		add(panel);
+		JPanel panelBotones = new JPanel();
+		panelBotones.setBounds(10, 257, 704, 33);
+		add(panelBotones);
 		
 		btnAceptar = new JButton("Aceptar");
-		panel.add(btnAceptar);
+		panelBotones.add(btnAceptar);
 		
 		btnCancelar = new JButton("Cancelar");
-		panel.add(btnCancelar);
+		panelBotones.add(btnCancelar);
 		
 		JLabel lblNewLabel = new JLabel("CtryOfBrnch");
-		lblNewLabel.setBounds(391, 110, 80, 14);
+		lblNewLabel.setBounds(380, 110, 80, 14);
 		add(lblNewLabel);
 		
 		ctryOfBrnchField = new JTextField();
@@ -122,16 +118,16 @@ public class TransaccionPanel extends JPanel {
 		ctryOfBrnchField.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("UpFrntPmt");
-		lblNewLabel_1.setBounds(36, 135, 80, 14);
+		lblNewLabel_1.setBounds(380, 160, 80, 14);
 		add(lblNewLabel_1);
 		
 		textField = new JTextField();
-		textField.setBounds(126, 132, 200, 20);
+		textField.setBounds(478, 157, 200, 20);
 		add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("TradPlcMtchgId");
-		lblNewLabel_2.setBounds(391, 135, 80, 14);
+		lblNewLabel_2.setBounds(380, 135, 80, 14);
 		add(lblNewLabel_2);
 		
 		tradPlcMtchgIdField = new JTextField();
@@ -140,20 +136,29 @@ public class TransaccionPanel extends JPanel {
 		tradPlcMtchgIdField.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("CmplxTradCmpntId");
-		lblNewLabel_3.setBounds(36, 160, 80, 14);
+		lblNewLabel_3.setBounds(380, 185, 100, 14);
 		add(lblNewLabel_3);
 		
 		cmplxTradCmpntIdField = new JTextField();
-		cmplxTradCmpntIdField.setBounds(126, 157, 200, 20);
+		cmplxTradCmpntIdField.setBounds(478, 182, 200, 20);
 		add(cmplxTradCmpntIdField);
 		cmplxTradCmpntIdField.setColumns(10);
 		
 		tradgCpctycomboBox = new JComboBox<String>();
-		tradgCpctycomboBox.setBounds(481, 32, 197, 20);
+		tradgCpctycomboBox.setBounds(478, 32, 200, 20);
 		add(tradgCpctycomboBox);
 		tradgCpctycomboBox.addItem("AOTC");
 		tradgCpctycomboBox.addItem("DEAL");
 		tradgCpctycomboBox.addItem("MTCH");
+<<<<<<< HEAD
+=======
+		
+		derivNtnlChngComboBox = new JComboBox<String>();
+		derivNtnlChngComboBox.setBounds(478, 57, 200, 20);
+		add(derivNtnlChngComboBox);
+		derivNtnlChngComboBox.addItem("DECR");
+		derivNtnlChngComboBox.addItem("INCR");
+>>>>>>> 1266036975a8eb3a2ed836ec3a68b999fe38cbdd
 	}
 	
 	public JButton getBotonAceptar() {
@@ -180,11 +185,22 @@ public class TransaccionPanel extends JPanel {
 			txData.setTradgCpcty(RegulatoryTradingCapacity1Code.MTCH);
 		}
 		
-		QuantityPanel qtyPanel = new QuantityPanel();
-		
 		txData.setQty(qtyPanel.getDatosIntroducidos());
+<<<<<<< HEAD
 //		txData.setDerivNtnlChng();
 //		txData.setPric();
+=======
+		
+		if (derivNtnlChngComboBox.getSelectedIndex() == 0) {
+			txData.setDerivNtnlChng(VariationType1Code.DECR);
+			
+		} else if (derivNtnlChngComboBox.getSelectedIndex() == 1) {
+			txData.setDerivNtnlChng(VariationType1Code.INCR);
+		}
+		
+		
+		txData.setPric(panelPrecio.getDatosIntroducidos());
+>>>>>>> 1266036975a8eb3a2ed836ec3a68b999fe38cbdd
 		txData.setNetAmt(new BigDecimal(netAmtField.getText()));
 		txData.setTradVn(tradVnField.getText());
 		txData.setCtryOfBrnch(ctryOfBrnchField.getText());
