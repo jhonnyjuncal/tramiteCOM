@@ -151,9 +151,9 @@ public class TransaccionPanel extends JPanel {
 		tradgCpctycomboBox = new JComboBox<String>();
 		tradgCpctycomboBox.setBounds(481, 32, 197, 20);
 		add(tradgCpctycomboBox);
-		tradgCpctycomboBox.addItem("");
-		tradgCpctycomboBox.addItem("");
-		tradgCpctycomboBox.addItem("");
+		tradgCpctycomboBox.addItem("AOTC");
+		tradgCpctycomboBox.addItem("DEAL");
+		tradgCpctycomboBox.addItem("MTCH");
 	}
 	
 	public JButton getBotonAceptar() {
@@ -183,12 +183,12 @@ public class TransaccionPanel extends JPanel {
 		QuantityPanel qtyPanel = new QuantityPanel();
 		
 		txData.setQty(qtyPanel.getDatosIntroducidos());
-		txData.setDerivNtnlChng();
-		txData.setPric();
+//		txData.setDerivNtnlChng();
+//		txData.setPric();
 		txData.setNetAmt(new BigDecimal(netAmtField.getText()));
 		txData.setTradVn(tradVnField.getText());
 		txData.setCtryOfBrnch(ctryOfBrnchField.getText());
-		txData.setUpFrntPmt();
+//		txData.setUpFrntPmt();
 		txData.setTradPlcMtchgId(tradPlcMtchgIdField.getText());
 		txData.setCmplxTradCmpntId(cmplxTradCmpntIdField.getText());
 		
