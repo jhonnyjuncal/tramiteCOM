@@ -2,9 +2,14 @@ package es.com.cc.ui;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+
+import es.com.cc.core.schema.all.ObjectFactory;
+import es.com.cc.core.schema.all.ReportingTransactionType1Choice1;
 
 public class NuevaTransaccionPanel extends JPanel {
 
@@ -13,6 +18,8 @@ public class NuevaTransaccionPanel extends JPanel {
 	private JButton btnAceptar;
 	private JButton btnCancelar;
 	
+	private ActionListener buyerListener;
+	private ActionListener sellerListener;
 
 	/**
 	 * Create the panel.
@@ -26,7 +33,7 @@ public class NuevaTransaccionPanel extends JPanel {
 		 * panel generalesPanel
 		 */
 		GeneralesPanel panelGeneral = new GeneralesPanel();
-		panelGeneral.setPreferredSize(new Dimension(730, 70));
+		panelGeneral.setPreferredSize(new Dimension(715, 70));
 		add(panelGeneral);
 		
 		
@@ -35,7 +42,7 @@ public class NuevaTransaccionPanel extends JPanel {
 		 * panel usuarios y compradores
 		 */
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setPreferredSize(new Dimension(725, 250));
+		tabbedPane.setPreferredSize(new Dimension(715, 250));
 		add(tabbedPane);
 		
 		TablaBuyerSeller tablaBuyer = new TablaBuyerSeller();
@@ -49,7 +56,7 @@ public class NuevaTransaccionPanel extends JPanel {
 		 * panel OrdenTransmision
 		 */
 		OrdenTransmisionPanel panelOrdenesTransmision = new OrdenTransmisionPanel();
-		panelOrdenesTransmision.setPreferredSize(new Dimension(730, 100));
+		panelOrdenesTransmision.setPreferredSize(new Dimension(715, 100));
 		add(panelOrdenesTransmision);
 		
 		/**
@@ -57,7 +64,7 @@ public class NuevaTransaccionPanel extends JPanel {
 		 * panel Transaccion
 		 */
 		TablaTransactionPanel tablaTransaction = new TablaTransactionPanel();
-		tablaTransaction.setPreferredSize(new Dimension(725, 200));
+		tablaTransaction.setPreferredSize(new Dimension(715, 200));
 		add(tablaTransaction);
 		
 		
@@ -107,5 +114,16 @@ public class NuevaTransaccionPanel extends JPanel {
 	
 	public JButton getBotonCancelar() {
 		return btnCancelar;
+	}
+	
+	public ReportingTransactionType1Choice1 getDatosDeOperaciones() {
+		ObjectFactory factory = new ObjectFactory();
+		
+		
+		ReportingTransactionType1Choice1 resp = factory.createReportingTransactionType1Choice1();
+		resp.setCxl();
+		resp.setNew();
+		
+		return resp;
 	}
 }

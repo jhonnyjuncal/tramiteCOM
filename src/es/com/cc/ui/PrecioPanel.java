@@ -18,6 +18,11 @@ public class PrecioPanel extends JPanel {
 	
 	private JPanel panelPrecio;
 	private JPanel panelNoPrecio;
+	private JPanel panelBsisPts;
+	private JPanel panelMntryVal;
+	private JPanel panelPctg;
+	private JPanel panelYld;
+	
 	private JTextField bsisPtsField;
 	private JTextField mntryValCcyField;
 	private JTextField mntryValValueField;
@@ -25,24 +30,25 @@ public class PrecioPanel extends JPanel {
 	private JTextField ptgField;
 	private JTextField yldField;
 	
+	private JRadioButton radioPrice;
+	private JRadioButton radioNoPrice;
+	private JRadioButton radioBsisPts;
+	private JRadioButton radioMntryVal;
+	private JRadioButton radioPctg;
+	private JRadioButton radioYld;
 	
-	
-	
-	
-	
-
 	/**
 	 * Create the panel.
 	 */
 	public PrecioPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(350, 120));
+		setPreferredSize(new Dimension(348, 118));
 		
 		JPanel panelRadios = new JPanel();
-		panelRadios.setBounds(0, 0, 350, 30);
+		panelRadios.setBounds(1, 1, 346, 30);
 		add(panelRadios);
 		
-		JRadioButton radioPrice = new JRadioButton("Price");
+		radioPrice = new JRadioButton("Price");
 		panelRadios.add(radioPrice);
 		radioPrice.addActionListener(new ActionListener() {
 			
@@ -54,7 +60,7 @@ public class PrecioPanel extends JPanel {
 			}
 		});
 		
-		JRadioButton radioNoPrice = new JRadioButton("No Price");
+		radioNoPrice = new JRadioButton("No Price");
 		panelRadios.add(radioNoPrice);
 		radioNoPrice.addActionListener(new ActionListener() {
 			
@@ -75,15 +81,15 @@ public class PrecioPanel extends JPanel {
 		 * panel de precio
 		 */
 		panelPrecio = new JPanel();
-		panelPrecio.setBounds(0, 29, 350, 90);
+		panelPrecio.setBounds(1, 29, 346, 89);
 		add(panelPrecio);
 		panelPrecio.setLayout(null);
 		
 		JPanel panelPrecioRadios = new JPanel();
-		panelPrecioRadios.setBounds(0, 0, 350, 30);
+		panelPrecioRadios.setBounds(1, 0, 346, 30);
 		panelPrecio.add(panelPrecioRadios);
 		
-		JRadioButton radioBsisPts = new JRadioButton("BsisPts");
+		radioBsisPts = new JRadioButton("BsisPts");
 		panelPrecioRadios.add(radioBsisPts);
 		radioBsisPts.addActionListener(new ActionListener() {
 			
@@ -94,7 +100,7 @@ public class PrecioPanel extends JPanel {
 			}
 		});
 		
-		JRadioButton radioMntryVal = new JRadioButton("MntryVal");
+		radioMntryVal = new JRadioButton("MntryVal");
 		panelPrecioRadios.add(radioMntryVal);
 		radioMntryVal.addActionListener(new ActionListener() {
 			
@@ -105,7 +111,7 @@ public class PrecioPanel extends JPanel {
 			}
 		});
 		
-		JRadioButton radioPctg = new JRadioButton("Pctg");
+		radioPctg = new JRadioButton("Pctg");
 		panelPrecioRadios.add(radioPctg);
 		radioPctg.addActionListener(new ActionListener() {
 			
@@ -116,7 +122,7 @@ public class PrecioPanel extends JPanel {
 			}
 		});
 		
-		JRadioButton radioYld = new JRadioButton("Yld");
+		radioYld = new JRadioButton("Yld");
 		panelPrecioRadios.add(radioYld);
 		radioYld.addActionListener(new ActionListener() {
 			
@@ -136,7 +142,7 @@ public class PrecioPanel extends JPanel {
 		/**
 		 * panelBsisPts
 		 */
-		JPanel panelBsisPts = new JPanel();
+		panelBsisPts = new JPanel();
 		panelBsisPts.setBounds(0, 30, 350, 60);
 		panelPrecio.add(panelBsisPts);
 		panelBsisPts.setLayout(null);
@@ -153,7 +159,7 @@ public class PrecioPanel extends JPanel {
 		/**
 		 * panelMntryVal
 		 */
-		JPanel panelMntryVal = new JPanel();
+		panelMntryVal = new JPanel();
 		panelMntryVal.setBounds(0, 30, 350, 60);
 		panelPrecio.add(panelMntryVal);
 		panelMntryVal.setLayout(null);
@@ -190,7 +196,7 @@ public class PrecioPanel extends JPanel {
 		/**
 		 * panelPctg
 		 */
-		JPanel panelPctg = new JPanel();
+		panelPctg = new JPanel();
 		panelPctg.setBounds(0, 30, 350, 60);
 		panelPrecio.add(panelPctg);
 		panelPctg.setLayout(null);
@@ -208,7 +214,7 @@ public class PrecioPanel extends JPanel {
 		/**
 		 * panelPctg
 		 */
-		JPanel panelYld = new JPanel();
+		panelYld = new JPanel();
 		panelYld.setBounds(0, 30, 350, 60);
 		panelPrecio.add(panelYld);
 		panelYld.setLayout(null);
@@ -228,7 +234,7 @@ public class PrecioPanel extends JPanel {
 		 * panel de no precio
 		 */
 		panelNoPrecio = new JPanel();
-		panelNoPrecio.setBounds(0, 29, 350, 90);
+		panelNoPrecio.setBounds(1, 29, 346, 89);
 		add(panelNoPrecio);
 		panelNoPrecio.setLayout(null);
 		
@@ -251,7 +257,9 @@ public class PrecioPanel extends JPanel {
 		pdgComboBox.addItem("NOAP");
 		pdgComboBox.addItem("PNDG");
 		
+		// valores por defecto
 		
+		radioPrice.setSelected(true);
 	}
 	
 	public SecuritiesTransactionPrice4Choice getDatosIntroducidos() {
@@ -266,12 +274,28 @@ public class PrecioPanel extends JPanel {
 	private void muestraPanelTipoPrecio(int posicion) {
 		switch (posicion) {
 			case 0:
+				panelBsisPts.setVisible(true);
+				panelMntryVal.setVisible(false);
+				panelPctg.setVisible(false);
+				panelYld.setVisible(false);
 				break;
 			case 1:
+				panelBsisPts.setVisible(false);
+				panelMntryVal.setVisible(true);
+				panelPctg.setVisible(false);
+				panelYld.setVisible(false);
 				break;
 			case 2:
+				panelBsisPts.setVisible(false);
+				panelMntryVal.setVisible(false);
+				panelPctg.setVisible(true);
+				panelYld.setVisible(false);
 				break;
 			case 3:
+				panelBsisPts.setVisible(false);
+				panelMntryVal.setVisible(false);
+				panelPctg.setVisible(false);
+				panelYld.setVisible(true);
 				break;
 		}
 	}

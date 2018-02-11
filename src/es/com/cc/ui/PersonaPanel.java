@@ -6,8 +6,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import es.com.cc.core.schema.all.GenericPersonIdentification11;
 import es.com.cc.core.schema.all.ObjectFactory;
 import es.com.cc.core.schema.all.PersonIdentification101;
@@ -17,6 +15,7 @@ import es.com.cc.core.util.DateUtil;
 public class PersonaPanel extends JPanel {
 
 	private static final long serialVersionUID = -5585239586552794691L;
+	
 	private JTextField txtFrstnmfield;
 	private JTextField txtNmfield;
 	private JTextField txtBirthdtfield;
@@ -81,51 +80,27 @@ public class PersonaPanel extends JPanel {
 		cdOrPrtryField.setColumns(10);
 	}
 	
-	public String getNmFieldValue() {
-		return this.txtNmfield.getText();
-	}
-	
-	public String getFrstnmFieldValue() {
-		return this.txtFrstnmfield.getText();
-	}
-	
-	public XMLGregorianCalendar getBirthdtFieldValue() {
-		return DateUtil.convertToXmlGregorianCalendar(this.txtBirthdtfield.getText());
-	}
-	
-	public String getIdFieldValue() {
-		return this.idField.getText();
-	}
-	
-	public String getCdOrPrtryFieldValue() {
-		return this.cdOrPrtryField.getText();
-	}
-	
-	public int getSchmeNmComboSelectedValue() {
-		return this.schmeNmCombo.getSelectedIndex();
-	}
-	
 	public PersonIdentification101 getDatosIntroducidos() {
 		ObjectFactory factory = new ObjectFactory();
 		
 		GenericPersonIdentification11 genericPersn = factory.createGenericPersonIdentification11();
-		genericPersn.setId(getIdFieldValue());
+		genericPersn.setId(idField.getText());
 		
 		// segun seleccion del combo
 		PersonIdentificationSchemeName1Choice1 personIdentificacion = factory.createPersonIdentificationSchemeName1Choice1();
-		if (getSchmeNmComboSelectedValue() == 0) {
-			personIdentificacion.setCd(getCdOrPrtryFieldValue());
+		if (schmeNmCombo.getSelectedIndex() == 0) {
+			personIdentificacion.setCd(cdOrPrtryField.getText());
 			genericPersn.setSchmeNm(personIdentificacion);
 			
-		} else if (getSchmeNmComboSelectedValue() == 1) {
-			personIdentificacion.setPrtry(getCdOrPrtryFieldValue());
+		} else if (schmeNmCombo.getSelectedIndex() == 1) {
+			personIdentificacion.setPrtry(cdOrPrtryField.getText());
 			genericPersn.setSchmeNm(personIdentificacion);
 		}
 		
 		PersonIdentification101 p101 = factory.createPersonIdentification101();
-		p101.setNm(getNmFieldValue());
-		p101.setFrstNm(getFrstnmFieldValue());
-		p101.setBirthDt(getBirthdtFieldValue());
+		p101.setNm(txtNmfield.getText());
+		p101.setFrstNm(txtFrstnmfield.getText());
+		p101.setBirthDt(DateUtil.convertToXmlGregorianCalendar(txtBirthdtfield.getText()));
 		p101.setOthr(genericPersn);
 		
 		return p101;

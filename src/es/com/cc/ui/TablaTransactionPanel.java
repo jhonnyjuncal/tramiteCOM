@@ -4,10 +4,11 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import es.com.cc.core.schema.all.SecuritiesTransaction11;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -16,9 +17,7 @@ public class TablaTransactionPanel extends JPanel {
 	private static final long serialVersionUID = -4765970757932015496L;
 	
 	private JTable table;
-	private Vector<String> columnas = new Vector<String>(3);
-	private Vector<String> valores = new Vector<String>();
-	
+	private DefaultTableModel model = new DefaultTableModel();
 	private TransaccionPanel panelTransaccion;
 	
 	/**
@@ -31,34 +30,31 @@ public class TablaTransactionPanel extends JPanel {
 		setPreferredSize(new Dimension(720, 260));
 		
 		JFrame frame = new JFrame();
-		
-		
 		cargaValoresTabla();
 		
 		JButton btnNewButton = new JButton("Nuevo");
 		add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				panelTransaccion = new TransaccionPanel();
 				
 				panelTransaccion.getBotonAceptar().addActionListener(new ActionListener() {
-					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
-						panelTransaccion.getDatosIntroducidos();
+						SecuritiesTransaction11 datosIntroducidos = panelTransaccion.getDatosIntroducidos();
+						addTransactionToTable(datosIntroducidos);
+						frame.dispose();
 					}
 				});
 				
 				panelTransaccion.getBotonCancelar().addActionListener(new ActionListener() {
-					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
-						
+						frame.dispose();
 					}
 				});
 				
@@ -72,15 +68,14 @@ public class TablaTransactionPanel extends JPanel {
 		JButton btnDeleteButton = new JButton("Borrar");
 		add(btnDeleteButton);
 		btnDeleteButton.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				removeTransactionFromTable();
 			}
 		});
 		
-		table = new JTable(valores, columnas);
+		table = new JTable(model);
 		table.setPreferredSize(new Dimension(705, 210));
 		
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -89,9 +84,17 @@ public class TablaTransactionPanel extends JPanel {
 	}
 	
 	private void cargaValoresTabla() {
-		columnas.add("TradDt");
-		columnas.add("TradgCpcty");
-		columnas.add("TradVn");
-		columnas.add("DerivNtnlChng");
+		model.addColumn("TradDt");
+		model.addColumn("TradgCpcty");
+		model.addColumn("TradVn");
+		model.addColumn("DerivNtnlChng");
+	}
+	
+	private void addTransactionToTable(SecuritiesTransaction11 data) {
+		model.addRow(new Object[] {data.getTradDt(), data.getTradgCpcty(), data.getTradVn(), data.getDerivNtnlChng()});
+	}
+	
+	private void removeTransactionFromTable() {
+		table.remove(table.getSelectedColumn());
 	}
 }

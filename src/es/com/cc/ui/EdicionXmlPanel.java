@@ -65,7 +65,7 @@ public class EdicionXmlPanel extends JPanel {
 	private static final long serialVersionUID = 8153525306985416127L;
 	
 	private static PrincipalPanel frame;
-	private JTable table;
+	private JTable tablaTransacciones;
 	private NuevaTransaccionPanel nuevaTransaccionPanel;
 	private HeaderPanel headerPanel;
 	
@@ -98,20 +98,18 @@ public class EdicionXmlPanel extends JPanel {
 		add(headerPanel, BorderLayout.NORTH);
 		
 		
-		
-		
 		/**
 		 * ****************************************************************************************************
 		 * panel2
 		 */
-		JPanel panel2 = new JPanel();
-		panel2.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel2.setPreferredSize(new Dimension(725, 400));
-		add(panel2, BorderLayout.CENTER);
+		JPanel contenidoPanel = new JPanel();
+		contenidoPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		contenidoPanel.setPreferredSize(new Dimension(725, 400));
+		add(contenidoPanel, BorderLayout.CENTER);
 		
-		table = new JTable(valores, columnas);
-		table.setPreferredSize(new Dimension(700, 297));
-		table.getTableHeader().setVisible(true);
+		tablaTransacciones = new JTable(valores, columnas);
+		tablaTransacciones.setPreferredSize(new Dimension(690, 196));
+		tablaTransacciones.getTableHeader().setVisible(true);
 		
 		JButton btnNewButton = new JButton("Nueva Transaccion");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -119,21 +117,20 @@ public class EdicionXmlPanel extends JPanel {
 				muestraVentanaNuevaOperacion();
 			}
 		});
-		panel2.add(btnNewButton);
+		contenidoPanel.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar Transaccion");
-		panel2.add(btnNewButton_1);
+		contenidoPanel.add(btnNewButton_1);
 		
+		JScrollPane scrollPane = new JScrollPane(tablaTransacciones);
+		scrollPane.setPreferredSize(new Dimension(700, 200));
+		contenidoPanel.add(scrollPane);
 		
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setPreferredSize(new Dimension(700, 300));
-		panel2.add(scrollPane);
-		
-		JPanel panel = new JPanel();
-		add(panel, BorderLayout.SOUTH);
+		JPanel botonesPanel = new JPanel();
+		add(botonesPanel, BorderLayout.SOUTH);
 		
 		JButton btnGenerarXml = new JButton("Generar XML");
-		panel.add(btnGenerarXml);
+		botonesPanel.add(btnGenerarXml);
 		btnGenerarXml.addActionListener(new ActionListener() {
 			
 			@Override
@@ -157,23 +154,33 @@ public class EdicionXmlPanel extends JPanel {
 		});
 		
 		
-		JButton btnNewButton_3 = new JButton("Borrar Datos");
-		panel.add(btnNewButton_3);
+		JButton btnBorrarDatos = new JButton("Borrar Datos");
+		botonesPanel.add(btnBorrarDatos);
 		
-		JButton btnNewButton_4 = new JButton("Salir");
-		panel.add(btnNewButton_4);
+		JButton btnSalir = new JButton("Salir");
+		botonesPanel.add(btnSalir);
 	}
 	
 	private void muestraVentanaNuevaOperacion() {
 		nuevaTransaccionPanel = new NuevaTransaccionPanel();
+		
 		nuevaTransaccionPanel.getBotonAceptar().addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-//				nuevaTransaccionPanel.getDatosDeOperaciones();
+				ReportingTransactionType1Choice1 result = nuevaTransaccionPanel.getDatosDeOperaciones();
+				addTransactionToTable(result);
 			}
 		});
+		
+		nuevaTransaccionPanel.getBotonCancelar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				muestraPanel(nuevaTransaccionPanel);
+			}
+		});
+		
 		muestraPanel(nuevaTransaccionPanel);
 	}
 	
@@ -183,85 +190,17 @@ public class EdicionXmlPanel extends JPanel {
 		frame.revalidate();
 	}
 	
+	private void addTransactionToTable(ReportingTransactionType1Choice1 report) {
+		
+	}
+	
 	private void generaXml(String path) {
 		ObjectFactory fac = new ObjectFactory();
 		
 		/**
 		 * Cabecera
 		 */
-		OrganisationIdentificationSchemeName1Choice fromSchema = fac.createOrganisationIdentificationSchemeName1Choice();
-		if (headerPanel.getFromSchema() == 0) {
-			fromSchema.setCd(headerPanel.getFromPytryCdTextField());
-			
-		} else {
-			fromSchema.setPrtry(headerPanel.getFromPytryCdTextField());
-		}
-		
-		GenericOrganisationIdentification11 fromGenericOrg = fac.createGenericOrganisationIdentification11();
-		fromGenericOrg.setId(headerPanel.getFromIdTextField());
-		fromGenericOrg.setSchmeNm(fromSchema);
-		
-		OrganisationIdentification71 fromOrgaId = fac.createOrganisationIdentification71();
-		fromOrgaId.setOthr(fromGenericOrg);
-		
-		Party10Choice1 fromChoice = fac.createParty10Choice1();
-		fromChoice.setOrgId(fromOrgaId);
-		
-		PartyIdentification421 fromOrgId = fac.createPartyIdentification421();
-		fromOrgId.setId(fromChoice);
-		
-		Party9Choice1 from = fac.createParty9Choice1();
-		from.setOrgId(fromOrgId);
-		
-		
-		
-		OrganisationIdentificationSchemeName1Choice toSchema = fac.createOrganisationIdentificationSchemeName1Choice();
-		if (headerPanel.getToSchema() == 0) {
-			toSchema.setCd(headerPanel.getToPytryCdTextField());
-			
-		} else {
-			toSchema.setPrtry(headerPanel.getToPytryCdTextField());
-		}
-		
-		GenericOrganisationIdentification11 toGenericOrg = fac.createGenericOrganisationIdentification11();
-		toGenericOrg.setSchmeNm(toSchema);
-		toGenericOrg.setId(headerPanel.getToIdTextField());
-		
-		OrganisationIdentification71 toOrgaId = fac.createOrganisationIdentification71();
-		toOrgaId.setOthr(toGenericOrg);
-		
-		Party10Choice1 toChoice = fac.createParty10Choice1();
-		toChoice.setOrgId(toOrgaId);
-		
-		PartyIdentification421 toOrgId = fac.createPartyIdentification421();
-		toOrgId.setId(toChoice);
-		
-		Party9Choice1 to = fac.createParty9Choice1();
-		to.setOrgId(toOrgId);
-		
-		
-		BusinessApplicationHeaderV01 header = fac.createBusinessApplicationHeaderV01();
-		header.setFr(from);
-		header.setTo(to);
-		header.setBizMsgIdr(headerPanel.getBizMsgIdrTextField());
-		header.setMsgDefIdr(headerPanel.getMsgDefIdrTextField());
-		
-		String creDtTextField = headerPanel.getCreDtTextField();
-		GregorianCalendar calendar = new GregorianCalendar();
-		calendar.setTime(new Date());
-		XMLGregorianCalendar xmlCalendar = null;
-		
-		try {
-			xmlCalendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
-			
-		} catch (DatatypeConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		header.setCreDt(xmlCalendar);
-		
-		JAXBElement<BusinessApplicationHeaderV01> appHdr = fac.createAppHdr(header);
-		
+		JAXBElement<BusinessApplicationHeaderV01> appHdr = fac.createAppHdr(headerPanel.getDatosIntroducidos());
 		BusinessApplicationHeaderEnvelope p1 = fac.createBusinessApplicationHeaderEnvelope();
 		p1.setAny(appHdr);
 		
