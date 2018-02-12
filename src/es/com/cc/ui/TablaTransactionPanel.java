@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import es.com.cc.core.schema.all.ObjectFactory;
 import es.com.cc.core.schema.all.SecuritiesTransaction11;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -40,23 +42,23 @@ public class TablaTransactionPanel extends JPanel {
 				// TODO Auto-generated method stub
 				panelTransaccion = new TransaccionPanel();
 				
-				panelTransaccion.getBotonAceptar().addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub
-						SecuritiesTransaction11 datosIntroducidos = panelTransaccion.getDatosIntroducidos();
-						addTransactionToTable(datosIntroducidos);
-						frame.dispose();
-					}
-				});
-				
-				panelTransaccion.getBotonCancelar().addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub
-						frame.dispose();
-					}
-				});
+//				panelTransaccion.getBotonAceptar().addActionListener(new ActionListener() {
+//					@Override
+//					public void actionPerformed(ActionEvent e) {
+//						// TODO Auto-generated method stub
+//						SecuritiesTransaction11 datosIntroducidos = panelTransaccion.getDatosIntroducidos();
+//						addTransactionToTable(datosIntroducidos);
+//						frame.dispose();
+//					}
+//				});
+//				
+//				panelTransaccion.getBotonCancelar().addActionListener(new ActionListener() {
+//					@Override
+//					public void actionPerformed(ActionEvent e) {
+//						// TODO Auto-generated method stub
+//						frame.dispose();
+//					}
+//				});
 				
 				frame.setBounds(300, 300, 710, 350);
 				frame.setVisible(true);
@@ -96,5 +98,10 @@ public class TablaTransactionPanel extends JPanel {
 	
 	private void removeTransactionFromTable() {
 		table.remove(table.getSelectedColumn());
+	}
+	
+	public SecuritiesTransaction11 getDatosIntroducidos() {
+		SecuritiesTransaction11 secureTransaction = panelTransaccion.getDatosIntroducidos();
+		return secureTransaction;
 	}
 }

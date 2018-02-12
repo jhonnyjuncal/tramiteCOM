@@ -2,14 +2,12 @@ package es.com.cc.ui;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-
 import es.com.cc.core.schema.all.ObjectFactory;
 import es.com.cc.core.schema.all.ReportingTransactionType1Choice1;
+import es.com.cc.core.schema.all.SecuritiesTransactionReport41;
 
 public class NuevaTransaccionPanel extends JPanel {
 
@@ -18,79 +16,98 @@ public class NuevaTransaccionPanel extends JPanel {
 	private JButton btnAceptar;
 	private JButton btnCancelar;
 	
-	private ActionListener buyerListener;
-	private ActionListener sellerListener;
+	private GeneralesPanel panelGeneral;
+	private TablaBuyerSeller tablaBuyer;
+	private TablaBuyerSeller tablaSeller;
+	private BuyerSellerPanel panelBuyer = new BuyerSellerPanel();
+	private BuyerSellerPanel panelSeller = new BuyerSellerPanel();
+	private OrdenTransmisionPanel panelOrdenTransmision;
+	private TablaTransactionPanel tablaTransaction;
+	private TransaccionPanel panelTransaccion;
+	private FinInstrmPanel panelFinInstrm;
+	private InvstmtDcsnPrsnPanel panelInvstmtDcsnPrsn;
 
 	/**
 	 * Create the panel.
 	 */
 	public NuevaTransaccionPanel() {
-		setBounds(0, 0, 730, 830);
+		setBounds(0, 0, 730, 932);
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		/**
 		 * ****************************************************************************************************
 		 * panel generalesPanel
 		 */
-		GeneralesPanel panelGeneral = new GeneralesPanel();
+		panelGeneral = new GeneralesPanel();
 		panelGeneral.setPreferredSize(new Dimension(715, 70));
 		add(panelGeneral);
 		
-		
 		/**
 		 * ****************************************************************************************************
-		 * panel usuarios y compradores
+		 * panel vendedores y compradores
 		 */
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setPreferredSize(new Dimension(715, 250));
 		add(tabbedPane);
 		
-		TablaBuyerSeller tablaBuyer = new TablaBuyerSeller();
-		TablaBuyerSeller tablaSeller = new TablaBuyerSeller();
+//		tablaBuyer = new TablaBuyerSeller();
+//		tablaSeller = new TablaBuyerSeller();
 		
-		tabbedPane.addTab("Buyer", null, tablaBuyer, null);
-		tabbedPane.addTab("Seller", null, tablaSeller, null);
+//		tabbedPane.addTab("Buyer", null, tablaBuyer, null);
+//		tabbedPane.addTab("Seller", null, tablaSeller, null);
+		tabbedPane.addTab("Buyer", null, panelBuyer, null);
+		tabbedPane.addTab("Seller", null, panelSeller, null);
 		
 		/**
 		 * ****************************************************************************************************
 		 * panel OrdenTransmision
 		 */
-		OrdenTransmisionPanel panelOrdenesTransmision = new OrdenTransmisionPanel();
-		panelOrdenesTransmision.setPreferredSize(new Dimension(715, 100));
-		add(panelOrdenesTransmision);
+		panelOrdenTransmision = new OrdenTransmisionPanel();
+		panelOrdenTransmision.setPreferredSize(new Dimension(715, 100));
+		add(panelOrdenTransmision);
 		
 		/**
 		 * ****************************************************************************************************
 		 * panel Transaccion
 		 */
-		TablaTransactionPanel tablaTransaction = new TablaTransactionPanel();
-		tablaTransaction.setPreferredSize(new Dimension(715, 200));
-		add(tablaTransaction);
-		
+//		tablaTransaction = new TablaTransactionPanel();
+//		tablaTransaction.setPreferredSize(new Dimension(715, 200));
+//		add(tablaTransaction);
+		panelTransaccion = new TransaccionPanel();
+		panelTransaccion.setPreferredSize(new Dimension(715, 320));
+		add(panelTransaccion);
 		
 		/**
 		 * ****************************************************************************************************
 		 * FinInstrm
 		 */
-		
+		panelFinInstrm = new FinInstrmPanel();
+		panelFinInstrm.setPreferredSize(new Dimension(715, 20));
+		add(panelFinInstrm);
 		
 		/**
 		 * ****************************************************************************************************
 		 * InvstmtDcsnPrsn
 		 */
-		
+		panelInvstmtDcsnPrsn = new InvstmtDcsnPrsnPanel();
+		panelInvstmtDcsnPrsn.setPreferredSize(new Dimension(715, 20));
+		add(panelInvstmtDcsnPrsn);
 		
 		/**
 		 * ****************************************************************************************************
 		 * ExctgPrsn
 		 */
-		
+		JPanel panelExctgPrsn = new JPanel();
+		panelExctgPrsn.setPreferredSize(new Dimension(715, 20));
+		add(panelExctgPrsn);
 		
 		/**
 		 * ****************************************************************************************************
 		 * AddtlAttrbts
 		 */
-		
+		JPanel panelAddtlAttrbts = new JPanel();
+		panelAddtlAttrbts.setPreferredSize(new Dimension(715, 20));
+		add(panelAddtlAttrbts);
 		
 		/**
 		 * botonera inferior
@@ -103,9 +120,6 @@ public class NuevaTransaccionPanel extends JPanel {
 		
 		btnCancelar = new JButton("Cancelar");
 		panelBotones.add(btnCancelar);
-		
-		
-		
 	}
 	
 	public JButton getBotonAceptar() {
@@ -119,10 +133,22 @@ public class NuevaTransaccionPanel extends JPanel {
 	public ReportingTransactionType1Choice1 getDatosDeOperaciones() {
 		ObjectFactory factory = new ObjectFactory();
 		
+		SecuritiesTransactionReport41 secTranReport = factory.createSecuritiesTransactionReport41();
+		secTranReport.setTxId(panelGeneral.getTxIdField());
+		secTranReport.setExctgPty(panelGeneral.getExctgPtyField());
+		secTranReport.setInvstmtPtyInd(panelGeneral.getInvstmtPtyIndField());
+		secTranReport.setSubmitgPty(panelGeneral.getSubmitgPtyField());
+		secTranReport.setBuyr(tablaBuyer.getDatosIntroducidos());
+		secTranReport.setSellr(tablaSeller.getDatosIntroducidos());
+		secTranReport.setOrdrTrnsmssn(panelOrdenTransmision.getDatosIntroducidos());
+		secTranReport.setTx(tablaTransaction.getDatosIntroducidos());
+		secTranReport.setFinInstrm(panelFinInstrm.getDatosIntroducidos());
+		secTranReport.setInvstmtDcsnPrsn(panelInvstmtDcsnPrsn.getDatosIntroducidos());
+//		secTranReport.setExctgPrsn();
+//		secTranReport.setAddtlAttrbts();
 		
 		ReportingTransactionType1Choice1 resp = factory.createReportingTransactionType1Choice1();
-		resp.setCxl();
-		resp.setNew();
+		resp.setNew(secTranReport);
 		
 		return resp;
 	}

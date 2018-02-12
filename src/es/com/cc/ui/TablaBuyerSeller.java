@@ -109,4 +109,8 @@ public class TablaBuyerSeller extends JPanel {
 	private void removeBuyerSellerFromTable() {
 		model.removeRow(tablaBuyerSeller.getSelectedRow());
 	}
+	
+	public PartyIdentification791 getDatosIntroducidos() {
+		return listaBuyer.get(0);
+	}
 }

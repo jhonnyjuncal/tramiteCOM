@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.math.BigDecimal;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,8 +25,6 @@ public class TransaccionPanel extends JPanel {
 	private JTextField ctryOfBrnchField;
 	private JTextField tradPlcMtchgIdField;
 	private JTextField cmplxTradCmpntIdField;
-	private JButton btnAceptar;
-	private JButton btnCancelar;
 	private JComboBox<String> tradgCpctycomboBox;
 	private JComboBox<String> derivNtnlChngComboBox;
 	
@@ -40,7 +37,7 @@ public class TransaccionPanel extends JPanel {
 	 */
 	public TransaccionPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(730, 370));
+		setPreferredSize(new Dimension(730, 318));
 		
 		JLabel lblNewLabel_6 = new JLabel("Transaccion");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -92,16 +89,6 @@ public class TransaccionPanel extends JPanel {
 		add(tradVnField);
 		tradVnField.setColumns(10);
 		
-		JPanel panelBotones = new JPanel();
-		panelBotones.setBounds(10, 323, 704, 33);
-		add(panelBotones);
-		
-		btnAceptar = new JButton("Aceptar");
-		panelBotones.add(btnAceptar);
-		
-		btnCancelar = new JButton("Cancelar");
-		panelBotones.add(btnCancelar);
-		
 		JLabel lblNewLabel = new JLabel("CtryOfBrnch");
 		lblNewLabel.setBounds(380, 110, 80, 14);
 		add(lblNewLabel);
@@ -146,14 +133,6 @@ public class TransaccionPanel extends JPanel {
 		tradgCpctycomboBox.addItem("DEAL");
 		tradgCpctycomboBox.addItem("MTCH");
 
-	}
-	
-	public JButton getBotonAceptar() {
-		return btnAceptar;
-	}
-	
-	public JButton getBotonCancelar() {
-		return btnCancelar;
 	}
 	
 	public SecuritiesTransaction11 getDatosIntroducidos() {

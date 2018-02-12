@@ -28,7 +28,7 @@ public class CreacionPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CreacionPanel.frame.setBounds(200, 200, 730, 830);
+				CreacionPanel.frame.setBounds(200, 200, 760, 830);
 				edicionPanel = new EdicionXmlPanel(CreacionPanel.frame);
 				muestraPanel(edicionPanel);
 			}
