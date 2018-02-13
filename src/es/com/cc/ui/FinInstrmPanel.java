@@ -40,7 +40,7 @@ public class FinInstrmPanel extends JPanel {
 	 */
 	public FinInstrmPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(715, 573));
+		setPreferredSize(new Dimension(715, 410));
 		
 		JLabel lblNewLabel = new JLabel("FinInstrm");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));

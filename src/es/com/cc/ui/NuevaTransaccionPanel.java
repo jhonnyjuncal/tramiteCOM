@@ -26,12 +26,14 @@ public class NuevaTransaccionPanel extends JPanel {
 	private TransaccionPanel panelTransaccion;
 	private FinInstrmPanel panelFinInstrm;
 	private InvstmtDcsnPrsnPanel panelInvstmtDcsnPrsn;
+	private ExctgPrsnPanel panelExctgPrsn;
+	private AddtlAttrbtsPanel panelAddtlAttrbts;
 
 	/**
 	 * Create the panel.
 	 */
 	public NuevaTransaccionPanel() {
-		setBounds(0, 0, 730, 932);
+		setBounds(0, 0, 730, 3000);
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		/**
@@ -82,7 +84,7 @@ public class NuevaTransaccionPanel extends JPanel {
 		 * FinInstrm
 		 */
 		panelFinInstrm = new FinInstrmPanel();
-		panelFinInstrm.setPreferredSize(new Dimension(715, 20));
+		panelFinInstrm.setPreferredSize(new Dimension(725, 411));
 		add(panelFinInstrm);
 		
 		/**
@@ -90,23 +92,23 @@ public class NuevaTransaccionPanel extends JPanel {
 		 * InvstmtDcsnPrsn
 		 */
 		panelInvstmtDcsnPrsn = new InvstmtDcsnPrsnPanel();
-		panelInvstmtDcsnPrsn.setPreferredSize(new Dimension(715, 20));
+		panelInvstmtDcsnPrsn.setPreferredSize(new Dimension(715, 100));
 		add(panelInvstmtDcsnPrsn);
 		
 		/**
 		 * ****************************************************************************************************
 		 * ExctgPrsn
 		 */
-		JPanel panelExctgPrsn = new JPanel();
-		panelExctgPrsn.setPreferredSize(new Dimension(715, 20));
+		panelExctgPrsn = new ExctgPrsnPanel();
+		panelExctgPrsn.setPreferredSize(new Dimension(730, 140));
 		add(panelExctgPrsn);
 		
 		/**
 		 * ****************************************************************************************************
 		 * AddtlAttrbts
 		 */
-		JPanel panelAddtlAttrbts = new JPanel();
-		panelAddtlAttrbts.setPreferredSize(new Dimension(715, 20));
+		panelAddtlAttrbts = new AddtlAttrbtsPanel();
+		panelAddtlAttrbts.setPreferredSize(new Dimension(715, 100));
 		add(panelAddtlAttrbts);
 		
 		/**
@@ -144,8 +146,8 @@ public class NuevaTransaccionPanel extends JPanel {
 		secTranReport.setTx(tablaTransaction.getDatosIntroducidos());
 		secTranReport.setFinInstrm(panelFinInstrm.getDatosIntroducidos());
 		secTranReport.setInvstmtDcsnPrsn(panelInvstmtDcsnPrsn.getDatosIntroducidos());
-//		secTranReport.setExctgPrsn();
-//		secTranReport.setAddtlAttrbts();
+		secTranReport.setExctgPrsn(panelExctgPrsn.getDatosIntroducidos());
+		secTranReport.setAddtlAttrbts(panelAddtlAttrbts.getDatosIntroducidos());
 		
 		ReportingTransactionType1Choice1 resp = factory.createReportingTransactionType1Choice1();
 		resp.setNew(secTranReport);
