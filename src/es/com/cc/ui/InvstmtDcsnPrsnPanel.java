@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Color;
 
 public class InvstmtDcsnPrsnPanel extends JPanel {
 
@@ -23,21 +25,23 @@ public class InvstmtDcsnPrsnPanel extends JPanel {
 	private JPanel panelAlgoritmo;
 	private PersonaPanel2 panelPersona;
 	
+	private boolean hideFlag = true;
+	
 
 	/**
 	 * Create the panel.
 	 */
 	public InvstmtDcsnPrsnPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(450, 190));
+		setPreferredSize(new Dimension(996, 190));
 		
 		JLabel lblInvstmtdcsnprsn = new JLabel("InvstmtDcsnPrsn");
 		lblInvstmtdcsnprsn.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblInvstmtdcsnprsn.setBounds(10, 11, 106, 14);
+		lblInvstmtdcsnprsn.setBounds(35, 7, 106, 14);
 		add(lblInvstmtdcsnprsn);
 		
 		JPanel panelRadios = new JPanel();
-		panelRadios.setBounds(10, 36, 430, 29);
+		panelRadios.setBounds(10, 36, 994, 29);
 		add(panelRadios);
 		
 		radioAlgo = new JRadioButton("Algoritmo");
@@ -69,7 +73,7 @@ public class InvstmtDcsnPrsnPanel extends JPanel {
 		 * panel Algoritmo
 		 */
 		panelAlgoritmo = new JPanel();
-		panelAlgoritmo.setBounds(10, 76, 430, 100);
+		panelAlgoritmo.setBounds(10, 76, 994, 100);
 		add(panelAlgoritmo);
 		panelAlgoritmo.setLayout(null);
 		
@@ -87,8 +91,30 @@ public class InvstmtDcsnPrsnPanel extends JPanel {
 		 * panel Persona
 		 */
 		panelPersona = new PersonaPanel2();
-		panelPersona.setBounds(10, 76, 430, 100);
+		panelPersona.setBounds(10, 76, 994, 100);
 		add(panelPersona);
+		
+		JButton btnOcultar = new JButton("");
+		btnOcultar.setBackground(Color.GREEN);
+		btnOcultar.setBounds(10, 7, 15, 15);
+		add(btnOcultar);
+		btnOcultar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (hideFlag) {
+					hideFlag = false;
+					btnOcultar.setBackground(Color.RED);
+					setPreferredSize(new Dimension(996, 30));
+					
+				} else {
+					hideFlag = true;
+					setPreferredSize(new Dimension(996, 190));
+					btnOcultar.setBackground(Color.GREEN);
+				}
+				revalidate();
+			}
+		});
 		
 		
 		// valores por defecto

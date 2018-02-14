@@ -17,10 +17,14 @@ import es.com.cc.core.util.DateUtil;
 import javax.swing.JLabel;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
+import javax.swing.JButton;
+import java.awt.Color;
 
 public class FinInstrmPanel extends JPanel {
 
@@ -34,6 +38,8 @@ public class FinInstrmPanel extends JPanel {
 	private JTextField mtrtyDtField;
 	private JTextField XpryDtField;
 	private JTextField pricMltplrField;
+	
+	private boolean hideFlag = true;
 
 	/**
 	 * Create the panel.
@@ -44,20 +50,20 @@ public class FinInstrmPanel extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("FinInstrm");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel.setBounds(1, 1, 94, 14);
+		lblNewLabel.setBounds(35, 7, 94, 14);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Id");
-		lblNewLabel_1.setBounds(10, 27, 46, 14);
+		lblNewLabel_1.setBounds(10, 119, 46, 14);
 		add(lblNewLabel_1);
 		
 		idField = new JTextField();
-		idField.setBounds(66, 24, 200, 20);
+		idField.setBounds(66, 116, 200, 20);
 		add(idField);
 		idField.setColumns(10);
 		
 		JPanel panelFinInstrmGnlAttrbts = new JPanel();
-		panelFinInstrmGnlAttrbts.setBounds(10, 52, 695, 56);
+		panelFinInstrmGnlAttrbts.setBounds(10, 147, 695, 56);
 		add(panelFinInstrmGnlAttrbts);
 		panelFinInstrmGnlAttrbts.setLayout(null);
 		
@@ -98,7 +104,7 @@ public class FinInstrmPanel extends JPanel {
 		ntnlCcyGnlField.setColumns(10);
 		
 		JPanel panelDebtInstrmAttrbts = new JPanel();
-		panelDebtInstrmAttrbts.setBounds(10, 113, 695, 30);
+		panelDebtInstrmAttrbts.setBounds(10, 214, 695, 30);
 		add(panelDebtInstrmAttrbts);
 		panelDebtInstrmAttrbts.setLayout(null);
 		
@@ -112,7 +118,7 @@ public class FinInstrmPanel extends JPanel {
 		mtrtyDtField.setColumns(10);
 		
 		JPanel panelDerivInstrmAttrbts = new JPanel();
-		panelDerivInstrmAttrbts.setBounds(10, 147, 695, 251);
+		panelDerivInstrmAttrbts.setBounds(10, 255, 695, 143);
 		add(panelDerivInstrmAttrbts);
 		panelDerivInstrmAttrbts.setLayout(null);
 		
@@ -133,6 +139,28 @@ public class FinInstrmPanel extends JPanel {
 		pricMltplrField.setBounds(387, 1, 200, 20);
 		panelDerivInstrmAttrbts.add(pricMltplrField);
 		pricMltplrField.setColumns(10);
+		
+		JButton btnOcultar = new JButton("");
+		btnOcultar.setBackground(Color.GREEN);
+		btnOcultar.setBounds(10, 7, 15, 15);
+		add(btnOcultar);
+		btnOcultar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (hideFlag) {
+					hideFlag = false;
+					btnOcultar.setBackground(Color.RED);
+					setPreferredSize(new Dimension(998, 30));
+					
+				} else {
+					hideFlag = true;
+					setPreferredSize(new Dimension(998, 410));
+					btnOcultar.setBackground(Color.GREEN);
+				}
+				revalidate();
+			}
+		});
 
 	}
 	

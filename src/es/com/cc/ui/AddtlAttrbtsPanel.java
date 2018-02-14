@@ -2,12 +2,17 @@ package es.com.cc.ui;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import es.com.cc.core.schema.all.ObjectFactory;
 import es.com.cc.core.schema.all.SecuritiesTransactionIndicator21;
+import javax.swing.JButton;
+import java.awt.Color;
 
 public class AddtlAttrbtsPanel extends JPanel {
 
@@ -24,17 +29,19 @@ public class AddtlAttrbtsPanel extends JPanel {
 	private JLabel lblSctiesfincgtxind;
 	private JRadioButton radioSctiesFincgTxIndSi;
 	private JRadioButton radioSctiesFincgTxIndNo;
+	
+	private boolean hideFlag = true;
 
 	/**
 	 * Create the panel.
 	 */
 	public AddtlAttrbtsPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(730, 385));
+		setPreferredSize(new Dimension(998, 395));
 		
 		JLabel lblNewLabel = new JLabel("AddtlAttrbts");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel.setBounds(1, 1, 102, 14);
+		lblNewLabel.setBounds(35, 7, 102, 14);
 		add(lblNewLabel);
 		
 		/**
@@ -42,7 +49,7 @@ public class AddtlAttrbtsPanel extends JPanel {
 		 * panel tablaPanelWvrInd
 		 */
 		tablaPanelWvrInd = new TablaWvrIndPanel();
-		tablaPanelWvrInd.setBounds(1, 26, 728, 100);
+		tablaPanelWvrInd.setBounds(1, 36, 994, 100);
 		add(tablaPanelWvrInd);
 		
 		/**
@@ -50,7 +57,7 @@ public class AddtlAttrbtsPanel extends JPanel {
 		 * panel panelShrtSellgInd
 		 */
 		panelShrtSellgInd = new ShrtSellgIndPanel();
-		panelShrtSellgInd.setBounds(1, 128, 728, 35);
+		panelShrtSellgInd.setBounds(1, 138, 944, 35);
 		add(panelShrtSellgInd);
 		
 		/**
@@ -58,7 +65,7 @@ public class AddtlAttrbtsPanel extends JPanel {
 		 * panel tablaPanelOTCPstTradInd
 		 */
 		tablaPanelOTCPstTradInd = new TablaOTCPstTradIndPanel();
-		tablaPanelOTCPstTradInd.setBounds(1, 165, 729, 139);
+		tablaPanelOTCPstTradInd.setBounds(1, 175, 994, 139);
 		add(tablaPanelOTCPstTradInd);
 		
 		/**
@@ -66,7 +73,7 @@ public class AddtlAttrbtsPanel extends JPanel {
 		 * panel RskRdcgTx
 		 */
 		panelRskRdcgTx = new JPanel();
-		panelRskRdcgTx.setBounds(1, 304, 728, 35);
+		panelRskRdcgTx.setBounds(1, 314, 994, 35);
 		add(panelRskRdcgTx);
 		panelRskRdcgTx.setLayout(null);
 		
@@ -92,7 +99,7 @@ public class AddtlAttrbtsPanel extends JPanel {
 		 */
 		panelSctiesFincgTxInd = new JPanel();
 		panelSctiesFincgTxInd.setLayout(null);
-		panelSctiesFincgTxInd.setBounds(1, 343, 728, 35);
+		panelSctiesFincgTxInd.setBounds(1, 353, 994, 35);
 		add(panelSctiesFincgTxInd);
 		
 		lblSctiesfincgtxind = new JLabel("SctiesFincgTxInd");
@@ -110,6 +117,28 @@ public class AddtlAttrbtsPanel extends JPanel {
 		ButtonGroup group2 = new ButtonGroup();
 		group2.add(radioSctiesFincgTxIndSi);
 		group2.add(radioSctiesFincgTxIndNo);
+		
+		JButton btnOcultar = new JButton("");
+		btnOcultar.setBackground(Color.GREEN);
+		btnOcultar.setBounds(10, 7, 15, 15);
+		add(btnOcultar);
+		btnOcultar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (hideFlag) {
+					hideFlag = false;
+					btnOcultar.setBackground(Color.RED);
+					setPreferredSize(new Dimension(996, 30));
+					
+				} else {
+					hideFlag = true;
+					setPreferredSize(new Dimension(996, 190));
+					btnOcultar.setBackground(Color.GREEN);
+				}
+				revalidate();
+			}
+		});
 	}
 	
 	public SecuritiesTransactionIndicator21 getDatosIntroducidos() {

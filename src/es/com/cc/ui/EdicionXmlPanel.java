@@ -1,7 +1,5 @@
 package es.com.cc.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -27,6 +24,8 @@ import es.com.cc.core.schema.all.ReportingTransactionType1Choice1;
 import es.com.cc.core.schema.all.SecuritiesTransactionReport21;
 import es.com.cc.core.schema.all.SecuritiesTransactionReport41;
 import es.com.cc.core.schema.all.StrictPayload;
+import java.awt.FlowLayout;
+import javax.swing.JSeparator;
 
 public class EdicionXmlPanel extends JPanel {
 
@@ -46,50 +45,70 @@ public class EdicionXmlPanel extends JPanel {
 	public EdicionXmlPanel(PrincipalPanel frame) {
 		EdicionXmlPanel.frame = frame;
 		
-		setBounds(0, 0, 760, 830);
-		setLayout(new BorderLayout(0, 0));
+		setBounds(0, 0, 1000, 642);
+		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
+		cargaColumnasDeLaTabla();
 		
 		/**
 		 * ****************************************************************************************************
 		 * panel1
 		 */
 		headerPanel = new HeaderPanel();
-		add(headerPanel, BorderLayout.NORTH);
+		add(headerPanel);
 		
+		/**
+		 * Separador (linea y panel)
+		 */
+		JSeparator separator = new JSeparator();
+		add(separator);
+		separator.setPreferredSize(new Dimension(1000, 2));
+		JPanel panelSeparador = new JPanel();
+		panelSeparador.setPreferredSize(new Dimension(990, 30));
+		add(panelSeparador);
 		
 		/**
 		 * ****************************************************************************************************
-		 * panel2
+		 * panel de contenido
 		 */
+		
 		JPanel contenidoPanel = new JPanel();
-		contenidoPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		contenidoPanel.setPreferredSize(new Dimension(725, 400));
-		add(contenidoPanel, BorderLayout.CENTER);
+		contenidoPanel.setBorder(null);
+		contenidoPanel.setPreferredSize(new Dimension(998, 400));
+		add(contenidoPanel);
 		
-		cargaColumnasDeLaTabla();
 		
-		tablaTransacciones = new JTable(model);
-		tablaTransacciones.setPreferredSize(new Dimension(690, 196));
-		tablaTransacciones.getTableHeader().setVisible(true);
+		JPanel panel = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
+		flowLayout.setAlignment(FlowLayout.LEFT);
+		panel.setPreferredSize(new Dimension(998, 32));
+		contenidoPanel.add(panel);
 		
-		JButton btnNewButton = new JButton("Nueva Transaccion");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnNewTransaction = new JButton("Nueva Transaccion");
+		panel.add(btnNewTransaction);
+		btnNewTransaction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				muestraVentanaNuevaTransaccion();
 			}
 		});
-		contenidoPanel.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Cancelar Transaccion");
-		contenidoPanel.add(btnNewButton_1);
+		JButton btnCancelTransaction = new JButton("Cancelar Transaccion");
+		panel.add(btnCancelTransaction);
+		
+		tablaTransacciones = new JTable(model);
+		tablaTransacciones.setPreferredSize(new Dimension(992, 196));
 		
 		JScrollPane scrollPane = new JScrollPane(tablaTransacciones);
-		scrollPane.setPreferredSize(new Dimension(700, 200));
+		scrollPane.setPreferredSize(new Dimension(995, 200));
 		contenidoPanel.add(scrollPane);
 		
+		/**
+		 * ****************************************************************************************************
+		 * botonera inferior
+		 */
 		JPanel botonesPanel = new JPanel();
-		add(botonesPanel, BorderLayout.SOUTH);
+		botonesPanel.setPreferredSize(new Dimension(998, 40));
+		add(botonesPanel);
 		
 		JButton btnGenerarXml = new JButton("Generar XML");
 		botonesPanel.add(btnGenerarXml);

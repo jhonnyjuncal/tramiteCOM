@@ -40,6 +40,7 @@ public class PrincipalPanel extends JFrame {
 	public PrincipalPanel() {
 		setTitle("Validador de XML del tramite COM");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultLookAndFeelDecorated(true);
 		setBounds(300, 300, 600, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -10,6 +10,9 @@ import javax.swing.JTextField;
 import es.com.cc.core.schema.all.ExecutingParty1Choice1;
 import es.com.cc.core.schema.all.NoReasonCode;
 import es.com.cc.core.schema.all.ObjectFactory;
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.Font;
 
 public class ExctgPrsnPanel extends JPanel {
 
@@ -24,20 +27,28 @@ public class ExctgPrsnPanel extends JPanel {
 	private JPanel panelAlgoritmo;
 	private JLabel lblNewLabel;
 	private JTextField algoField;
+	private JLabel lblNewLabel_1;
+	
+	private boolean hideFlag = true;
 
 	/**
 	 * Create the panel.
 	 */
 	public ExctgPrsnPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(728, 136));
+		setPreferredSize(new Dimension(996, 170));
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(1, 1, 726, 28);
-		add(panel);
+		lblNewLabel_1 = new JLabel("ExctgPrsn");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1.setBounds(35, 7, 133, 14);
+		add(lblNewLabel_1);
+		
+		JPanel panelRadios = new JPanel();
+		panelRadios.setBounds(1, 33, 994, 28);
+		add(panelRadios);
 		
 		radioPrsn = new JRadioButton("Prsn");
-		panel.add(radioPrsn);
+		panelRadios.add(radioPrsn);
 		radioPrsn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -47,7 +58,7 @@ public class ExctgPrsnPanel extends JPanel {
 		});
 		
 		radioClnt = new JRadioButton("Clnt");
-		panel.add(radioClnt);
+		panelRadios.add(radioClnt);
 		radioClnt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -57,7 +68,7 @@ public class ExctgPrsnPanel extends JPanel {
 		});
 		
 		radioAlgo = new JRadioButton("Algo");
-		panel.add(radioAlgo);
+		panelRadios.add(radioAlgo);
 		radioAlgo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -67,17 +78,17 @@ public class ExctgPrsnPanel extends JPanel {
 		});
 		
 		panelPersona = new PersonaPanel2();
-		panelPersona.setBounds(1, 31, 430, 100);
+		panelPersona.setBounds(1, 65, 994, 100);
 		add(panelPersona);
 		
 		panelCliente = new ClientPanel();
-		panelCliente.setBounds(1, 31, 430, 100);
+		panelCliente.setBounds(1, 65, 994, 100);
 		add(panelCliente);
 		
 		panelAlgoritmo = new JPanel();
-		panelAlgoritmo.setBounds(1, 31, 430, 100);
-		add(panelAlgoritmo);
+		panelAlgoritmo.setBounds(1, 65, 994, 100);
 		panelAlgoritmo.setLayout(null);
+		add(panelAlgoritmo);
 		
 		lblNewLabel = new JLabel("Algoritmo");
 		lblNewLabel.setBounds(10, 11, 80, 14);
@@ -87,6 +98,28 @@ public class ExctgPrsnPanel extends JPanel {
 		algoField.setBounds(100, 8, 200, 20);
 		panelAlgoritmo.add(algoField);
 		algoField.setColumns(10);
+		
+		JButton btnOcultar = new JButton("");
+		btnOcultar.setBackground(Color.GREEN);
+		btnOcultar.setBounds(10, 7, 15, 15);
+		add(btnOcultar);
+		btnOcultar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (hideFlag) {
+					hideFlag = false;
+					btnOcultar.setBackground(Color.RED);
+					setPreferredSize(new Dimension(996, 30));
+					
+				} else {
+					hideFlag = true;
+					setPreferredSize(new Dimension(996, 170));
+					btnOcultar.setBackground(Color.GREEN);
+				}
+				revalidate();
+			}
+		});
 	}
 	
 	public ExecutingParty1Choice1 getDatosIntroducidos() {
@@ -108,10 +141,19 @@ public class ExctgPrsnPanel extends JPanel {
 	private void muestraPanel(int position) {
 		switch (position) {
 			case 0:
+				panelPersona.setVisible(true);
+				panelCliente.setVisible(false);
+				panelAlgoritmo.setVisible(false);
 				break;
 			case 1:
+				panelPersona.setVisible(false);
+				panelCliente.setVisible(true);
+				panelAlgoritmo.setVisible(false);
 				break;
 			case 2:
+				panelPersona.setVisible(false);
+				panelCliente.setVisible(false);
+				panelAlgoritmo.setVisible(true);
 				break;
 		}
 	}

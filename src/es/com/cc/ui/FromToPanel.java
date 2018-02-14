@@ -27,40 +27,40 @@ public class FromToPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public FromToPanel() {
+	public FromToPanel(String titulo) {
 		setLayout(null);
-		setPreferredSize(new Dimension(300, 110));
+		setPreferredSize(new Dimension(498, 79));
 		
-		JLabel lblNewLabel_2 = new JLabel("FROM");
+		JLabel lblNewLabel_2 = new JLabel(titulo);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_2.setBounds(3, 3, 50, 14);
+		lblNewLabel_2.setBounds(3, 3, 100, 14);
 		add(lblNewLabel_2);
 		
 		JLabel lblNewLabel = new JLabel("Id");
-		lblNewLabel.setBounds(20, 30, 70, 14);
+		lblNewLabel.setBounds(20, 30, 50, 14);
 		add(lblNewLabel);
 		
 		idTextField = new JTextField();
-		idTextField.setBounds(90, 27, 200, 20);
+		idTextField.setBounds(69, 27, 200, 20);
 		add(idTextField);
 		idTextField.setColumns(10);
 		
 		JLabel lblNewLabel_9 = new JLabel("Schema");
-		lblNewLabel_9.setBounds(20, 55, 60, 14);
+		lblNewLabel_9.setBounds(304, 30, 50, 14);
 		add(lblNewLabel_9);
 		
 		schemaComboBox = new JComboBox<String>();
 		schemaComboBox.addItem(COMBO_VALUES[0]);
 		schemaComboBox.addItem(COMBO_VALUES[1]);
-		schemaComboBox.setBounds(90, 52, 200, 20);
+		schemaComboBox.setBounds(376, 27, 100, 20);
 		add(schemaComboBox);
 		
 		JLabel lblNewLabel_1 = new JLabel("Prtry");
-		lblNewLabel_1.setBounds(20, 80, 24, 14);
+		lblNewLabel_1.setBounds(20, 55, 50, 14);
 		add(lblNewLabel_1);
 		
 		pytryTextField = new JTextField();
-		pytryTextField.setBounds(90, 77, 200, 20);
+		pytryTextField.setBounds(69, 52, 200, 20);
 		add(pytryTextField);
 		pytryTextField.setColumns(10);
 	}
