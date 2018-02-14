@@ -30,14 +30,14 @@ public class AddtlAttrbtsPanel extends JPanel {
 	private JRadioButton radioSctiesFincgTxIndSi;
 	private JRadioButton radioSctiesFincgTxIndNo;
 	
-	private boolean hideFlag = true;
+	private boolean hideFlag = false;
 
 	/**
 	 * Create the panel.
 	 */
 	public AddtlAttrbtsPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(998, 395));
+		setPreferredSize(new Dimension(998, 30));
 		
 		JLabel lblNewLabel = new JLabel("AddtlAttrbts");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -119,7 +119,7 @@ public class AddtlAttrbtsPanel extends JPanel {
 		group2.add(radioSctiesFincgTxIndNo);
 		
 		JButton btnOcultar = new JButton("");
-		btnOcultar.setBackground(Color.GREEN);
+		btnOcultar.setBackground(Color.RED);
 		btnOcultar.setBounds(10, 7, 15, 15);
 		add(btnOcultar);
 		btnOcultar.addActionListener(new ActionListener() {

@@ -25,7 +25,7 @@ public class InvstmtDcsnPrsnPanel extends JPanel {
 	private JPanel panelAlgoritmo;
 	private PersonaPanel2 panelPersona;
 	
-	private boolean hideFlag = true;
+	private boolean hideFlag = false;
 	
 
 	/**
@@ -33,7 +33,7 @@ public class InvstmtDcsnPrsnPanel extends JPanel {
 	 */
 	public InvstmtDcsnPrsnPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(996, 190));
+		setPreferredSize(new Dimension(996, 30));
 		
 		JLabel lblInvstmtdcsnprsn = new JLabel("InvstmtDcsnPrsn");
 		lblInvstmtdcsnprsn.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -95,7 +95,7 @@ public class InvstmtDcsnPrsnPanel extends JPanel {
 		add(panelPersona);
 		
 		JButton btnOcultar = new JButton("");
-		btnOcultar.setBackground(Color.GREEN);
+		btnOcultar.setBackground(Color.RED);
 		btnOcultar.setBounds(10, 7, 15, 15);
 		add(btnOcultar);
 		btnOcultar.addActionListener(new ActionListener() {

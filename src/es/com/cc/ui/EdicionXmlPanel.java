@@ -44,8 +44,7 @@ public class EdicionXmlPanel extends JPanel {
 	 */
 	public EdicionXmlPanel(PrincipalPanel frame) {
 		EdicionXmlPanel.frame = frame;
-		
-		setBounds(0, 0, 1000, 642);
+		setPreferredSize(new Dimension(1025, 700));
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		cargaColumnasDeLaTabla();
@@ -106,6 +105,10 @@ public class EdicionXmlPanel extends JPanel {
 		 * ****************************************************************************************************
 		 * botonera inferior
 		 */
+		JSeparator separator2 = new JSeparator();
+		add(separator2);
+		separator2.setPreferredSize(new Dimension(1000, 2));
+		
 		JPanel botonesPanel = new JPanel();
 		botonesPanel.setPreferredSize(new Dimension(998, 40));
 		add(botonesPanel);
@@ -145,7 +148,8 @@ public class EdicionXmlPanel extends JPanel {
 	}
 	
 	private void muestraVentanaNuevaTransaccion() {
-		nuevaTransaccionPanel = new NuevaTransaccionPanel();
+		EdicionXmlPanel.frame.setBounds(200, 200, 1025, 900);
+		nuevaTransaccionPanel = new NuevaTransaccionPanel(EdicionXmlPanel.frame);
 		
 		nuevaTransaccionPanel.getBotonAceptar().addActionListener(new ActionListener() {
 			@Override

@@ -39,14 +39,14 @@ public class FinInstrmPanel extends JPanel {
 	private JTextField XpryDtField;
 	private JTextField pricMltplrField;
 	
-	private boolean hideFlag = true;
+	private boolean hideFlag = false;
 
 	/**
 	 * Create the panel.
 	 */
 	public FinInstrmPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(715, 410));
+		setPreferredSize(new Dimension(715, 30));
 		
 		JLabel lblNewLabel = new JLabel("FinInstrm");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -141,7 +141,7 @@ public class FinInstrmPanel extends JPanel {
 		pricMltplrField.setColumns(10);
 		
 		JButton btnOcultar = new JButton("");
-		btnOcultar.setBackground(Color.GREEN);
+		btnOcultar.setBackground(Color.RED);
 		btnOcultar.setBounds(10, 7, 15, 15);
 		add(btnOcultar);
 		btnOcultar.addActionListener(new ActionListener() {

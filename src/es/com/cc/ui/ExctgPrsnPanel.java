@@ -29,14 +29,14 @@ public class ExctgPrsnPanel extends JPanel {
 	private JTextField algoField;
 	private JLabel lblNewLabel_1;
 	
-	private boolean hideFlag = true;
+	private boolean hideFlag = false;
 
 	/**
 	 * Create the panel.
 	 */
 	public ExctgPrsnPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(996, 170));
+		setPreferredSize(new Dimension(996, 30));
 		
 		lblNewLabel_1 = new JLabel("ExctgPrsn");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -100,7 +100,7 @@ public class ExctgPrsnPanel extends JPanel {
 		algoField.setColumns(10);
 		
 		JButton btnOcultar = new JButton("");
-		btnOcultar.setBackground(Color.GREEN);
+		btnOcultar.setBackground(Color.RED);
 		btnOcultar.setBounds(10, 7, 15, 15);
 		add(btnOcultar);
 		btnOcultar.addActionListener(new ActionListener() {

@@ -33,10 +33,10 @@ public class QuantityPanel extends JPanel {
 	 */
 	public QuantityPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(350, 94));
+		setPreferredSize(new Dimension(299, 94));
 		
 		panelRadios = new JPanel();
-		panelRadios.setBounds(1, 1, 348, 33);
+		panelRadios.setBounds(1, 1, 298, 33);
 		add(panelRadios);
 		
 		radioUnit = new JRadioButton("Unit");
@@ -81,17 +81,17 @@ public class QuantityPanel extends JPanel {
 	     * panel de unidades
 	     */
 		panelUnidades = new JPanel();
-		panelUnidades.setBounds(1, 32, 348, 59);
+		panelUnidades.setBounds(1, 32, 298, 59);
 		add(panelUnidades);
 		panelUnidades.setPreferredSize(new Dimension(100, 50));
 		panelUnidades.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Unidades");
-		lblNewLabel.setBounds(10, 11, 80, 14);
+		lblNewLabel.setBounds(10, 11, 70, 14);
 		panelUnidades.add(lblNewLabel);
 		
 		unidadesField = new JTextField();
-		unidadesField.setBounds(100, 8, 200, 20);
+		unidadesField.setBounds(90, 8, 200, 20);
 		panelUnidades.add(unidadesField);
 		unidadesField.setColumns(10);
 		
@@ -99,7 +99,7 @@ public class QuantityPanel extends JPanel {
 		 * panel valor nominal
 		 */
 		panelNominal = new JPanel();
-		panelNominal.setBounds(1, 32, 348, 59);
+		panelNominal.setBounds(1, 32, 298, 59);
 		panelNominal.setPreferredSize(new Dimension(100, 50));
 		add(panelNominal);
 		panelNominal.setLayout(null);

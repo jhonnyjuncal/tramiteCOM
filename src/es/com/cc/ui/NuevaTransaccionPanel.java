@@ -15,6 +15,7 @@ public class NuevaTransaccionPanel extends JPanel {
 	
 	private JButton btnAceptar;
 	private JButton btnCancelar;
+	private static PrincipalPanel frame;
 	
 	private GeneralesPanel panelGeneral;
 	private TablaBuyerSeller tablaBuyer;
@@ -32,8 +33,9 @@ public class NuevaTransaccionPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public NuevaTransaccionPanel() {
-		setBounds(0, 0, 1000, 800);
+	public NuevaTransaccionPanel(PrincipalPanel frame) {
+		NuevaTransaccionPanel.frame = frame;
+		setBounds(0, 0, 1025, 900);
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		/**
@@ -49,8 +51,9 @@ public class NuevaTransaccionPanel extends JPanel {
 		 * panel vendedores y compradores
 		 */
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setPreferredSize(new Dimension(998, 250));
+		tabbedPane.setPreferredSize(new Dimension(998, 270));
 		add(tabbedPane);
+		
 		tabbedPane.addTab("Buyer", null, panelBuyer, null);
 		tabbedPane.addTab("Seller", null, panelSeller, null);
 		
@@ -59,7 +62,7 @@ public class NuevaTransaccionPanel extends JPanel {
 		 * panel OrdenTransmision
 		 */
 		panelOrdenTransmision = new OrdenTransmisionPanel();
-		panelOrdenTransmision.setPreferredSize(new Dimension(998, 60));
+		panelOrdenTransmision.setPreferredSize(new Dimension(998, 30));
 		add(panelOrdenTransmision);
 		
 		/**
@@ -75,7 +78,7 @@ public class NuevaTransaccionPanel extends JPanel {
 		 * FinInstrm
 		 */
 		panelFinInstrm = new FinInstrmPanel();
-		panelFinInstrm.setPreferredSize(new Dimension(998, 100));
+		panelFinInstrm.setPreferredSize(new Dimension(998, 30));
 		add(panelFinInstrm);
 		
 		/**
@@ -83,7 +86,7 @@ public class NuevaTransaccionPanel extends JPanel {
 		 * InvstmtDcsnPrsn
 		 */
 		panelInvstmtDcsnPrsn = new InvstmtDcsnPrsnPanel();
-		panelInvstmtDcsnPrsn.setPreferredSize(new Dimension(998, 100));
+		panelInvstmtDcsnPrsn.setPreferredSize(new Dimension(998, 30));
 		add(panelInvstmtDcsnPrsn);
 		
 		/**
@@ -91,7 +94,7 @@ public class NuevaTransaccionPanel extends JPanel {
 		 * ExctgPrsn
 		 */
 		panelExctgPrsn = new ExctgPrsnPanel();
-		panelExctgPrsn.setPreferredSize(new Dimension(998, 140));
+		panelExctgPrsn.setPreferredSize(new Dimension(998, 30));
 		add(panelExctgPrsn);
 		
 		/**
@@ -99,7 +102,7 @@ public class NuevaTransaccionPanel extends JPanel {
 		 * AddtlAttrbts
 		 */
 		panelAddtlAttrbts = new AddtlAttrbtsPanel();
-		panelAddtlAttrbts.setPreferredSize(new Dimension(998, 100));
+		panelAddtlAttrbts.setPreferredSize(new Dimension(998, 30));
 		add(panelAddtlAttrbts);
 		
 		/**

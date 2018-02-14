@@ -20,7 +20,7 @@ public class DcsnMakrPanel extends JPanel {
 	 */
 	public DcsnMakrPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(691, 158));
+		setPreferredSize(new Dimension(691, 140));
 		
 		JLabel lblNewLabel_1 = new JLabel("LEI");
 		lblNewLabel_1.setBounds(25, 11, 46, 14);
@@ -31,11 +31,11 @@ public class DcsnMakrPanel extends JPanel {
 		add(LEIField);
 		LEIField.setColumns(10);
 		
-		PersonaPanel panelPersonaDscnMakr = new PersonaPanel();
-		panelPersonaDscnMakr.setLocation(10, 49);
-		panelPersonaDscnMakr.setSize(671, 100);
-		panelPersonaDscnMakr.setPreferredSize(new Dimension(691, 100));
-		add(panelPersonaDscnMakr);
+		PersonaPanel panelPersonaDcsnMakr = new PersonaPanel();
+		panelPersonaDcsnMakr.setLocation(10, 36);
+		panelPersonaDcsnMakr.setSize(671, 100);
+		panelPersonaDcsnMakr.setPreferredSize(new Dimension(691, 100));
+		add(panelPersonaDcsnMakr);
 	}
 	
 	public PersonOrOrganisation2Choice1 getDatosIntroducidos() {

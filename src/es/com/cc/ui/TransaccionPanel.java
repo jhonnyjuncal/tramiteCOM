@@ -37,7 +37,7 @@ public class TransaccionPanel extends JPanel {
 	 */
 	public TransaccionPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(730, 318));
+		setPreferredSize(new Dimension(996, 403));
 		
 		JLabel lblNewLabel_6 = new JLabel("Transaccion");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -49,7 +49,7 @@ public class TransaccionPanel extends JPanel {
 		add(lblTraddt);
 		
 		JLabel lblTradgcpcty = new JLabel("TradgCpcty");
-		lblTradgcpcty.setBounds(380, 35, 90, 14);
+		lblTradgcpcty.setBounds(330, 36, 90, 14);
 		add(lblTradgcpcty);
 		
 		tradDtField = new JTextField();
@@ -59,75 +59,75 @@ public class TransaccionPanel extends JPanel {
 		
 		qtyPanel = new QuantityPanel();
 		qtyPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		qtyPanel.setBounds(10, 60, 354, 122);
+		qtyPanel.setBounds(10, 61, 300, 95);
 		add(qtyPanel);
 		
 		panelPrecio = new PrecioPanel();
 		panelPrecio.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelPrecio.setBounds(10, 190, 354, 122);
+		panelPrecio.setBounds(662, 36, 300, 120);
 		add(panelPrecio);
 		
 		JLabel lblDerivntnlchng = new JLabel("DerivNtnlChng");
-		lblDerivntnlchng.setBounds(380, 60, 80, 14);
+		lblDerivntnlchng.setBounds(330, 60, 80, 14);
 		add(lblDerivntnlchng);
 		
 		JLabel lblNetamt = new JLabel("NetAmt");
-		lblNetamt.setBounds(380, 85, 80, 14);
+		lblNetamt.setBounds(330, 85, 80, 14);
 		add(lblNetamt);
 		
 		netAmtField = new JTextField();
-		netAmtField.setBounds(478, 82, 200, 20);
+		netAmtField.setBounds(440, 82, 200, 20);
 		add(netAmtField);
 		netAmtField.setColumns(10);
 		
 		JLabel lblNewLabel_7 = new JLabel("TradVn");
-		lblNewLabel_7.setBounds(380, 261, 80, 14);
+		lblNewLabel_7.setBounds(330, 186, 80, 14);
 		add(lblNewLabel_7);
 		
 		tradVnField = new JTextField();
-		tradVnField.setBounds(478, 258, 200, 20);
+		tradVnField.setBounds(440, 183, 200, 20);
 		add(tradVnField);
 		tradVnField.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("CtryOfBrnch");
-		lblNewLabel.setBounds(380, 110, 80, 14);
+		lblNewLabel.setBounds(330, 110, 80, 14);
 		add(lblNewLabel);
 		
 		ctryOfBrnchField = new JTextField();
-		ctryOfBrnchField.setBounds(478, 107, 200, 20);
+		ctryOfBrnchField.setBounds(440, 107, 200, 20);
 		add(ctryOfBrnchField);
 		ctryOfBrnchField.setColumns(10);
 		
 		panelUpFrntPmt = new UpFrntPmtPanel();
 		panelUpFrntPmt.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelUpFrntPmt.setSize(340, 60);
-		panelUpFrntPmt.setLocation(380, 165);
+		panelUpFrntPmt.setLocation(662, 169);
 		add(panelUpFrntPmt);
 		
 		JLabel lblNewLabel_2 = new JLabel("TradPlcMtchgId");
-		lblNewLabel_2.setBounds(380, 135, 80, 14);
+		lblNewLabel_2.setBounds(330, 135, 80, 14);
 		add(lblNewLabel_2);
 		
 		tradPlcMtchgIdField = new JTextField();
-		tradPlcMtchgIdField.setBounds(478, 132, 200, 20);
+		tradPlcMtchgIdField.setBounds(440, 132, 200, 20);
 		add(tradPlcMtchgIdField);
 		tradPlcMtchgIdField.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("CmplxTradCmpntId");
-		lblNewLabel_3.setBounds(380, 236, 100, 14);
+		lblNewLabel_3.setBounds(330, 160, 100, 14);
 		add(lblNewLabel_3);
 		
 		cmplxTradCmpntIdField = new JTextField();
-		cmplxTradCmpntIdField.setBounds(478, 233, 200, 20);
+		cmplxTradCmpntIdField.setBounds(440, 157, 200, 20);
 		add(cmplxTradCmpntIdField);
 		cmplxTradCmpntIdField.setColumns(10);
 		
 		tradgCpctycomboBox = new JComboBox<String>();
-		tradgCpctycomboBox.setBounds(478, 32, 200, 20);
+		tradgCpctycomboBox.setBounds(440, 33, 200, 20);
 		add(tradgCpctycomboBox);
 		
 		JComboBox<String> derivComboBox = new JComboBox<String>();
-		derivComboBox.setBounds(478, 57, 200, 20);
+		derivComboBox.setBounds(440, 57, 200, 20);
 		add(derivComboBox);
 		tradgCpctycomboBox.addItem("AOTC");
 		tradgCpctycomboBox.addItem("DEAL");

@@ -16,14 +16,14 @@ public class OrdenTransmisionPanel extends JPanel {
 
 	private static final long serialVersionUID = -1841391778795823646L;
 	
-	private boolean hideFlag = true;
+	private boolean hideFlag = false;
 
 	/**
 	 * Create the panel.
 	 */
 	public OrdenTransmisionPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(998, 60));
+		setPreferredSize(new Dimension(998, 30));
 		
 		JLabel lblNewLabel_5 = new JLabel("OrdrTrnsmssn");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -36,7 +36,7 @@ public class OrdenTransmisionPanel extends JPanel {
 		
 		JButton btnOcultar = new JButton("");
 		btnOcultar.setBounds(10, 7, 15, 15);
-		btnOcultar.setBackground(Color.GREEN);
+		btnOcultar.setBackground(Color.RED);
 		add(btnOcultar);
 		btnOcultar.addActionListener(new ActionListener() {
 			@Override

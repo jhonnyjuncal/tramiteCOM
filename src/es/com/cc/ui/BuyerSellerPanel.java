@@ -1,12 +1,12 @@
 package es.com.cc.ui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -31,27 +31,28 @@ public class BuyerSellerPanel extends JPanel {
 	private MICPanel panelMIC;
 	private PersonaPanel panelPersona;
 	private IntlPanel panelIntl;
+	private DcsnMakrPanel panelDcsnMakr;
 	
 	private JRadioButton radioLEI;
 	private JRadioButton radioMIC;
 	private JRadioButton radioPrsn;
 	private JRadioButton radioIntl;
 	
-	private DcsnMakrPanel panelDcsnMakr;
-	private JCheckBox chckbxActivarDcsnMakr;
+	private boolean hideFlag = true;
+	private JPanel panelRadios;
 
 	/**
 	 * Create the panel.
 	 */
 	public BuyerSellerPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(710, 500));
+		setPreferredSize(new Dimension(994, 486));
 		
 		/**
 		 * primer panel
 		 */
 		JPanel datosPanel = new JPanel();
-		datosPanel.setBounds(0, 0, 711, 430);
+		datosPanel.setBounds(0, 0, 992, 430);
 		add(datosPanel);
 		datosPanel.setLayout(null);
 		
@@ -62,8 +63,32 @@ public class BuyerSellerPanel extends JPanel {
 		
 		JLabel lblDcsnmakr = new JLabel("DcsnMakr");
 		lblDcsnmakr.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDcsnmakr.setBounds(10, 220, 85, 14);
+		lblDcsnmakr.setBounds(35, 220, 85, 14);
 		datosPanel.add(lblDcsnmakr);
+		
+		JButton btnOcultar = new JButton("");
+		btnOcultar.setBounds(10, 219, 15, 15);
+		datosPanel.add(btnOcultar);
+		btnOcultar.setBackground(Color.GREEN);
+		btnOcultar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (hideFlag) {
+					hideFlag = false;
+					btnOcultar.setBackground(Color.RED);
+					panelDcsnMakr.setVisible(false);
+					setPreferredSize(new Dimension(992, 240));
+					
+				} else {
+					hideFlag = true;
+					btnOcultar.setBackground(Color.GREEN);
+					panelDcsnMakr.setVisible(true);
+					setPreferredSize(new Dimension(992, 486));
+				}
+				revalidate();
+			}
+		});
 		
 		JLabel lblId = new JLabel("Id");
 		lblId.setBounds(35, 36, 46, 14);
@@ -83,11 +108,14 @@ public class BuyerSellerPanel extends JPanel {
 		datosPanel.add(ctryOfBrnch);
 		ctryOfBrnch.setColumns(10);
 		
+		panelRadios = new JPanel();
+		panelRadios.setBounds(1, 70, 990, 30);
+		datosPanel.add(panelRadios);
+		
 		radioLEI = new JRadioButton("LEI");
-		radioLEI.setBounds(133, 71, 109, 23);
-		datosPanel.add(radioLEI);
+		radioLEI.setPreferredSize(new Dimension(100, 22));
+		panelRadios.add(radioLEI);
 		radioLEI.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -96,10 +124,9 @@ public class BuyerSellerPanel extends JPanel {
 		});
 		
 		radioMIC = new JRadioButton("MIC");
-		radioMIC.setBounds(244, 71, 109, 23);
-		datosPanel.add(radioMIC);
+		radioMIC.setPreferredSize(new Dimension(100, 22));
+		panelRadios.add(radioMIC);
 		radioMIC.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -108,10 +135,9 @@ public class BuyerSellerPanel extends JPanel {
 		});
 		
 		radioPrsn = new JRadioButton("Prsn");
-		radioPrsn.setBounds(355, 71, 109, 23);
-		datosPanel.add(radioPrsn);
+		radioPrsn.setPreferredSize(new Dimension(100, 22));
+		panelRadios.add(radioPrsn);
 		radioPrsn.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -119,12 +145,10 @@ public class BuyerSellerPanel extends JPanel {
 			}
 		});
 		
-		
 		radioIntl = new JRadioButton("Intl");
-		radioIntl.setBounds(466, 71, 109, 23);
-		datosPanel.add(radioIntl);
+		radioIntl.setPreferredSize(new Dimension(100, 22));
+		panelRadios.add(radioIntl);
 		radioIntl.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -135,36 +159,44 @@ public class BuyerSellerPanel extends JPanel {
 		//Group the radio buttons.
 	    ButtonGroup group = new ButtonGroup();
 	    group.add(radioLEI);
-	    group.add(radioPrsn);
 	    group.add(radioMIC);
+	    group.add(radioPrsn);
 	    group.add(radioIntl);
 	    
 		panelLEI = new LEIPanel();
-		panelLEI.setBounds(10, 101, 691, 100);
+		panelLEI.setBounds(1, 101, 990, 100);
 		datosPanel.add(panelLEI);
 		panelLEI.setLayout(null);
 		panelLEI.setVisible(false);
 		
 		panelMIC = new MICPanel();
-		panelMIC.setBounds(10, 101, 691, 100);
+		panelMIC.setBounds(1, 101, 990, 100);
 		datosPanel.add(panelMIC);
 		panelMIC.setLayout(null);
 		panelMIC.setVisible(false);
 		
 		panelPersona = new PersonaPanel();
-		panelPersona.setBounds(10, 101, 691, 100);
+		panelPersona.setBounds(1, 101, 990, 100);
 		datosPanel.add(panelPersona);
 		panelPersona.setLayout(null);
 		panelPersona.setVisible(false);
 		
 		panelIntl = new IntlPanel();
-		panelIntl.setBounds(10, 101, 691, 100);
+		panelIntl.setBounds(1, 101, 990, 100);
 		datosPanel.add(panelIntl);
 		panelIntl.setLayout(null);
 		panelIntl.setVisible(false);
 		
+		panelDcsnMakr = new DcsnMakrPanel();
+		panelDcsnMakr.setBounds(1, 245, 990, 174);
+		datosPanel.add(panelDcsnMakr);
+		
+		/**
+		 * ***********************************************************************************************
+		 * Botonera inferior
+		 */
 		JPanel panelBotones = new JPanel();
-		panelBotones.setBounds(10, 457, 692, 38);
+		panelBotones.setBounds(0, 441, 992, 38);
 		add(panelBotones);
 		
 		btnAceptar = new JButton("Aceptar");
@@ -172,29 +204,6 @@ public class BuyerSellerPanel extends JPanel {
 		
 		btnCancelar = new JButton("Cancelar");
 		panelBotones.add(btnCancelar);
-		
-		panelDcsnMakr = new DcsnMakrPanel();
-		panelDcsnMakr.setBounds(10, 245, 691, 174);
-		datosPanel.add(panelDcsnMakr);
-		panelDcsnMakr.setPreferredSize(new Dimension(691, 174));
-		panelDcsnMakr.setVisible(false);
-		
-		chckbxActivarDcsnMakr = new JCheckBox("activar");
-		chckbxActivarDcsnMakr.setBounds(101, 216, 97, 23);
-		datosPanel.add(chckbxActivarDcsnMakr);
-		chckbxActivarDcsnMakr.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if (chckbxActivarDcsnMakr.isSelected()) {
-					panelDcsnMakr.setVisible(true);
-					
-				} else {
-					panelDcsnMakr.setVisible(false);
-				}
-			}
-		});
 		
 		
 		// valores por defecto
@@ -237,10 +246,8 @@ public class BuyerSellerPanel extends JPanel {
 		
 		// dcsnMark
 		//*********************************************************************************************************
-		if (chckbxActivarDcsnMakr.isSelected()) {
-			PersonOrOrganisation2Choice1 dcsnMakr = panelDcsnMakr.getDatosIntroducidos();
-			buyerSeller.getDcsnMakr().add(dcsnMakr);
-		}
+		PersonOrOrganisation2Choice1 dcsnMakr = panelDcsnMakr.getDatosIntroducidos();
+		buyerSeller.getDcsnMakr().add(dcsnMakr);
 		
 		return buyerSeller;
 	}
