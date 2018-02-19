@@ -8,6 +8,7 @@ import javax.swing.JTabbedPane;
 import es.com.cc.core.schema.all.ObjectFactory;
 import es.com.cc.core.schema.all.ReportingTransactionType1Choice1;
 import es.com.cc.core.schema.all.SecuritiesTransactionReport41;
+import javax.swing.JScrollPane;
 
 public class NuevaTransaccionPanel extends JPanel {
 
@@ -25,6 +26,7 @@ public class NuevaTransaccionPanel extends JPanel {
 	private InvstmtDcsnPrsnPanel panelInvstmtDcsnPrsn;
 	private ExctgPrsnPanel panelExctgPrsn;
 	private AddtlAttrbtsPanel panelAddtlAttrbts;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Create the panel.
@@ -112,6 +114,9 @@ public class NuevaTransaccionPanel extends JPanel {
 		
 		btnCancelar = new JButton("Cancelar");
 		panelBotones.add(btnCancelar);
+		
+		scrollPane = new JScrollPane();
+		add(scrollPane);
 	}
 	
 	public JButton getBotonAceptar() {

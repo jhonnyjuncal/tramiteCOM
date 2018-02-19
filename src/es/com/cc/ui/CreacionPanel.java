@@ -1,5 +1,7 @@
 package es.com.cc.ui;
 
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -11,6 +13,7 @@ public class CreacionPanel extends JPanel {
 	
 	private static PrincipalPanel frame;
 	private EdicionXmlPanel edicionPanel;
+	private Container esteContenedor;
 
 	/**
 	 * Create the panel.
@@ -20,9 +23,28 @@ public class CreacionPanel extends JPanel {
 		setBounds(0, 0, 580, 370);
 		setLayout(null);
 		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 236, 580, 33);
+		add(panel);
+		
 		JButton btnNewXml = new JButton("Crear Nuevo XML");
-		btnNewXml.setBounds(63, 253, 179, 23);
-		add(btnNewXml);
+		panel.add(btnNewXml);
+		
+		JButton btnLoadXml = new JButton("Cargar XML existente");
+		panel.add(btnLoadXml);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(0, 292, 580, 33);
+		add(panel_1);
+		
+		JButton btnNewButton = new JButton("Volver");
+		panel_1.add(btnNewButton);
+		btnLoadXml.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnNewXml.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -31,21 +53,16 @@ public class CreacionPanel extends JPanel {
 				muestraPanel(edicionPanel);
 			}
 		});
-		
-		JButton btnLoadXml = new JButton("Cargar XML existente");
-		btnLoadXml.setBounds(301, 253, 179, 23);
-		add(btnLoadXml);
-		btnLoadXml.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
 	}
 	
 	private void muestraPanel(JPanel panel) {
-		frame.getContentPane().removeAll();
-		frame.setContentPane(panel);
-		frame.revalidate();
+		esteContenedor = new Container();
+		for (Component comp : CreacionPanel.frame.getContentPane().getComponents()) {
+			esteContenedor.add(comp);
+		}
+		
+		CreacionPanel.frame.getContentPane().removeAll();
+		CreacionPanel.frame.setContentPane(panel);
+		CreacionPanel.frame.revalidate();
 	}
 }

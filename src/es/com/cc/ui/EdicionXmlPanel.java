@@ -27,8 +27,6 @@ import es.com.cc.core.schema.all.SecuritiesTransactionReport21;
 import es.com.cc.core.schema.all.SecuritiesTransactionReport41;
 import es.com.cc.core.schema.all.StrictPayload;
 import java.awt.FlowLayout;
-import java.awt.Frame;
-
 import javax.swing.JSeparator;
 
 public class EdicionXmlPanel extends JPanel {
@@ -39,6 +37,7 @@ public class EdicionXmlPanel extends JPanel {
 	private JTable tablaTransacciones;
 	private NuevaTransaccionPanel nuevaTransaccionPanel;
 	private HeaderPanel headerPanel;
+	private Container esteContenedor;
 	
 	private DefaultTableModel model = new DefaultTableModel();
 	private List<ReportingTransactionType1Choice1> listaTransacciones = new ArrayList<>();
@@ -67,9 +66,9 @@ public class EdicionXmlPanel extends JPanel {
 		JSeparator separator = new JSeparator();
 		add(separator);
 		separator.setPreferredSize(new Dimension(1000, 2));
-		JPanel panelSeparador = new JPanel();
-		panelSeparador.setPreferredSize(new Dimension(990, 30));
-		add(panelSeparador);
+		JPanel panelSeparador1 = new JPanel();
+		panelSeparador1.setPreferredSize(new Dimension(998, 30));
+		add(panelSeparador1);
 		
 		/**
 		 * ****************************************************************************************************
@@ -77,7 +76,7 @@ public class EdicionXmlPanel extends JPanel {
 		 */
 		JPanel contenidoPanel = new JPanel();
 		contenidoPanel.setBorder(null);
-		contenidoPanel.setPreferredSize(new Dimension(998, 400));
+		contenidoPanel.setPreferredSize(new Dimension(998, 350));
 		add(contenidoPanel);
 		
 		JPanel panel = new JPanel();
@@ -97,6 +96,9 @@ public class EdicionXmlPanel extends JPanel {
 		JButton btnCancelTransaction = new JButton("Cancelar Transaccion");
 		panel.add(btnCancelTransaction);
 		
+		JButton btnNewButton = new JButton("Borrar Transaccion");
+		panel.add(btnNewButton);
+		
 		tablaTransacciones = new JTable(model);
 		tablaTransacciones.setPreferredSize(new Dimension(992, 196));
 		
@@ -108,6 +110,10 @@ public class EdicionXmlPanel extends JPanel {
 		 * ****************************************************************************************************
 		 * botonera inferior
 		 */
+		
+		JPanel panelSeparador2 = new JPanel();
+		panelSeparador2.setPreferredSize(new Dimension(998, 30));
+		add(panelSeparador2);
 		JSeparator separator2 = new JSeparator();
 		add(separator2);
 		separator2.setPreferredSize(new Dimension(1000, 2));
@@ -143,6 +149,11 @@ public class EdicionXmlPanel extends JPanel {
 		botonesPanel.add(btnBorrarDatos);
 		
 		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		botonesPanel.add(btnSalir);
 	}
 	
@@ -172,18 +183,22 @@ public class EdicionXmlPanel extends JPanel {
 	}
 	
 	private void muestraPanel(JPanel panel) {
+		esteContenedor = new Container();
+		for (Component comp : EdicionXmlPanel.frame.getContentPane().getComponents()) {
+			esteContenedor.add(comp);
+		}
+		
 		EdicionXmlPanel.frame.getContentPane().removeAll();
 		EdicionXmlPanel.frame.setContentPane(panel);
 		EdicionXmlPanel.frame.revalidate();
 	}
 	
 	private void muestraPanelEdicionXml() {
-		Container contentPane = EdicionXmlPanel.frame.getContentPane();
-		contentPane.remove(nuevaTransaccionPanel);
-		Component[] components = contentPane.getComponents();
+		EdicionXmlPanel.frame.getContentPane().removeAll();
+		EdicionXmlPanel.frame.setContentPane(esteContenedor);
+		EdicionXmlPanel.frame.revalidate();
 		
-		contentPane.revalidate();
-		System.out.println("NO FUNCIONA...");
+		actualizaDatosEnPantalla();
 	}
 	
 	private void addTransactionToTable(ReportingTransactionType1Choice1 report) {
@@ -256,5 +271,9 @@ public class EdicionXmlPanel extends JPanel {
 		model.addColumn("TxId");
 		model.addColumn("SubmitgPty");
 		model.addColumn("ExctgPty");
+	}
+	
+	private void actualizaDatosEnPantalla() {
+		
 	}
 }

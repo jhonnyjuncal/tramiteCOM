@@ -97,8 +97,8 @@ public class PrincipalPanel extends JFrame {
 	}
 	
 	private void muestraPanel(JPanel panel) {
-		frame.getContentPane().removeAll();
-		frame.setContentPane(panel);
-		frame.revalidate();
+		PrincipalPanel.frame.getContentPane().removeAll();
+		PrincipalPanel.frame.setContentPane(panel);
+		PrincipalPanel.frame.revalidate();
 	}
 }
