@@ -24,8 +24,6 @@ public class BuyerSellerPanel extends JPanel {
 	
 	private JTextField acctOwnrIdField;
 	private JTextField ctryOfBrnch;
-	private JButton btnAceptar;
-	private JButton btnCancelar;
 	
 	private LEIPanel panelLEI;
 	private MICPanel panelMIC;
@@ -38,7 +36,7 @@ public class BuyerSellerPanel extends JPanel {
 	private JRadioButton radioPrsn;
 	private JRadioButton radioIntl;
 	
-	private boolean hideFlag = true;
+	private boolean hideFlag = false;
 	private JPanel panelRadios;
 
 	/**
@@ -46,30 +44,34 @@ public class BuyerSellerPanel extends JPanel {
 	 */
 	public BuyerSellerPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(994, 486));
+		setPreferredSize(new Dimension(994, 376));
 		
 		/**
 		 * primer panel
 		 */
-		JPanel datosPanel = new JPanel();
-		datosPanel.setBounds(0, 0, 992, 430);
-		add(datosPanel);
-		datosPanel.setLayout(null);
+//		JPanel datosPanel = new JPanel();
+//		datosPanel.setBounds(0, 0, 992, 367);
+//		add(datosPanel);
+//		datosPanel.setLayout(null);
+		
 		
 		JLabel lblNewLabel_4 = new JLabel("AcctOwnr");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4.setBounds(10, 11, 85, 14);
-		datosPanel.add(lblNewLabel_4);
+		add(lblNewLabel_4);
+//		datosPanel.add(lblNewLabel_4);
 		
 		JLabel lblDcsnmakr = new JLabel("DcsnMakr");
 		lblDcsnmakr.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblDcsnmakr.setBounds(35, 220, 85, 14);
-		datosPanel.add(lblDcsnmakr);
+		add(lblDcsnmakr);
+//		datosPanel.add(lblDcsnmakr);
 		
 		JButton btnOcultar = new JButton("");
 		btnOcultar.setBounds(10, 219, 15, 15);
-		datosPanel.add(btnOcultar);
-		btnOcultar.setBackground(Color.GREEN);
+		add(btnOcultar);
+//		datosPanel.add(btnOcultar);
+		btnOcultar.setBackground(Color.RED);
 		btnOcultar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -92,25 +94,30 @@ public class BuyerSellerPanel extends JPanel {
 		
 		JLabel lblId = new JLabel("Id");
 		lblId.setBounds(35, 36, 46, 14);
-		datosPanel.add(lblId);
+		add(lblId);
+//		datosPanel.add(lblId);
 		
 		JLabel lblNewLabel = new JLabel("CtryOfBrnch");
 		lblNewLabel.setBounds(384, 36, 75, 14);
-		datosPanel.add(lblNewLabel);
+		add(lblNewLabel);
+//		datosPanel.add(lblNewLabel);
 		
 		acctOwnrIdField = new JTextField();
 		acctOwnrIdField.setBounds(91, 33, 200, 20);
-		datosPanel.add(acctOwnrIdField);
+		add(acctOwnrIdField);
+//		datosPanel.add(acctOwnrIdField);
 		acctOwnrIdField.setColumns(10);
 		
 		ctryOfBrnch = new JTextField();
 		ctryOfBrnch.setBounds(469, 33, 200, 20);
-		datosPanel.add(ctryOfBrnch);
+		add(ctryOfBrnch);
+//		datosPanel.add(ctryOfBrnch);
 		ctryOfBrnch.setColumns(10);
 		
 		panelRadios = new JPanel();
 		panelRadios.setBounds(1, 70, 990, 30);
-		datosPanel.add(panelRadios);
+		add(panelRadios);
+//		datosPanel.add(panelRadios);
 		
 		radioLEI = new JRadioButton("LEI");
 		radioLEI.setPreferredSize(new Dimension(100, 22));
@@ -165,58 +172,49 @@ public class BuyerSellerPanel extends JPanel {
 	    
 		panelLEI = new LEIPanel();
 		panelLEI.setBounds(1, 101, 990, 100);
-		datosPanel.add(panelLEI);
+		add(panelLEI);
+//		datosPanel.add(panelLEI);
 		panelLEI.setLayout(null);
 		panelLEI.setVisible(false);
 		
 		panelMIC = new MICPanel();
 		panelMIC.setBounds(1, 101, 990, 100);
-		datosPanel.add(panelMIC);
+		add(panelMIC);
+//		datosPanel.add(panelMIC);
 		panelMIC.setLayout(null);
 		panelMIC.setVisible(false);
 		
 		panelPersona = new PersonaPanel();
 		panelPersona.setBounds(1, 101, 990, 100);
-		datosPanel.add(panelPersona);
+		add(panelPersona);
+//		datosPanel.add(panelPersona);
 		panelPersona.setLayout(null);
 		panelPersona.setVisible(false);
 		
 		panelIntl = new IntlPanel();
 		panelIntl.setBounds(1, 101, 990, 100);
-		datosPanel.add(panelIntl);
+		add(panelIntl);
+//		datosPanel.add(panelIntl);
 		panelIntl.setLayout(null);
 		panelIntl.setVisible(false);
 		
 		panelDcsnMakr = new DcsnMakrPanel();
-		panelDcsnMakr.setBounds(1, 245, 990, 174);
-		datosPanel.add(panelDcsnMakr);
-		
-		/**
-		 * ***********************************************************************************************
-		 * Botonera inferior
-		 */
-		JPanel panelBotones = new JPanel();
-		panelBotones.setBounds(0, 441, 992, 38);
-		add(panelBotones);
-		
-		btnAceptar = new JButton("Aceptar");
-		panelBotones.add(btnAceptar);
-		
-		btnCancelar = new JButton("Cancelar");
-		panelBotones.add(btnCancelar);
+		panelDcsnMakr.setBounds(1, 245, 992, 120);
+		add(panelDcsnMakr);
+//		datosPanel.add(panelDcsnMakr);
 		
 		
 		// valores por defecto
 		radioLEI.setSelected(true);
 	}
 	
-	public JButton getBotonAceptar() {
-		return this.btnAceptar;
-	}
-	
-	public JButton getBotonCancelar() {
-		return this.btnCancelar;
-	}
+//	public JButton getBotonAceptar() {
+//		return this.btnAceptar;
+//	}
+//	
+//	public JButton getBotonCancelar() {
+//		return this.btnCancelar;
+//	}
 	
 	public PartyIdentification791 getDatosIntroducidos() {
 		ObjectFactory factory = new ObjectFactory();

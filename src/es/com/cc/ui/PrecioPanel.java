@@ -54,7 +54,6 @@ public class PrecioPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				panelPrecio.setVisible(true);
 				panelNoPrecio.setVisible(false);
 			}
@@ -66,7 +65,6 @@ public class PrecioPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				panelPrecio.setVisible(false);
 				panelNoPrecio.setVisible(true);
 			}
@@ -92,10 +90,8 @@ public class PrecioPanel extends JPanel {
 		radioBsisPts = new JRadioButton("BsisPts");
 		panelPrecioRadios.add(radioBsisPts);
 		radioBsisPts.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				muestraPanelTipoPrecio(0);
 			}
 		});
@@ -103,10 +99,8 @@ public class PrecioPanel extends JPanel {
 		radioMntryVal = new JRadioButton("MntryVal");
 		panelPrecioRadios.add(radioMntryVal);
 		radioMntryVal.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				muestraPanelTipoPrecio(1);
 			}
 		});
@@ -114,10 +108,8 @@ public class PrecioPanel extends JPanel {
 		radioPctg = new JRadioButton("Pctg");
 		panelPrecioRadios.add(radioPctg);
 		radioPctg.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				muestraPanelTipoPrecio(2);
 			}
 		});
@@ -125,10 +117,8 @@ public class PrecioPanel extends JPanel {
 		radioYld = new JRadioButton("Yld");
 		panelPrecioRadios.add(radioYld);
 		radioYld.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				muestraPanelTipoPrecio(3);
 			}
 		});
@@ -257,8 +247,12 @@ public class PrecioPanel extends JPanel {
 		pdgComboBox.addItem("PNDG");
 		
 		// valores por defecto
-		
 		radioPrice.setSelected(true);
+		panelNoPrecio.setVisible(false);
+		radioBsisPts.setSelected(true);
+		panelMntryVal.setVisible(false);
+		panelPctg.setVisible(false);
+		panelYld.setVisible(false);
 	}
 	
 	public SecuritiesTransactionPrice4Choice getDatosIntroducidos() {

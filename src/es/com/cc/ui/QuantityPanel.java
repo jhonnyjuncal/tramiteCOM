@@ -41,6 +41,7 @@ public class QuantityPanel extends JPanel {
 		
 		radioUnit = new JRadioButton("Unit");
 		panelRadios.add(radioUnit);
+		radioUnit.setSelected(true);
 		radioUnit.addActionListener(new ActionListener() {
 			
 			@Override
@@ -103,6 +104,7 @@ public class QuantityPanel extends JPanel {
 		panelNominal.setPreferredSize(new Dimension(100, 50));
 		add(panelNominal);
 		panelNominal.setLayout(null);
+		panelNominal.setVisible(false);
 		
 		JLabel lblNewLabel2 = new JLabel("Moneda");
 		lblNewLabel2.setBounds(10, 11, 80, 14);
