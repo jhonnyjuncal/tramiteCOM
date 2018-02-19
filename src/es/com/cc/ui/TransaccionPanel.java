@@ -37,7 +37,7 @@ public class TransaccionPanel extends JPanel {
 	 */
 	public TransaccionPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(996, 403));
+		setPreferredSize(new Dimension(996, 233));
 		
 		JLabel lblNewLabel_6 = new JLabel("Transaccion");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -64,7 +64,7 @@ public class TransaccionPanel extends JPanel {
 		
 		panelPrecio = new PrecioPanel();
 		panelPrecio.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelPrecio.setBounds(662, 36, 300, 120);
+		panelPrecio.setBounds(686, 36, 300, 120);
 		add(panelPrecio);
 		
 		JLabel lblDerivntnlchng = new JLabel("DerivNtnlChng");
@@ -100,8 +100,8 @@ public class TransaccionPanel extends JPanel {
 		
 		panelUpFrntPmt = new UpFrntPmtPanel();
 		panelUpFrntPmt.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelUpFrntPmt.setSize(340, 60);
-		panelUpFrntPmt.setLocation(662, 169);
+		panelUpFrntPmt.setSize(300, 60);
+		panelUpFrntPmt.setLocation(686, 169);
 		add(panelUpFrntPmt);
 		
 		JLabel lblNewLabel_2 = new JLabel("TradPlcMtchgId");
@@ -125,13 +125,15 @@ public class TransaccionPanel extends JPanel {
 		tradgCpctycomboBox = new JComboBox<String>();
 		tradgCpctycomboBox.setBounds(440, 33, 200, 20);
 		add(tradgCpctycomboBox);
-		
-		JComboBox<String> derivComboBox = new JComboBox<String>();
-		derivComboBox.setBounds(440, 57, 200, 20);
-		add(derivComboBox);
 		tradgCpctycomboBox.addItem("AOTC");
 		tradgCpctycomboBox.addItem("DEAL");
 		tradgCpctycomboBox.addItem("MTCH");
+		
+		derivNtnlChngComboBox = new JComboBox<String>();
+		derivNtnlChngComboBox.setBounds(440, 57, 200, 20);
+		add(derivNtnlChngComboBox);
+		derivNtnlChngComboBox.addItem("DECR");
+		derivNtnlChngComboBox.addItem("INCR");
 
 	}
 	

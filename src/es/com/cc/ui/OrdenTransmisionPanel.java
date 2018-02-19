@@ -63,4 +63,8 @@ public class OrdenTransmisionPanel extends JPanel {
 		
 		return ordTrans;
 	}
+	
+	public boolean isIncludedInGeneratedXml() {
+		return hideFlag;
+	}
 }

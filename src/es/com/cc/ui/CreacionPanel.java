@@ -24,10 +24,8 @@ public class CreacionPanel extends JPanel {
 		btnNewXml.setBounds(63, 253, 179, 23);
 		add(btnNewXml);
 		btnNewXml.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				CreacionPanel.frame.setBounds(200, 200, 1025, 700);
 				edicionPanel = new EdicionXmlPanel(CreacionPanel.frame);
 				muestraPanel(edicionPanel);
@@ -38,7 +36,6 @@ public class CreacionPanel extends JPanel {
 		btnLoadXml.setBounds(301, 253, 179, 23);
 		add(btnLoadXml);
 		btnLoadXml.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				

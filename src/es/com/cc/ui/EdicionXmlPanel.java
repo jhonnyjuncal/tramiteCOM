@@ -1,5 +1,7 @@
 package es.com.cc.ui;
 
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +27,8 @@ import es.com.cc.core.schema.all.SecuritiesTransactionReport21;
 import es.com.cc.core.schema.all.SecuritiesTransactionReport41;
 import es.com.cc.core.schema.all.StrictPayload;
 import java.awt.FlowLayout;
+import java.awt.Frame;
+
 import javax.swing.JSeparator;
 
 public class EdicionXmlPanel extends JPanel {
@@ -38,6 +42,7 @@ public class EdicionXmlPanel extends JPanel {
 	
 	private DefaultTableModel model = new DefaultTableModel();
 	private List<ReportingTransactionType1Choice1> listaTransacciones = new ArrayList<>();
+	
 
 	/**
 	 * Create the panel.
@@ -47,7 +52,7 @@ public class EdicionXmlPanel extends JPanel {
 		setPreferredSize(new Dimension(1025, 700));
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		cargaColumnasDeLaTabla();
+		cargaDatosDeLaTabla();
 		
 		/**
 		 * ****************************************************************************************************
@@ -70,12 +75,10 @@ public class EdicionXmlPanel extends JPanel {
 		 * ****************************************************************************************************
 		 * panel de contenido
 		 */
-		
 		JPanel contenidoPanel = new JPanel();
 		contenidoPanel.setBorder(null);
 		contenidoPanel.setPreferredSize(new Dimension(998, 400));
 		add(contenidoPanel);
-		
 		
 		JPanel panel = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
@@ -119,7 +122,6 @@ public class EdicionXmlPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 //				final JFileChooser jfc = new JFileChooser();
 //				String path = null;
 //				int returnValue = jfc.showOpenDialog(null);
@@ -137,35 +139,32 @@ public class EdicionXmlPanel extends JPanel {
 			}
 		});
 		
-		
 		JButton btnBorrarDatos = new JButton("Borrar Datos");
 		botonesPanel.add(btnBorrarDatos);
 		
 		JButton btnSalir = new JButton("Salir");
 		botonesPanel.add(btnSalir);
-		
-		
 	}
 	
 	private void muestraVentanaNuevaTransaccion() {
 		EdicionXmlPanel.frame.setBounds(200, 200, 1025, 900);
-		nuevaTransaccionPanel = new NuevaTransaccionPanel(EdicionXmlPanel.frame);
+		nuevaTransaccionPanel = new NuevaTransaccionPanel();
 		
 		nuevaTransaccionPanel.getBotonAceptar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				ReportingTransactionType1Choice1 result = nuevaTransaccionPanel.getDatosDeOperaciones();
 				listaTransacciones.add(result);
 				addTransactionToTable(result);
+				
+				muestraPanelEdicionXml();
 			}
 		});
 		
 		nuevaTransaccionPanel.getBotonCancelar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				muestraPanel(nuevaTransaccionPanel);
+				muestraPanelEdicionXml();
 			}
 		});
 		
@@ -173,9 +172,18 @@ public class EdicionXmlPanel extends JPanel {
 	}
 	
 	private void muestraPanel(JPanel panel) {
-		frame.getContentPane().removeAll();
-		frame.setContentPane(panel);
-		frame.revalidate();
+		EdicionXmlPanel.frame.getContentPane().removeAll();
+		EdicionXmlPanel.frame.setContentPane(panel);
+		EdicionXmlPanel.frame.revalidate();
+	}
+	
+	private void muestraPanelEdicionXml() {
+		Container contentPane = EdicionXmlPanel.frame.getContentPane();
+		contentPane.remove(nuevaTransaccionPanel);
+		Component[] components = contentPane.getComponents();
+		
+		contentPane.revalidate();
+		System.out.println("NO FUNCIONA...");
 	}
 	
 	private void addTransactionToTable(ReportingTransactionType1Choice1 report) {
@@ -232,6 +240,14 @@ public class EdicionXmlPanel extends JPanel {
 	        
 		} catch (Exception ex) {
 			ex.printStackTrace();
+		}
+	}
+	
+	private void cargaDatosDeLaTabla() {
+		cargaColumnasDeLaTabla();
+		
+		for (ReportingTransactionType1Choice1 op : listaTransacciones) {
+			addTransactionToTable(op);
 		}
 	}
 	

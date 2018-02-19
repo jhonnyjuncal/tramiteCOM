@@ -214,4 +214,8 @@ public class FinInstrmPanel extends JPanel {
 		
 		return finInst;
 	}
+	
+	public boolean isIncludedInGeneratedXml() {
+		return hideFlag;
+	}
 }

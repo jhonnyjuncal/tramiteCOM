@@ -157,4 +157,8 @@ public class ExctgPrsnPanel extends JPanel {
 				break;
 		}
 	}
+	
+	public boolean isIncludedInGeneratedXml() {
+		return hideFlag;
+	}
 }

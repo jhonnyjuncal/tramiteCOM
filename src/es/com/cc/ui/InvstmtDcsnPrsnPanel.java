@@ -148,4 +148,8 @@ public class InvstmtDcsnPrsnPanel extends JPanel {
 			
 		}
 	}
+	
+	public boolean isIncludedInGeneratedXml() {
+		return hideFlag;
+	}
 }

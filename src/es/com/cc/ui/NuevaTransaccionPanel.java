@@ -15,15 +15,11 @@ public class NuevaTransaccionPanel extends JPanel {
 	
 	private JButton btnAceptar;
 	private JButton btnCancelar;
-	private static PrincipalPanel frame;
 	
 	private GeneralesPanel panelGeneral;
-	private TablaBuyerSeller tablaBuyer;
-	private TablaBuyerSeller tablaSeller;
 	private BuyerSellerPanel panelBuyer = new BuyerSellerPanel();
 	private BuyerSellerPanel panelSeller = new BuyerSellerPanel();
 	private OrdenTransmisionPanel panelOrdenTransmision;
-	private TablaTransactionPanel tablaTransaction;
 	private TransaccionPanel panelTransaccion;
 	private FinInstrmPanel panelFinInstrm;
 	private InvstmtDcsnPrsnPanel panelInvstmtDcsnPrsn;
@@ -33,8 +29,7 @@ public class NuevaTransaccionPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public NuevaTransaccionPanel(PrincipalPanel frame) {
-		NuevaTransaccionPanel.frame = frame;
+	public NuevaTransaccionPanel() {
 		setBounds(0, 0, 1025, 900);
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -70,7 +65,7 @@ public class NuevaTransaccionPanel extends JPanel {
 		 * panel Transaccion
 		 */
 		panelTransaccion = new TransaccionPanel();
-		panelTransaccion.setPreferredSize(new Dimension(998, 320));
+		panelTransaccion.setPreferredSize(new Dimension(998, 235));
 		add(panelTransaccion);
 		
 		/**
@@ -129,20 +124,45 @@ public class NuevaTransaccionPanel extends JPanel {
 	
 	public ReportingTransactionType1Choice1 getDatosDeOperaciones() {
 		ObjectFactory factory = new ObjectFactory();
-		
 		SecuritiesTransactionReport41 secTranReport = factory.createSecuritiesTransactionReport41();
+		
+		// Panel General
 		secTranReport.setTxId(panelGeneral.getTxIdField());
 		secTranReport.setExctgPty(panelGeneral.getExctgPtyField());
 		secTranReport.setInvstmtPtyInd(panelGeneral.getInvstmtPtyIndField());
 		secTranReport.setSubmitgPty(panelGeneral.getSubmitgPtyField());
-		secTranReport.setBuyr(tablaBuyer.getDatosIntroducidos());
-		secTranReport.setSellr(tablaSeller.getDatosIntroducidos());
-		secTranReport.setOrdrTrnsmssn(panelOrdenTransmision.getDatosIntroducidos());
-		secTranReport.setTx(tablaTransaction.getDatosIntroducidos());
-		secTranReport.setFinInstrm(panelFinInstrm.getDatosIntroducidos());
-		secTranReport.setInvstmtDcsnPrsn(panelInvstmtDcsnPrsn.getDatosIntroducidos());
-		secTranReport.setExctgPrsn(panelExctgPrsn.getDatosIntroducidos());
-		secTranReport.setAddtlAttrbts(panelAddtlAttrbts.getDatosIntroducidos());
+		
+		// tabbed Pane
+		secTranReport.setBuyr(panelBuyer.getDatosIntroducidos());
+		secTranReport.setSellr(panelSeller.getDatosIntroducidos());
+		
+		// panel OrdrTrnsmssn
+		if (panelOrdenTransmision.isIncludedInGeneratedXml()) {
+			secTranReport.setOrdrTrnsmssn(panelOrdenTransmision.getDatosIntroducidos());
+		}
+		
+		// panel de Datos de la Transaccion
+		secTranReport.setTx(panelTransaccion.getDatosIntroducidos());
+		
+		// panel FinInstrm 
+		if (panelFinInstrm.isIncludedInGeneratedXml()) {
+			secTranReport.setFinInstrm(panelFinInstrm.getDatosIntroducidos());
+		}
+		
+		// panel InvstmtDcsnPrsn
+		if (panelInvstmtDcsnPrsn.isIncludedInGeneratedXml()) {
+			secTranReport.setInvstmtDcsnPrsn(panelInvstmtDcsnPrsn.getDatosIntroducidos());
+		}
+		
+		// panel ExctgPrsn
+		if (panelExctgPrsn.isIncludedInGeneratedXml()) {
+			secTranReport.setExctgPrsn(panelExctgPrsn.getDatosIntroducidos());
+		}
+		
+		// panel AddtlAttrbts
+		if (panelAddtlAttrbts.isIncludedInGeneratedXml()) {
+			secTranReport.setAddtlAttrbts(panelAddtlAttrbts.getDatosIntroducidos());
+		}
 		
 		ReportingTransactionType1Choice1 resp = factory.createReportingTransactionType1Choice1();
 		resp.setNew(secTranReport);

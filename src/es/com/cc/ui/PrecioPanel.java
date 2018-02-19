@@ -35,7 +35,7 @@ public class PrecioPanel extends JPanel {
 	private JRadioButton radioMntryVal;
 	private JRadioButton radioPctg;
 	private JRadioButton radioYld;
-	private JComboBox mntryValCcyComboBox;
+	private JComboBox<String> mntryValCcyComboBox;
 	
 	/**
 	 * Create the panel.
@@ -142,19 +142,19 @@ public class PrecioPanel extends JPanel {
 		/**
 		 * panelBsisPts
 		 */
-//		panelBsisPts = new JPanel();
-//		panelBsisPts.setBounds(0, 30, 297, 58);
-//		panelPrecio.add(panelBsisPts);
-//		panelBsisPts.setLayout(null);
-//		
-//		JLabel lblNewLabel = new JLabel("BsisPts");
-//		lblNewLabel.setBounds(10, 11, 80, 14);
-//		panelBsisPts.add(lblNewLabel);
-//		
-//		bsisPtsField = new JTextField();
-//		bsisPtsField.setBounds(100, 8, 180, 20);
-//		panelBsisPts.add(bsisPtsField);
-//		bsisPtsField.setColumns(10);
+		panelBsisPts = new JPanel();
+		panelBsisPts.setBounds(0, 30, 297, 58);
+		panelPrecio.add(panelBsisPts);
+		panelBsisPts.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("BsisPts");
+		lblNewLabel.setBounds(10, 11, 80, 14);
+		panelBsisPts.add(lblNewLabel);
+		
+		bsisPtsField = new JTextField();
+		bsisPtsField.setBounds(100, 8, 180, 20);
+		panelBsisPts.add(bsisPtsField);
+		bsisPtsField.setColumns(10);
 		
 		/**
 		 * panelMntryVal
@@ -187,7 +187,7 @@ public class PrecioPanel extends JPanel {
 		panelMntryVal.add(mntryValValueField);
 		mntryValValueField.setColumns(10);
 		
-		mntryValCcyComboBox = new JComboBox();
+		mntryValCcyComboBox = new JComboBox<String>();
 		mntryValCcyComboBox.setBounds(215, 8, 70, 20);
 		panelMntryVal.add(mntryValCcyComboBox);
 		
@@ -195,37 +195,37 @@ public class PrecioPanel extends JPanel {
 		/**
 		 * panelPctg
 		 */
-//		panelPctg = new JPanel();
-//		panelPctg.setBounds(0, 30, 297, 58);
-//		panelPrecio.add(panelPctg);
-//		panelPctg.setLayout(null);
-//		
-//		JLabel lblNewLabel2 = new JLabel("Pctg");
-//		lblNewLabel2.setBounds(10, 11, 80, 14);
-//		panelPctg.add(lblNewLabel2);
-//		
-//		ptgField = new JTextField();
-//		ptgField.setBounds(100, 8, 180, 20);
-//		panelPctg.add(ptgField);
-//		ptgField.setColumns(10);
+		panelPctg = new JPanel();
+		panelPctg.setBounds(0, 30, 297, 58);
+		panelPrecio.add(panelPctg);
+		panelPctg.setLayout(null);
+		
+		JLabel lblNewLabel2 = new JLabel("Pctg");
+		lblNewLabel2.setBounds(10, 11, 80, 14);
+		panelPctg.add(lblNewLabel2);
+		
+		ptgField = new JTextField();
+		ptgField.setBounds(100, 8, 180, 20);
+		panelPctg.add(ptgField);
+		ptgField.setColumns(10);
 		
 		
 		/**
 		 * panelPctg
 		 */
-//		panelYld = new JPanel();
-//		panelYld.setBounds(0, 30, 297, 60);
-//		panelPrecio.add(panelYld);
-//		panelYld.setLayout(null);
-//		
-//		JLabel lblNewLabel3 = new JLabel("Yld");
-//		lblNewLabel3.setBounds(10, 11, 80, 14);
-//		panelYld.add(lblNewLabel3);
-//		
-//		yldField = new JTextField();
-//		yldField.setBounds(100, 8, 180, 20);
-//		panelYld.add(yldField);
-//		yldField.setColumns(10);
+		panelYld = new JPanel();
+		panelYld.setBounds(0, 30, 297, 60);
+		panelPrecio.add(panelYld);
+		panelYld.setLayout(null);
+		
+		JLabel lblNewLabel3 = new JLabel("Yld");
+		lblNewLabel3.setBounds(10, 11, 80, 14);
+		panelYld.add(lblNewLabel3);
+		
+		yldField = new JTextField();
+		yldField.setBounds(100, 8, 180, 20);
+		panelYld.add(yldField);
+		yldField.setColumns(10);
 		
 		
 		/**

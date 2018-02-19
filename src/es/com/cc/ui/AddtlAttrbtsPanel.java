@@ -165,4 +165,8 @@ public class AddtlAttrbtsPanel extends JPanel {
 		
 		return transInd;
 	}
+	
+	public boolean isIncludedInGeneratedXml() {
+		return hideFlag;
+	}
 }

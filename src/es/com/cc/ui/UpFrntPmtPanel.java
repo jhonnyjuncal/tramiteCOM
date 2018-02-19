@@ -29,15 +29,15 @@ public class UpFrntPmtPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public UpFrntPmtPanel() {
-		setPreferredSize(new Dimension(338, 60));
+		setPreferredSize(new Dimension(298, 58));
 		setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("UpFrntPmt");
-		lblNewLabel_1.setBounds(172, 36, 57, 14);
+		lblNewLabel_1.setBounds(10, 36, 57, 14);
 		add(lblNewLabel_1);
 		
 		upFrntPmtField = new JTextField();
-		upFrntPmtField.setBounds(239, 33, 90, 20);
+		upFrntPmtField.setBounds(77, 33, 211, 20);
 		add(upFrntPmtField);
 		upFrntPmtField.setColumns(10);
 		
@@ -46,11 +46,11 @@ public class UpFrntPmtPanel extends JPanel {
 		add(lblNewLabel);
 		
 		radioSi = new JRadioButton("Si");
-		radioSi.setBounds(62, 7, 46, 23);
+		radioSi.setBounds(62, 7, 40, 23);
 		add(radioSi);
 		
 		radioNo = new JRadioButton("No");
-		radioNo.setBounds(110, 7, 46, 23);
+		radioNo.setBounds(104, 7, 40, 23);
 		add(radioNo);
 		
 		ButtonGroup grupo1 = new ButtonGroup();
@@ -58,11 +58,11 @@ public class UpFrntPmtPanel extends JPanel {
 		grupo1.add(radioNo);
 		
 		JLabel lblNewLabel_2 = new JLabel("Ccy");
-		lblNewLabel_2.setBounds(10, 36, 46, 14);
+		lblNewLabel_2.setBounds(184, 11, 46, 14);
 		add(lblNewLabel_2);
 		
 		ccyComboBox = new JComboBox<String>();
-		ccyComboBox.setBounds(62, 33, 81, 20);
+		ccyComboBox.setBounds(231, 8, 57, 20);
 		add(ccyComboBox);
 		cargaValoresDelComboCurrency();
 		
