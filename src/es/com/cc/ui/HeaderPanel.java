@@ -30,13 +30,11 @@ public class HeaderPanel extends JPanel {
 		setLayout(null);
 		
 		panelFrom = new FromToPanel("FROM");
-		panelFrom.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelFrom.setLocation(1, 1);
 		panelFrom.setSize(498, 80);
 		add(panelFrom);
 		
 		panelTo = new FromToPanel("TO");
-		panelTo.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelTo.setLocation(500, 1);
 		panelTo.setSize(498, 80);
 		add(panelTo);
