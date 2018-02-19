@@ -28,54 +28,54 @@ public class PersonaPanel extends JPanel {
 	 */
 	public PersonaPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(691, 100));
+		setPreferredSize(new Dimension(988, 58));
 		
 		JLabel lblNewLabel = new JLabel("FrstNm");
-		lblNewLabel.setBounds(10, 11, 46, 14);
+		lblNewLabel.setBounds(10, 11, 66, 14);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nm");
-		lblNewLabel_1.setBounds(353, 11, 46, 14);
+		lblNewLabel_1.setBounds(343, 11, 63, 14);
 		add(lblNewLabel_1);
 		
 		JLabel lblBirthdt = new JLabel("BirthDt");
-		lblBirthdt.setBounds(10, 36, 46, 14);
+		lblBirthdt.setBounds(343, 36, 63, 14);
 		add(lblBirthdt);
 		
 		JLabel lblId = new JLabel("Id");
-		lblId.setBounds(10, 61, 46, 14);
+		lblId.setBounds(10, 36, 66, 14);
 		add(lblId);
 		
 		JLabel lblSchmenm = new JLabel("SchmeNm");
-		lblSchmenm.setBounds(353, 36, 46, 14);
+		lblSchmenm.setBounds(691, 11, 77, 14);
 		add(lblSchmenm);
 		
 		txtFrstnmfield = new JTextField();
-		txtFrstnmfield.setBounds(66, 8, 200, 20);
+		txtFrstnmfield.setBounds(86, 8, 200, 20);
 		add(txtFrstnmfield);
 		txtFrstnmfield.setColumns(10);
 		
 		txtNmfield = new JTextField();
-		txtNmfield.setBounds(409, 8, 200, 20);
+		txtNmfield.setBounds(416, 8, 200, 20);
 		add(txtNmfield);
 		txtNmfield.setColumns(10);
 		
 		txtBirthdtfield = new JTextField();
-		txtBirthdtfield.setBounds(66, 33, 200, 20);
+		txtBirthdtfield.setBounds(416, 33, 200, 20);
 		add(txtBirthdtfield);
 		txtBirthdtfield.setColumns(10);
 		
 		idField = new JTextField();
-		idField.setBounds(66, 58, 200, 20);
+		idField.setBounds(86, 33, 200, 20);
 		add(idField);
 		idField.setColumns(10);
 		
 		schmeNmCombo = new JComboBox<String>();
-		schmeNmCombo.setBounds(409, 33, 200, 20);
+		schmeNmCombo.setBounds(778, 8, 200, 20);
 		add(schmeNmCombo);
 		
 		cdOrPrtryField = new JTextField();
-		cdOrPrtryField.setBounds(409, 58, 200, 20);
+		cdOrPrtryField.setBounds(778, 33, 200, 20);
 		add(cdOrPrtryField);
 		cdOrPrtryField.setColumns(10);
 	}

@@ -112,7 +112,7 @@ public class EdicionXmlPanel extends JPanel {
 		 */
 		
 		JPanel panelSeparador2 = new JPanel();
-		panelSeparador2.setPreferredSize(new Dimension(998, 30));
+		panelSeparador2.setPreferredSize(new Dimension(998, 40));
 		add(panelSeparador2);
 		JSeparator separator2 = new JSeparator();
 		add(separator2);
@@ -158,7 +158,7 @@ public class EdicionXmlPanel extends JPanel {
 	}
 	
 	private void muestraVentanaNuevaTransaccion() {
-		EdicionXmlPanel.frame.setBounds(200, 200, 1025, 900);
+		EdicionXmlPanel.frame.setBounds(200, 100, 1025, 900);
 		nuevaTransaccionPanel = new NuevaTransaccionPanel();
 		
 		nuevaTransaccionPanel.getBotonAceptar().addActionListener(new ActionListener() {

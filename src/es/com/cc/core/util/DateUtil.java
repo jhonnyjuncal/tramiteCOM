@@ -15,14 +15,16 @@ public class DateUtil {
 		XMLGregorianCalendar xmlCalendar = null;
 		
 		try {
-			SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-DD");
+			value = value.replace("T", "");
+			value = value.replace("Z", "");
+			
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-ddHH:mm:ssssss");
 			Date date = formatter.parse(value);
 			GregorianCalendar calendar = new GregorianCalendar();
 			calendar.setTime(date);
 			xmlCalendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
 			
 		} catch (DatatypeConfigurationException | ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return xmlCalendar;

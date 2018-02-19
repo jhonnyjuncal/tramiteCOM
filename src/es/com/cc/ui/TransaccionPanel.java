@@ -4,22 +4,25 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.math.BigDecimal;
+import java.text.ParseException;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import javax.swing.text.MaskFormatter;
+
 import es.com.cc.core.schema.all.ObjectFactory;
 import es.com.cc.core.schema.all.RegulatoryTradingCapacity1Code;
 import es.com.cc.core.schema.all.SecuritiesTransaction11;
 import es.com.cc.core.schema.all.VariationType1Code;
 import es.com.cc.core.util.DateUtil;
+import javax.swing.JFormattedTextField;
 
 public class TransaccionPanel extends JPanel {
 	
 	private static final long serialVersionUID = -7813145032830198693L;
-	
-	private JTextField tradDtField;
 	private JTextField netAmtField;
 	private JTextField tradVnField;
 	private JTextField ctryOfBrnchField;
@@ -31,6 +34,7 @@ public class TransaccionPanel extends JPanel {
 	private QuantityPanel qtyPanel;
 	private PrecioPanel panelPrecio;
 	private UpFrntPmtPanel panelUpFrntPmt;
+	private JFormattedTextField tradDtField;
 
 	/**
 	 * Create the panel.
@@ -41,7 +45,7 @@ public class TransaccionPanel extends JPanel {
 		
 		JLabel lblNewLabel_6 = new JLabel("Transaccion");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_6.setBounds(10, 11, 200, 14);
+		lblNewLabel_6.setBounds(36, 11, 200, 14);
 		add(lblNewLabel_6);
 		
 		JLabel lblTraddt = new JLabel("TradDt");
@@ -51,11 +55,6 @@ public class TransaccionPanel extends JPanel {
 		JLabel lblTradgcpcty = new JLabel("TradgCpcty");
 		lblTradgcpcty.setBounds(330, 36, 90, 14);
 		add(lblTradgcpcty);
-		
-		tradDtField = new JTextField();
-		tradDtField.setBounds(110, 33, 200, 20);
-		add(tradDtField);
-		tradDtField.setColumns(10);
 		
 		qtyPanel = new QuantityPanel();
 		qtyPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -134,6 +133,17 @@ public class TransaccionPanel extends JPanel {
 		add(derivNtnlChngComboBox);
 		derivNtnlChngComboBox.addItem("DECR");
 		derivNtnlChngComboBox.addItem("INCR");
+		
+		try {
+			MaskFormatter dateMask = new MaskFormatter("####-##-##T##:##:######Z");
+			tradDtField = new JFormattedTextField(dateMask);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		tradDtField.setBounds(99, 33, 200, 20);
+		add(tradDtField);
 
 	}
 	

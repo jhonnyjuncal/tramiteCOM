@@ -20,20 +20,20 @@ public class DcsnMakrPanel extends JPanel {
 	 */
 	public DcsnMakrPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(691, 140));
+		setPreferredSize(new Dimension(988, 98));
 		
 		JLabel lblNewLabel_1 = new JLabel("LEI");
-		lblNewLabel_1.setBounds(25, 11, 46, 14);
+		lblNewLabel_1.setBounds(10, 11, 46, 14);
 		add(lblNewLabel_1);
 		
 		LEIField = new JTextField();
-		LEIField.setBounds(81, 8, 200, 20);
+		LEIField.setBounds(66, 8, 200, 20);
 		add(LEIField);
 		LEIField.setColumns(10);
 		
 		PersonaPanel panelPersonaDcsnMakr = new PersonaPanel();
-		panelPersonaDcsnMakr.setLocation(10, 36);
-		panelPersonaDcsnMakr.setSize(671, 100);
+		panelPersonaDcsnMakr.setLocation(0, 36);
+		panelPersonaDcsnMakr.setSize(988, 58);
 		panelPersonaDcsnMakr.setPreferredSize(new Dimension(691, 100));
 		add(panelPersonaDcsnMakr);
 	}

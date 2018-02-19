@@ -2,6 +2,8 @@ package es.com.cc.ui;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -33,6 +35,7 @@ public class NuevaTransaccionPanel extends JPanel {
 	 */
 	public NuevaTransaccionPanel() {
 		setBounds(0, 0, 1025, 900);
+		setPreferredSize(new Dimension(1025, 900));
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		/**
@@ -48,11 +51,35 @@ public class NuevaTransaccionPanel extends JPanel {
 		 * panel vendedores y compradores
 		 */
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setPreferredSize(new Dimension(998, 270));
+		tabbedPane.setPreferredSize(new Dimension(998, 220));
 		add(tabbedPane);
 		
 		tabbedPane.addTab("Buyer", null, panelBuyer, null);
 		tabbedPane.addTab("Seller", null, panelSeller, null);
+		
+		panelBuyer.getBotonColapsoPanel().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panelBuyer.cambiaFlag();
+				
+				if (panelBuyer.getFlagValue()) {
+					tabbedPane.setPreferredSize(new Dimension(998, 320));
+					
+				} else {
+					tabbedPane.setPreferredSize(new Dimension(998, 220));
+				}
+				
+				revalidate();
+			}
+		});
+		
+		panelSeller.getBotonColapsoPanel().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panelSeller.cambiaFlag();
+				
+			}
+		});
 		
 		/**
 		 * ****************************************************************************************************
