@@ -23,7 +23,7 @@ public class GeneralesPanel extends JPanel {
 	 */
 	public GeneralesPanel() {
 		setLayout(null);
-		setPreferredSize(new Dimension(713, 68));
+		setPreferredSize(new Dimension(996, 68));
 		
 		JLabel lblNewLabel = new JLabel("TxId");
 		lblNewLabel.setBounds(10, 11, 70, 14);
@@ -34,34 +34,34 @@ public class GeneralesPanel extends JPanel {
 		add(lblNewLabel_1);
 		
 		txIdField = new JTextField();
-		txIdField.setBounds(90, 8, 200, 20);
+		txIdField.setBounds(90, 8, 350, 20);
 		add(txIdField);
 		txIdField.setColumns(10);
 		
 		exctgPtyField = new JTextField();
-		exctgPtyField.setBounds(90, 33, 200, 20);
+		exctgPtyField.setBounds(90, 33, 350, 20);
 		add(exctgPtyField);
 		exctgPtyField.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("InvstmtPtyInd");
-		lblNewLabel_2.setBounds(350, 11, 85, 14);
+		lblNewLabel_2.setBounds(541, 11, 85, 14);
 		add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("SubmitgPty");
-		lblNewLabel_3.setBounds(350, 36, 85, 14);
+		lblNewLabel_3.setBounds(541, 36, 85, 14);
 		add(lblNewLabel_3);
 		
 		submitgPtyField = new JTextField();
-		submitgPtyField.setBounds(445, 33, 200, 20);
+		submitgPtyField.setBounds(636, 33, 350, 20);
 		add(submitgPtyField);
 		submitgPtyField.setColumns(10);
 		
 		invstmtPtyIndTrue = new JRadioButton("Si");
-		invstmtPtyIndTrue.setBounds(445, 7, 50, 23);
+		invstmtPtyIndTrue.setBounds(660, 7, 50, 23);
 		add(invstmtPtyIndTrue);
 		
 		invstmtPtyIndFalse = new JRadioButton("No");
-		invstmtPtyIndFalse.setBounds(497, 7, 50, 23);
+		invstmtPtyIndFalse.setBounds(712, 7, 50, 23);
 		add(invstmtPtyIndFalse);
 		
 		ButtonGroup grupo = new ButtonGroup();
