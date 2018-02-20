@@ -1,5 +1,6 @@
 package es.com.cc.ui;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -101,6 +102,10 @@ public class EdicionXmlPanel extends JPanel {
 		
 		tablaTransacciones = new JTable(model);
 		tablaTransacciones.setPreferredSize(new Dimension(992, 196));
+		tablaTransacciones.setFillsViewportHeight(true);
+		tablaTransacciones.setForeground(new Color(255, 255, 255));
+		tablaTransacciones.setBackground(new Color(80, 143, 190));
+		tablaTransacciones.setOpaque(false);
 		
 		JScrollPane scrollPane = new JScrollPane(tablaTransacciones);
 		scrollPane.setPreferredSize(new Dimension(995, 200));
@@ -110,10 +115,10 @@ public class EdicionXmlPanel extends JPanel {
 		 * ****************************************************************************************************
 		 * botonera inferior
 		 */
-		
 		JPanel panelSeparador2 = new JPanel();
 		panelSeparador2.setPreferredSize(new Dimension(998, 30));
 		add(panelSeparador2);
+		
 		JSeparator separator2 = new JSeparator();
 		add(separator2);
 		separator2.setPreferredSize(new Dimension(1000, 2));
