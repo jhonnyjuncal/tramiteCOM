@@ -4,25 +4,31 @@ import javax.swing.JPanel;
 import es.com.cc.core.schema.all.ESMAPositiveExcludingZeroMax18;
 import es.com.cc.core.schema.all.FinancialInstrumentQuantity25Choice1;
 import es.com.cc.core.schema.all.ObjectFactory;
+import es.com.cc.core.util.CharactersUtil;
+import es.com.cc.core.util.esma.DecimalFormatter;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import javax.swing.ButtonGroup;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 import java.awt.Dimension;
 
 public class QuantityPanel extends JPanel {
 
 	private static final long serialVersionUID = 7693260638964038663L;
 	
-	private JTextField unidadesField;
-	private JTextField ccyField;
+	private JFormattedTextField unidadesField;
+	private JFormattedTextField ccyField;
+	private JFormattedTextField valueField;
 	private JRadioButton radioUnit;
 	private JRadioButton radioNominal;
 	private JRadioButton radioMonetario;
-	private JTextField valueField;
 	
 	private JPanel panelUnidades;
 	private JPanel panelNominal;
@@ -43,10 +49,8 @@ public class QuantityPanel extends JPanel {
 		panelRadios.add(radioUnit);
 		radioUnit.setSelected(true);
 		radioUnit.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				muestraPanelMonetario(0);
 			}
 		});
@@ -54,10 +58,8 @@ public class QuantityPanel extends JPanel {
 		radioNominal = new JRadioButton("NmnlVal");
 		panelRadios.add(radioNominal);
 		radioNominal.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				muestraPanelMonetario(1);
 			}
 		});
@@ -65,10 +67,8 @@ public class QuantityPanel extends JPanel {
 		radioMonetario = new JRadioButton("MntryVal");
 		panelRadios.add(radioMonetario);
 		radioMonetario.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				muestraPanelMonetario(2);
 			}
 		});
@@ -79,6 +79,7 @@ public class QuantityPanel extends JPanel {
 	    group.add(radioMonetario);
 		
 	    /**
+	     * ***************************************************************************************************************
 	     * panel de unidades
 	     */
 		panelUnidades = new JPanel();
@@ -91,13 +92,15 @@ public class QuantityPanel extends JPanel {
 		lblNewLabel.setBounds(10, 11, 70, 14);
 		panelUnidades.add(lblNewLabel);
 		
-		unidadesField = new JTextField();
+		DecimalFormatter df1 = new DecimalFormatter(CharactersUtil.ESMA_NonNegativeExcludingZeroMax18);
+		unidadesField = new JFormattedTextField(df1.getDecimalFormat());
 		unidadesField.setBounds(90, 8, 200, 20);
 		panelUnidades.add(unidadesField);
 		unidadesField.setColumns(10);
 		
 		/**
-		 * panel valor nominal
+		 * ***************************************************************************************************************
+		 * panel valor nominal y valor monetario
 		 */
 		panelNominal = new JPanel();
 		panelNominal.setBounds(1, 32, 298, 59);
@@ -110,7 +113,13 @@ public class QuantityPanel extends JPanel {
 		lblNewLabel2.setBounds(10, 11, 80, 14);
 		panelNominal.add(lblNewLabel2);
 		
-		ccyField = new JTextField();
+		try {
+			MaskFormatter currencyMask = new MaskFormatter("UUU");
+			ccyField = new JFormattedTextField(currencyMask);
+			
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
 		ccyField.setBounds(100, 8, 200, 20);
 		panelNominal.add(ccyField);
 		ccyField.setColumns(10);
@@ -119,7 +128,10 @@ public class QuantityPanel extends JPanel {
 		lblNewLabel.setBounds(10, 36, 46, 14);
 		panelNominal.add(lblNewLabel);
 		
-		valueField = new JTextField();
+		NumberFormat nf2 = NumberFormat.getNumberInstance();
+	    DecimalFormat df2 = (DecimalFormat)nf2;
+	    df2.applyPattern("#############.#####");
+		valueField = new JFormattedTextField(df2);
 		valueField.setBounds(100, 33, 200, 20);
 		panelNominal.add(valueField);
 		valueField.setColumns(10);

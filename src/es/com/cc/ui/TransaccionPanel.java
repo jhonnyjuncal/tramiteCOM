@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 
 import javax.swing.JComboBox;
@@ -12,29 +14,35 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.text.MaskFormatter;
+import javax.swing.text.NumberFormatter;
+
+import com.sun.javafx.binding.StringFormatter;
 
 import es.com.cc.core.schema.all.ObjectFactory;
 import es.com.cc.core.schema.all.RegulatoryTradingCapacity1Code;
 import es.com.cc.core.schema.all.SecuritiesTransaction11;
 import es.com.cc.core.schema.all.VariationType1Code;
+import es.com.cc.core.util.CharactersUtil;
 import es.com.cc.core.util.DateUtil;
+import es.com.cc.core.util.esma.TextFormatter;
+
 import javax.swing.JFormattedTextField;
 
 public class TransaccionPanel extends JPanel {
 	
 	private static final long serialVersionUID = -7813145032830198693L;
-	private JTextField netAmtField;
-	private JTextField tradVnField;
-	private JTextField ctryOfBrnchField;
-	private JTextField tradPlcMtchgIdField;
-	private JTextField cmplxTradCmpntIdField;
+	private JFormattedTextField netAmtField;
+	private JFormattedTextField tradVnField;
+	private JFormattedTextField ctryOfBrnchField;
+	private JFormattedTextField tradPlcMtchgIdField;
+	private JFormattedTextField cmplxTradCmpntIdField;
+	private JFormattedTextField tradDtField;
 	private JComboBox<String> tradgCpctycomboBox;
 	private JComboBox<String> derivNtnlChngComboBox;
 	
 	private QuantityPanel qtyPanel;
 	private PrecioPanel panelPrecio;
 	private UpFrntPmtPanel panelUpFrntPmt;
-	private JFormattedTextField tradDtField;
 
 	/**
 	 * Create the panel.
@@ -74,8 +82,11 @@ public class TransaccionPanel extends JPanel {
 		lblNetamt.setBounds(330, 85, 80, 14);
 		add(lblNetamt);
 		
-		netAmtField = new JTextField();
-		netAmtField.setBounds(440, 82, 200, 20);
+	    NumberFormat nf = NumberFormat.getNumberInstance();
+	    DecimalFormat df = (DecimalFormat)nf;
+	    df.applyPattern("#############.#####");
+		netAmtField = new JFormattedTextField(df);
+		netAmtField.setBounds(461, 82, 200, 20);
 		add(netAmtField);
 		netAmtField.setColumns(10);
 		
@@ -83,8 +94,8 @@ public class TransaccionPanel extends JPanel {
 		lblNewLabel_7.setBounds(330, 186, 80, 14);
 		add(lblNewLabel_7);
 		
-		tradVnField = new JTextField();
-		tradVnField.setBounds(440, 183, 200, 20);
+		tradVnField = new JFormattedTextField(new TextFormatter(CharactersUtil.MICIdentifier));
+		tradVnField.setBounds(461, 183, 200, 20);
 		add(tradVnField);
 		tradVnField.setColumns(10);
 		
@@ -92,8 +103,8 @@ public class TransaccionPanel extends JPanel {
 		lblNewLabel.setBounds(330, 110, 80, 14);
 		add(lblNewLabel);
 		
-		ctryOfBrnchField = new JTextField();
-		ctryOfBrnchField.setBounds(440, 107, 200, 20);
+		ctryOfBrnchField = new JFormattedTextField(new TextFormatter(CharactersUtil.CountryCode));
+		ctryOfBrnchField.setBounds(461, 107, 200, 20);
 		add(ctryOfBrnchField);
 		ctryOfBrnchField.setColumns(10);
 		
@@ -104,42 +115,41 @@ public class TransaccionPanel extends JPanel {
 		add(panelUpFrntPmt);
 		
 		JLabel lblNewLabel_2 = new JLabel("TradPlcMtchgId");
-		lblNewLabel_2.setBounds(330, 135, 80, 14);
+		lblNewLabel_2.setBounds(330, 135, 121, 14);
 		add(lblNewLabel_2);
 		
-		tradPlcMtchgIdField = new JTextField();
-		tradPlcMtchgIdField.setBounds(440, 132, 200, 20);
+		tradPlcMtchgIdField = new JFormattedTextField(new TextFormatter(CharactersUtil.ESMA_AlphaNumericMax52_Pattern));
+		tradPlcMtchgIdField.setColumns(52);
+		tradPlcMtchgIdField.setBounds(461, 132, 200, 20);
 		add(tradPlcMtchgIdField);
-		tradPlcMtchgIdField.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("CmplxTradCmpntId");
-		lblNewLabel_3.setBounds(330, 160, 100, 14);
+		lblNewLabel_3.setBounds(330, 160, 121, 14);
 		add(lblNewLabel_3);
 		
-		cmplxTradCmpntIdField = new JTextField();
-		cmplxTradCmpntIdField.setBounds(440, 157, 200, 20);
+		cmplxTradCmpntIdField = new JFormattedTextField(new TextFormatter(CharactersUtil.ESMA_AlphaNumericCapitalLettersMax35_Pattern));
+		cmplxTradCmpntIdField.setBounds(461, 157, 200, 20);
 		add(cmplxTradCmpntIdField);
 		cmplxTradCmpntIdField.setColumns(10);
 		
 		tradgCpctycomboBox = new JComboBox<String>();
-		tradgCpctycomboBox.setBounds(440, 33, 200, 20);
+		tradgCpctycomboBox.setBounds(461, 33, 200, 20);
 		add(tradgCpctycomboBox);
 		tradgCpctycomboBox.addItem("AOTC");
 		tradgCpctycomboBox.addItem("DEAL");
 		tradgCpctycomboBox.addItem("MTCH");
 		
 		derivNtnlChngComboBox = new JComboBox<String>();
-		derivNtnlChngComboBox.setBounds(440, 57, 200, 20);
+		derivNtnlChngComboBox.setBounds(461, 57, 200, 20);
 		add(derivNtnlChngComboBox);
 		derivNtnlChngComboBox.addItem("DECR");
 		derivNtnlChngComboBox.addItem("INCR");
 		
 		try {
-			MaskFormatter dateMask = new MaskFormatter("####-##-##T##:##:######Z");
+			MaskFormatter dateMask = new MaskFormatter(CharactersUtil.ESMA_ISODate);
 			tradDtField = new JFormattedTextField(dateMask);
 			
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		tradDtField.setBounds(99, 33, 200, 20);
