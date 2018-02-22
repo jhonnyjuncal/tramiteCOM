@@ -1,23 +1,20 @@
 package es.com.cc.ui;
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import javax.swing.ButtonGroup;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import es.com.cc.core.schema.all.ESMAPositiveExcludingZeroMax18;
 import es.com.cc.core.schema.all.FinancialInstrumentQuantity25Choice1;
 import es.com.cc.core.schema.all.ObjectFactory;
 import es.com.cc.core.util.CharactersUtil;
 import es.com.cc.core.util.esma.DecimalFormatter;
-import javax.swing.JRadioButton;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import javax.swing.ButtonGroup;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
-import javax.swing.text.MaskFormatter;
-import java.awt.Dimension;
+import es.com.cc.core.util.esma.TextFormatter;
 
 public class QuantityPanel extends JPanel {
 
@@ -113,14 +110,8 @@ public class QuantityPanel extends JPanel {
 		lblNewLabel2.setBounds(10, 11, 80, 14);
 		panelNominal.add(lblNewLabel2);
 		
-		try {
-			MaskFormatter currencyMask = new MaskFormatter("UUU");
-			ccyField = new JFormattedTextField(currencyMask);
-			
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
-		ccyField.setBounds(100, 8, 200, 20);
+		ccyField = new JFormattedTextField(new TextFormatter(CharactersUtil.ActiveOrHistoricCurrencyCode));
+		ccyField.setBounds(90, 8, 200, 20);
 		panelNominal.add(ccyField);
 		ccyField.setColumns(10);
 		
@@ -128,18 +119,15 @@ public class QuantityPanel extends JPanel {
 		lblNewLabel.setBounds(10, 36, 46, 14);
 		panelNominal.add(lblNewLabel);
 		
-		NumberFormat nf2 = NumberFormat.getNumberInstance();
-	    DecimalFormat df2 = (DecimalFormat)nf2;
-	    df2.applyPattern("#############.#####");
-		valueField = new JFormattedTextField(df2);
-		valueField.setBounds(100, 33, 200, 20);
+		DecimalFormatter df2 = new DecimalFormatter(CharactersUtil.ESMA_PositiveExcludingZeroMax18_SimpleType);
+		valueField = new JFormattedTextField(df2.getDecimalFormat());
+		valueField.setBounds(90, 33, 200, 20);
 		panelNominal.add(valueField);
 		valueField.setColumns(10);
 	}
 	
 	public FinancialInstrumentQuantity25Choice1 getDatosIntroducidos() {
 		ObjectFactory factory = new ObjectFactory();
-		
 		FinancialInstrumentQuantity25Choice1 fiQty = factory.createFinancialInstrumentQuantity25Choice1();
 		
 		if (radioUnit.isSelected()) {
