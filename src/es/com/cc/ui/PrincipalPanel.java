@@ -16,6 +16,7 @@ public class PrincipalPanel extends JFrame {
 	private JPanel contentPane;
 	private ValidadorPanel validadorPanel; 
 	private CreacionPanel creacionPanel;
+	
 
 	/**
 	 * Launch the application.
@@ -47,7 +48,7 @@ public class PrincipalPanel extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnCrearXml = new JButton("Crear XML");
+		JButton btnCrearXml = new JButton("TR");
 		btnCrearXml.setBounds(54, 253, 130, 23);
 		contentPane.add(btnCrearXml);
 		btnCrearXml.addActionListener(new ActionListener() {
@@ -58,8 +59,8 @@ public class PrincipalPanel extends JFrame {
 			}
 		});
 		
-		JButton btnValidarXml = new JButton("Validar XML");
-		btnValidarXml.setBounds(222, 253, 130, 23);
+		JButton btnValidarXml = new JButton("Validar TR");
+		btnValidarXml.setBounds(221, 253, 130, 23);
 		contentPane.add(btnValidarXml);
 		btnValidarXml.addActionListener(new ActionListener() {
 			
@@ -69,7 +70,7 @@ public class PrincipalPanel extends JFrame {
 			}
 		});
 		
-		JButton btnLeerRespuestaXml = new JButton("Leer respuesta XML");
+		JButton btnLeerRespuestaXml = new JButton("Leer respuesta");
 		btnLeerRespuestaXml.setEnabled(false);
 		btnLeerRespuestaXml.setBounds(385, 253, 130, 23);
 		contentPane.add(btnLeerRespuestaXml);

@@ -45,7 +45,6 @@ public class ValidadorPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				final JFileChooser jfc = new JFileChooser();
 				int returnValue = jfc.showOpenDialog(null);
 				

@@ -5,6 +5,7 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
 public class CreacionPanel extends JPanel {
@@ -13,6 +14,7 @@ public class CreacionPanel extends JPanel {
 	
 	private static PrincipalPanel frame;
 	private EdicionXmlPanel edicionPanel;
+	private CargaXmlPanel cargaXmlPanel;
 	private Container esteContenedor;
 
 	/**
@@ -27,24 +29,12 @@ public class CreacionPanel extends JPanel {
 		panel.setBounds(0, 236, 580, 33);
 		add(panel);
 		
-		JButton btnNewXml = new JButton("Crear Nuevo XML");
-		panel.add(btnNewXml);
-		
-		JButton btnLoadXml = new JButton("Cargar XML existente");
-		panel.add(btnLoadXml);
-		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 292, 580, 33);
 		add(panel_1);
 		
-		JButton btnNewButton = new JButton("Volver");
-		panel_1.add(btnNewButton);
-		btnLoadXml.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
+		JButton btnNewXml = new JButton("Crear Nuevo XML");
+		panel.add(btnNewXml);
 		btnNewXml.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -53,6 +43,27 @@ public class CreacionPanel extends JPanel {
 				muestraPanel(edicionPanel);
 			}
 		});
+		
+		JButton btnLoadXml = new JButton("Cargar XML existente");
+		panel.add(btnLoadXml);
+		btnLoadXml.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cargaXmlPanel = new CargaXmlPanel(frame);
+				muestraPanel(cargaXmlPanel);
+			}
+		});
+		
+		JButton btnNewButton = new JButton("Volver");
+		panel_1.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 	}
 	
 	private void muestraPanel(JPanel panel) {
